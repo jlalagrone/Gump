@@ -75,15 +75,9 @@ class SignInController: UIViewController {
     }()
     
     @objc func createAccount() {
-        var vc = RegistrationController()
+        let registrationVC = RegistrationController()
         
-
-        
-//        vc.modalPresentationStyle = .fullScreen
-//
-//        present(vc, animated: true, completion: nil)
-        self.navigationController?.pushViewController(vc, animated: true)
-        print(self.navigationController?.description)
+        self.navigationController?.pushViewController(registrationVC, animated: true)
         
     }
 
@@ -174,11 +168,18 @@ class SignInController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1)
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
 
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
+ 
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         // Adds background gradient to SignInController's view
         let gradientLayer = CAGradientLayer()
                gradientLayer.frame = view.bounds
@@ -188,13 +189,6 @@ class SignInController: UIViewController {
         layoutView()
         layoutFonts()
         configureButtonActions()
-   
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
     
     }
 
