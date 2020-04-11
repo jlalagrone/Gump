@@ -1,0 +1,6 @@
+framework module Pods_Gump {
+  umbrella header "Pods-Gump-umbrella.h"
+
+  export *
+  module * { export * }
+}

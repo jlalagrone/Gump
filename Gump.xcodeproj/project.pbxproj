@@ -3,19 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01607B46E3975C8B61F5C421 /* Pods_GumpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0BA8BB1617528E3A3549E3 /* Pods_GumpTests.framework */; };
 		0F08FE2C243B8F58001D6478 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2B243B8F58001D6478 /* AppDelegate.swift */; };
 		0F08FE2E243B8F58001D6478 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */; };
-		0F08FE30243B8F58001D6478 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2F243B8F58001D6478 /* ViewController.swift */; };
+		0F08FE30243B8F58001D6478 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2F243B8F58001D6478 /* SignInController.swift */; };
 		0F08FE33243B8F58001D6478 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F08FE31243B8F58001D6478 /* Main.storyboard */; };
 		0F08FE36243B8F58001D6478 /* Gump.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE34243B8F58001D6478 /* Gump.xcdatamodeld */; };
 		0F08FE38243B8F5F001D6478 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F08FE37243B8F5F001D6478 /* Assets.xcassets */; };
 		0F08FE3B243B8F5F001D6478 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F08FE39243B8F5F001D6478 /* LaunchScreen.storyboard */; };
 		0F08FE46243B8F5F001D6478 /* GumpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE45243B8F5F001D6478 /* GumpTests.swift */; };
 		0F08FE51243B8F5F001D6478 /* GumpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE50243B8F5F001D6478 /* GumpUITests.swift */; };
+		0F08FE5F243B9AF3001D6478 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */; };
+		0F08FE60243B9AF3001D6478 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */; };
+		0F08FE61243B9AF3001D6478 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */; };
+		0F9AE358243F56F700BC577B /* CustomUIObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AE357243F56F700BC577B /* CustomUIObjects.swift */; };
+		0F9AE35A2441079C00BC577B /* Bubblegum.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F9AE3592441079C00BC577B /* Bubblegum.ttf */; };
+		0F9AE35E2441730000BC577B /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AE35D2441730000BC577B /* RegistrationController.swift */; };
+		E325B5A205F21CAF5E9E1533 /* Pods_Gump_GumpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06F2923EDBFB59AA3DC650E /* Pods_Gump_GumpUITests.framework */; };
+		F509D15619C9467196BE5C80 /* Pods_Gump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E590D2115D0A13650692303 /* Pods_Gump.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +48,7 @@
 		0F08FE28243B8F58001D6478 /* Gump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F08FE2B243B8F58001D6478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0F08FE2F243B8F58001D6478 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0F08FE2F243B8F58001D6478 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		0F08FE32243B8F58001D6478 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F08FE35243B8F58001D6478 /* Gump.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gump.xcdatamodel; sourceTree = "<group>"; };
 		0F08FE37243B8F5F001D6478 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +60,19 @@
 		0F08FE4C243B8F5F001D6478 /* GumpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GumpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F08FE50243B8F5F001D6478 /* GumpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumpUITests.swift; sourceTree = "<group>"; };
 		0F08FE52243B8F5F001D6478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0F9AE357243F56F700BC577B /* CustomUIObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIObjects.swift; sourceTree = "<group>"; };
+		0F9AE3592441079C00BC577B /* Bubblegum.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bubblegum.ttf; sourceTree = "<group>"; };
+		0F9AE35D2441730000BC577B /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		0FB2EF96947A637441529107 /* Pods-Gump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gump.debug.xcconfig"; path = "Target Support Files/Pods-Gump/Pods-Gump.debug.xcconfig"; sourceTree = "<group>"; };
+		2685BBF97A0B699E5D9BB231 /* Pods-Gump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gump.release.xcconfig"; path = "Target Support Files/Pods-Gump/Pods-Gump.release.xcconfig"; sourceTree = "<group>"; };
+		5E052A1B7953B00CC94549AF /* Pods-Gump-GumpUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gump-GumpUITests.debug.xcconfig"; path = "Target Support Files/Pods-Gump-GumpUITests/Pods-Gump-GumpUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7E0BA8BB1617528E3A3549E3 /* Pods_GumpTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GumpTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9568BD6F6E018D8BF8FB5879 /* Pods-GumpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GumpTests.release.xcconfig"; path = "Target Support Files/Pods-GumpTests/Pods-GumpTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E590D2115D0A13650692303 /* Pods_Gump.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gump.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E83F10351403C8B67D8710A /* Pods-Gump-GumpUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gump-GumpUITests.release.xcconfig"; path = "Target Support Files/Pods-Gump-GumpUITests/Pods-Gump-GumpUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BD262D7D590649D88BD60328 /* Pods-GumpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GumpTests.debug.xcconfig"; path = "Target Support Files/Pods-GumpTests/Pods-GumpTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C06F2923EDBFB59AA3DC650E /* Pods_Gump_GumpUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Gump_GumpUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F509D15619C9467196BE5C80 /* Pods_Gump.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01607B46E3975C8B61F5C421 /* Pods_GumpTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +96,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E325B5A205F21CAF5E9E1533 /* Pods_Gump_GumpUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070E1661B23A7FB595EF42D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E590D2115D0A13650692303 /* Pods_Gump.framework */,
+				C06F2923EDBFB59AA3DC650E /* Pods_Gump_GumpUITests.framework */,
+				7E0BA8BB1617528E3A3549E3 /* Pods_GumpTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0F08FE1F243B8F58001D6478 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +120,8 @@
 				0F08FE44243B8F5F001D6478 /* GumpTests */,
 				0F08FE4F243B8F5F001D6478 /* GumpUITests */,
 				0F08FE29243B8F58001D6478 /* Products */,
+				94D3F9CE70AF9452003B990E /* Pods */,
+				070E1661B23A7FB595EF42D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,14 +138,18 @@
 		0F08FE2A243B8F58001D6478 /* Gump */ = {
 			isa = PBXGroup;
 			children = (
-				0F08FE2B243B8F58001D6478 /* AppDelegate.swift */,
+				0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */,
 				0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */,
-				0F08FE2F243B8F58001D6478 /* ViewController.swift */,
+				0F08FE2B243B8F58001D6478 /* AppDelegate.swift */,
+				0F9AE357243F56F700BC577B /* CustomUIObjects.swift */,
+				0F08FE2F243B8F58001D6478 /* SignInController.swift */,
+				0F9AE35D2441730000BC577B /* RegistrationController.swift */,
 				0F08FE31243B8F58001D6478 /* Main.storyboard */,
 				0F08FE37243B8F5F001D6478 /* Assets.xcassets */,
 				0F08FE39243B8F5F001D6478 /* LaunchScreen.storyboard */,
 				0F08FE3C243B8F5F001D6478 /* Info.plist */,
 				0F08FE34243B8F58001D6478 /* Gump.xcdatamodeld */,
+				0F9AE3592441079C00BC577B /* Bubblegum.ttf */,
 			);
 			path = Gump;
 			sourceTree = "<group>";
@@ -131,6 +172,19 @@
 			path = GumpUITests;
 			sourceTree = "<group>";
 		};
+		94D3F9CE70AF9452003B990E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0FB2EF96947A637441529107 /* Pods-Gump.debug.xcconfig */,
+				2685BBF97A0B699E5D9BB231 /* Pods-Gump.release.xcconfig */,
+				5E052A1B7953B00CC94549AF /* Pods-Gump-GumpUITests.debug.xcconfig */,
+				9E83F10351403C8B67D8710A /* Pods-Gump-GumpUITests.release.xcconfig */,
+				BD262D7D590649D88BD60328 /* Pods-GumpTests.debug.xcconfig */,
+				9568BD6F6E018D8BF8FB5879 /* Pods-GumpTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,9 +192,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F08FE55243B8F5F001D6478 /* Build configuration list for PBXNativeTarget "Gump" */;
 			buildPhases = (
+				09B607EB699A8D655DA5A54E /* [CP] Check Pods Manifest.lock */,
 				0F08FE24243B8F58001D6478 /* Sources */,
 				0F08FE25243B8F58001D6478 /* Frameworks */,
 				0F08FE26243B8F58001D6478 /* Resources */,
+				9E12F9732639008333ADC65D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -155,6 +211,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F08FE58243B8F5F001D6478 /* Build configuration list for PBXNativeTarget "GumpTests" */;
 			buildPhases = (
+				D05AFA118A49B77557E91DCB /* [CP] Check Pods Manifest.lock */,
 				0F08FE3D243B8F5F001D6478 /* Sources */,
 				0F08FE3E243B8F5F001D6478 /* Frameworks */,
 				0F08FE3F243B8F5F001D6478 /* Resources */,
@@ -173,9 +230,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F08FE5B243B8F5F001D6478 /* Build configuration list for PBXNativeTarget "GumpUITests" */;
 			buildPhases = (
+				D7C1E00580B1D91731F26B9E /* [CP] Check Pods Manifest.lock */,
 				0F08FE48243B8F5F001D6478 /* Sources */,
 				0F08FE49243B8F5F001D6478 /* Frameworks */,
 				0F08FE4A243B8F5F001D6478 /* Resources */,
+				E83D81D51073416CBC898459 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -235,9 +294,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F9AE35A2441079C00BC577B /* Bubblegum.ttf in Resources */,
 				0F08FE3B243B8F5F001D6478 /* LaunchScreen.storyboard in Resources */,
 				0F08FE38243B8F5F001D6478 /* Assets.xcassets in Resources */,
 				0F08FE33243B8F58001D6478 /* Main.storyboard in Resources */,
+				0F08FE5F243B9AF3001D6478 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F08FE60243B9AF3001D6478 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,20 +314,126 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F08FE61243B9AF3001D6478 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09B607EB699A8D655DA5A54E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gump-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E12F9732639008333ADC65D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gump/Pods-Gump-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gump/Pods-Gump-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gump/Pods-Gump-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D05AFA118A49B77557E91DCB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GumpTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7C1E00580B1D91731F26B9E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gump-GumpUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E83D81D51073416CBC898459 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gump-GumpUITests/Pods-Gump-GumpUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Gump-GumpUITests/Pods-Gump-GumpUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Gump-GumpUITests/Pods-Gump-GumpUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0F08FE24243B8F58001D6478 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F08FE30243B8F58001D6478 /* ViewController.swift in Sources */,
+				0F08FE30243B8F58001D6478 /* SignInController.swift in Sources */,
 				0F08FE2C243B8F58001D6478 /* AppDelegate.swift in Sources */,
 				0F08FE36243B8F58001D6478 /* Gump.xcdatamodeld in Sources */,
 				0F08FE2E243B8F58001D6478 /* SceneDelegate.swift in Sources */,
+				0F9AE35E2441730000BC577B /* RegistrationController.swift in Sources */,
+				0F9AE358243F56F700BC577B /* CustomUIObjects.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +604,7 @@
 		};
 		0F08FE56243B8F5F001D6478 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FB2EF96947A637441529107 /* Pods-Gump.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +623,7 @@
 		};
 		0F08FE57243B8F5F001D6478 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2685BBF97A0B699E5D9BB231 /* Pods-Gump.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -472,6 +642,7 @@
 		};
 		0F08FE59243B8F5F001D6478 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD262D7D590649D88BD60328 /* Pods-GumpTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -494,6 +665,7 @@
 		};
 		0F08FE5A243B8F5F001D6478 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9568BD6F6E018D8BF8FB5879 /* Pods-GumpTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -516,6 +688,7 @@
 		};
 		0F08FE5C243B8F5F001D6478 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E052A1B7953B00CC94549AF /* Pods-Gump-GumpUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -536,6 +709,7 @@
 		};
 		0F08FE5D243B8F5F001D6478 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E83F10351403C8B67D8710A /* Pods-Gump-GumpUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
