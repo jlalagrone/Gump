@@ -47,7 +47,7 @@ class DefaultTextField:UITextField {
         layer.borderColor = borderColor
         layer.borderWidth = 1.25
         font = UIFont(name: "AvenirNext-Medium", size: 15)
-
+        textAlignment = .center
     }
     
     required init?(coder: NSCoder) {

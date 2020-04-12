@@ -29,7 +29,14 @@ class RegistrationController: UIViewController {
     var emailField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
     var passwordField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
     var confirmPasswordField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
-        
+    
+    var usernameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
+    var firstNameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
+    var lastNameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
+    
+    var consoleField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
+    var gameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
+    
     var continueButton:RegistrationButton = {
         var button = RegistrationButton(backgroundColor: .white, borderColor: UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0, alpha: 1).cgColor, title: "Continue")
         
@@ -37,30 +44,7 @@ class RegistrationController: UIViewController {
         return button
     }()
  
-    func setPlaceholderTexts() {
-        
-        var emailPlaceholder = NSMutableAttributedString()
-        emailPlaceholder = NSMutableAttributedString(string:"Email", attributes: [NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: 16.5)!])
-        emailPlaceholder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:NSRange(location:0,length:5))
-        
-        emailField.textAlignment = .center
-        emailField.attributedPlaceholder = emailPlaceholder
-        
-        var passwordPlaceholder = NSMutableAttributedString()
-        passwordPlaceholder = NSMutableAttributedString(string:"Password", attributes: [NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: 16.5)!])
-        passwordPlaceholder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:NSRange(location:0,length:8))
-        
-        passwordField.textAlignment = .center
-        passwordField.attributedPlaceholder = passwordPlaceholder
-        
-        var confirmPasswordPlaceholder = NSMutableAttributedString()
-        confirmPasswordPlaceholder = NSMutableAttributedString(string:"Re-Enter Password", attributes: [NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: 16.5)!])
-        confirmPasswordPlaceholder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:NSRange(location:0,length:17))
-        
-        confirmPasswordField.textAlignment = .center
-        confirmPasswordField.attributedPlaceholder = confirmPasswordPlaceholder
-        
-    }
+
     
     func layoutFonts() {
         
@@ -75,6 +59,11 @@ class RegistrationController: UIViewController {
         view.addSubview(emailField)
         view.addSubview(passwordField)
         view.addSubview(confirmPasswordField)
+        view.addSubview(usernameField)
+        view.addSubview(firstNameField)
+        view.addSubview(lastNameField)
+        view.addSubview(consoleField)
+        view.addSubview(gameField)
         view.addSubview(continueButton)
         
         mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height/15).isActive = true
@@ -96,6 +85,37 @@ class RegistrationController: UIViewController {
         confirmPasswordField.heightAnchor.constraint(equalTo: passwordField.heightAnchor).isActive = true
         confirmPasswordField.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: view.frame.height/20).isActive = true
         
+        usernameField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        usernameField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.825).isActive = true
+        usernameField.heightAnchor.constraint(equalToConstant: view.frame.height/14.5).isActive = true
+        usernameField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height/16.5).isActive = true
+        usernameField.isHidden = true
+        
+        firstNameField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        firstNameField.widthAnchor.constraint(equalTo: usernameField.widthAnchor).isActive = true
+        firstNameField.heightAnchor.constraint(equalTo: usernameField.heightAnchor).isActive = true
+        firstNameField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: view.frame.height/20).isActive = true
+        firstNameField.isHidden = true
+        
+        lastNameField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        lastNameField.widthAnchor.constraint(equalTo: usernameField.widthAnchor).isActive = true
+        lastNameField.heightAnchor.constraint(equalTo: usernameField.heightAnchor).isActive = true
+        lastNameField.topAnchor.constraint(equalTo: firstNameField.bottomAnchor, constant: view.frame.height/20).isActive = true
+        lastNameField.isHidden = true
+        
+        consoleField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        consoleField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.825).isActive = true
+        consoleField.heightAnchor.constraint(equalToConstant: view.frame.height/14.5).isActive = true
+        consoleField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height/16.5).isActive = true
+        consoleField.isHidden = true
+        
+        gameField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        gameField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
+        gameField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
+        gameField.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height/20).isActive = true
+        gameField.isHidden = true
+
+        
         continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         continueButton.widthAnchor.constraint(equalTo: emailField.widthAnchor).isActive = true
         continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: (view.frame.height / -12.5)).isActive = true
@@ -115,6 +135,8 @@ class RegistrationController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        
         continueButton.addTarget(self, action: #selector(registerAccount), for: .touchUpInside)
     }
     
