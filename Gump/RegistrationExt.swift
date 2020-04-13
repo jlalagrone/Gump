@@ -40,6 +40,10 @@ extension RegistrationController {
     
     // Method that creates a FirebaseAuth account with user's email & password and other information
     @objc func registerAccount(_ sender:UIButton) {
+        
+ 
+        
+        
         let usersRef = Database.database().reference().child("Users")
         ref = Database.database().reference()
 
@@ -53,12 +57,20 @@ extension RegistrationController {
         
         switch sender.tag {
         case 1:
-            guard passwordField.text! == confirmPasswordField.text else {
-                print("Passwords don't match")
-                sender.tag = 0
-                return
-            }
             
+            guard passwordField.text! == confirmPasswordField.text else {
+                 print("Passwords don't match")
+                let alert = UIAlertController(title: "Uh oh!", message: "Your passwords don't match.", preferredStyle: .alert)
+                
+                let alertAction = UIAlertAction(title: "Continue", style: .default)
+                alert.addAction(alertAction)
+                present(alert, animated: true, completion: {
+                    sender.tag = 0
+                })
+                
+                 return
+             }
+
             Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
                 
                 if error != nil {

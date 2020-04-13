@@ -28,7 +28,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }()
     
     // Main label that tells user what information to input on the screen
-    var mainLabel = DefaultLabel(title: "Enter a email and password")
+    var mainLabel = DefaultLabel(title: "Enter an email and password")
     var secondaryLabel = DefaultLabel(title: "Do you have a microphone?")
     
     var emailField = DefaultTextField(color:UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor:UIColor.clear.cgColor,placeholderText:"Email",placeholderLength:5)
