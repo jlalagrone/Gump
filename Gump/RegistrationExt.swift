@@ -23,7 +23,7 @@ class RegistrationButton:UIButton {
         self.setTitle(title, for: .normal)
         layer.borderWidth = 2
         layer.borderColor = borderColor
-        
+        layer.cornerRadius = 5
     }
     
     
@@ -36,7 +36,7 @@ class RegistrationButton:UIButton {
 
 
 extension RegistrationController {
-   
+    
     
     // Method that creates a FirebaseAuth account with user's email & password and other information
     @objc func registerAccount(_ sender:UIButton) {
@@ -63,8 +63,7 @@ extension RegistrationController {
                 
                 if error != nil {
                     let alert = UIAlertController(title: "There's an issue!", message: error!.localizedDescription, preferredStyle: .alert)
-                    let alertAction = UIAlertAction(title: "Continue", style: .default)
-                    alert.addAction(alertAction)
+                    alert.addAction(UIAlertAction(title: "Continue", style: .default))
                     self.present(alert, animated: false, completion: {
                         sender.tag = 0
                     })
@@ -79,8 +78,7 @@ extension RegistrationController {
                         
                         if error != nil {
                             let alert = UIAlertController(title: "Couldn't sign in", message: error!.localizedDescription, preferredStyle: .alert)
-                            let alertAction = UIAlertAction(title: "Continue", style: .default)
-                            alert.addAction(alertAction)
+                            alert.addAction(UIAlertAction(title: "Continue", style: .default))
                         
                             self.present(alert, animated: false, completion: nil)
                         }
@@ -118,6 +116,16 @@ extension RegistrationController {
                 return
             }
             
+            guard self.passwordField.text! == self.confirmPasswordField.text! else {
+                
+                let alert = UIAlertController(title: "Uh oh!", message: "Your passwords don't match.", preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "Continue", style: .default)
+                alert.addAction(alertAction)
+                present(alert, animated: true, completion: nil)
+                
+                return
+                
+            }
             // Checks to see if the desired username has been registered already
             usersRef.queryOrdered(byChild: "username").queryEqual(toValue: self.usernameField.text!).observeSingleEvent(of: .value , with: { snapshot in
                  
@@ -128,8 +136,7 @@ extension RegistrationController {
                         // Code thats ran if username field is left blank
                         sender.tag = 1
                         let alert = UIAlertController(title: "Uh oh!", message: "Please enter a username.", preferredStyle: .alert)
-                        let alertAction = UIAlertAction(title: "Continue", style: .default)
-                        alert.addAction(alertAction)
+                        alert.addAction(UIAlertAction(title: "Continue", style: .default))
                         self.present(alert, animated: true, completion: nil)
                         
                         return
@@ -140,8 +147,7 @@ extension RegistrationController {
                         // Code thats ran if desired username contains spaces
                         sender.tag = 1
                         let alert = UIAlertController(title: "Uh oh!", message: "Please choose a username that does not contain any spaces.", preferredStyle: .alert)
-                        let alertAction = UIAlertAction(title: "Continue", style: .default)
-                        alert.addAction(alertAction)
+                        alert.addAction(UIAlertAction(title: "Continue", style: .default))
                         self.present(alert, animated: true, completion: nil)
                         
                         return
@@ -151,7 +157,6 @@ extension RegistrationController {
                     
                         // What happens if username is avialable for use
                         let alert = UIAlertController(title: "Almost Done!", message: "Your name is how other users will determine who you are. Once you've sumbitted your name you can't change it so make sure it's correct!", preferredStyle: .alert)
-                        let alertActionNo = UIAlertAction(title: "Go Back", style: .destructive)
                         
                         // Code that executes if user confirms their name and username
                         let alertAction = UIAlertAction(title: "Proceed", style: .default) { (action) in
@@ -171,7 +176,7 @@ extension RegistrationController {
                             self.micField.isHidden = false
                             self.mainLabel.text = "Enter your primary gaming console"
                         }
-                        alert.addAction(alertActionNo)
+                        alert.addAction(UIAlertAction(title: "No", style: .destructive))
                         alert.addAction(alertAction)
                         
                         self.present(alert, animated: true, completion: nil)

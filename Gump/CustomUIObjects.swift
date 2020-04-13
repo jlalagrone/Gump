@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class DefaultButton:UIButton {
     
     init(backgroundColor:UIColor,borderColor:CGColor,title:String) {
@@ -84,9 +83,12 @@ class DefaultTextField:UITextField {
         return placeHolder
     }
     
+    
     init(color:UIColor,borderColor:CGColor,placeholderText:String,placeholderLength:Int) {
         super.init(frame: .zero)
 
+        
+        
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = color
         borderStyle = .roundedRect
@@ -97,7 +99,10 @@ class DefaultTextField:UITextField {
         inputAccessoryView = customToolbar()
         attributedPlaceholder = self.placeholderText(placeholderText,placeholderLength,self)
         
+        
+        
     }
+ 
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

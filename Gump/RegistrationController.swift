@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     var consolePickerOptions = ["PS4", "Xbox One", "PC", "Nintendo Switch"]
     var consoleStatus:String?
@@ -72,15 +73,19 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+ 
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        var attributedString:NSAttributedString!
         if pickerView == micPicker {
-            return micPickerOptions[row]
+            attributedString = NSAttributedString(string: micPickerOptions[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+            return attributedString
         }
         else {
-            return consolePickerOptions[row]
+            attributedString = NSAttributedString(string: consolePickerOptions[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+            return attributedString
         }
     }
- 
   
     var continueButton:RegistrationButton = {
         var button = RegistrationButton(backgroundColor: .white, borderColor: UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0, alpha: 1).cgColor, title: "Continue")
@@ -203,6 +208,9 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         consolePicker.delegate = self
         consoleField.inputView = consolePicker
         consolePicker.backgroundColor = .white
+        
+        passwordField.isSecureTextEntry = true
+        confirmPasswordField.isSecureTextEntry = true
     }
 
 }
