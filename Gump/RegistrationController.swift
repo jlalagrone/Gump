@@ -9,8 +9,11 @@
 import UIKit
 import Firebase
 
-
-class RegistrationController: UIViewController {
+class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    var consolePickerOptions = ["PS4", "Xbox One", "PC", "Nintendo Switch"]
+    var consoleStatus:String?
+    var micPickerOptions = ["Yes", "No"]
+    var micStatus:String?
     
     var ref:DatabaseReference?
     
@@ -25,6 +28,7 @@ class RegistrationController: UIViewController {
     
     // Main label that tells user what information to input on the screen
     var mainLabel = DefaultLabel()
+    var secondaryLabel = DefaultLabel()
     
     var emailField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
     var passwordField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
@@ -34,8 +38,68 @@ class RegistrationController: UIViewController {
     var firstNameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
     var lastNameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
     
+    
+    // Code for console pickerView
+    let consolePicker = UIPickerView()
     var consoleField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
-    var gameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
+    
+    
+    // Code for mic pickerView
+    let micPicker = UIPickerView()
+    var micField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == micPicker {
+            return micPickerOptions.count
+        }
+        else {
+            return consolePickerOptions.count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == micPicker {
+            micStatus = micPickerOptions[row]
+            micField.text = micStatus
+        }
+        else {
+            consoleStatus = consolePickerOptions[row]
+            consoleField.text = consoleStatus
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == micPicker {
+            return micPickerOptions[row]
+        }
+        else {
+            return consolePickerOptions[row]
+        }
+    }
+ 
+    
+    @objc func dismissedKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func createdToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissedKeyboard))
+        
+        toolbar.setItems([doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        micField.inputAccessoryView = toolbar
+        consoleField.inputAccessoryView = toolbar
+        
+        
+    }
     
     var continueButton:RegistrationButton = {
         var button = RegistrationButton(backgroundColor: .white, borderColor: UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0, alpha: 1).cgColor, title: "Continue")
@@ -45,11 +109,12 @@ class RegistrationController: UIViewController {
     }()
  
 
-    
+    // Function that sizes UI objects fonts appropiately
     func layoutFonts() {
         
-        mainLabel.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height/25)
-        continueButton.titleLabel?.font = UIFont(name: "BubbleGum", size: view.frame.height/32)
+        mainLabel.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height/30)
+        secondaryLabel.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height/30)
+        continueButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height/27.5)
     }
     
     func layoutInitialView() {
@@ -63,7 +128,8 @@ class RegistrationController: UIViewController {
         view.addSubview(firstNameField)
         view.addSubview(lastNameField)
         view.addSubview(consoleField)
-        view.addSubview(gameField)
+        view.addSubview(secondaryLabel)
+        view.addSubview(micField)
         view.addSubview(continueButton)
         
         mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height/15).isActive = true
@@ -108,12 +174,18 @@ class RegistrationController: UIViewController {
         consoleField.heightAnchor.constraint(equalToConstant: view.frame.height/14.5).isActive = true
         consoleField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height/16.5).isActive = true
         consoleField.isHidden = true
+
         
-        gameField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        gameField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
-        gameField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
-        gameField.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height/20).isActive = true
-        gameField.isHidden = true
+        secondaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        secondaryLabel.widthAnchor.constraint(equalTo: mainLabel.widthAnchor).isActive = true
+        secondaryLabel.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height/25).isActive = true
+        secondaryLabel.isHidden = true
+        
+        micField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        micField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
+        micField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
+        micField.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: view.frame.height/20).isActive = true
+        micField.isHidden = true
 
         
         continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -147,9 +219,24 @@ class RegistrationController: UIViewController {
         layoutInitialView()
         layoutFonts()
         
+        createdToolbar()
+        
         mainLabel.text = "Enter a email and password"
         mainLabel.numberOfLines = 0
         mainLabel.textAlignment = .center
+        
+        secondaryLabel.text = "Do you have a microphone?"
+        secondaryLabel.numberOfLines = 0
+        secondaryLabel.textAlignment = .center
+        
+        micPicker.delegate = self
+        micField.inputView = micPicker
+        //Customization
+        micPicker.backgroundColor = .white
+        
+        consolePicker.delegate = self
+        consoleField.inputView = consolePicker
+        consolePicker.backgroundColor = .white
     }
 
 }
