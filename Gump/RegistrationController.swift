@@ -27,26 +27,26 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }()
     
     // Main label that tells user what information to input on the screen
-    var mainLabel = DefaultLabel()
-    var secondaryLabel = DefaultLabel()
+    var mainLabel = DefaultLabel(title: "Enter a email and password")
+    var secondaryLabel = DefaultLabel(title: "Do you have a microphone?")
     
-    var emailField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
-    var passwordField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
-    var confirmPasswordField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
+    var emailField = DefaultTextField(color:UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor:UIColor.clear.cgColor,placeholderText:"Email",placeholderLength:5)
+    var passwordField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "Password",placeholderLength: 8)
+    var confirmPasswordField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "Re-enter Password", placeholderLength:17)
     
-    var usernameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
-    var firstNameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
-    var lastNameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
+    var usernameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "Username",placeholderLength:8)
+    var firstNameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "First",placeholderLength: 5)
+    var lastNameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "Last",placeholderLength: 4)
     
     
     // Code for console pickerView
     let consolePicker = UIPickerView()
-    var consoleField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
+    var consoleField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "Console",placeholderLength: 7)
     
     
-    // Code for mic pickerView
+    // Code for mic pickerViews
     let micPicker = UIPickerView()
-    var micField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor)
+    var micField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "",placeholderLength: 0)
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
@@ -81,29 +81,9 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         }
     }
  
-    
-    @objc func dismissedKeyboard() {
-        view.endEditing(true)
-    }
-    
-    func createdToolbar() {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissedKeyboard))
-        
-        toolbar.setItems([doneButton], animated: false)
-        toolbar.isUserInteractionEnabled = true
-        
-        micField.inputAccessoryView = toolbar
-        consoleField.inputAccessoryView = toolbar
-        
-        
-    }
-    
+  
     var continueButton:RegistrationButton = {
         var button = RegistrationButton(backgroundColor: .white, borderColor: UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0, alpha: 1).cgColor, title: "Continue")
-        
         
         return button
     }()
@@ -112,12 +92,12 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     // Function that sizes UI objects fonts appropiately
     func layoutFonts() {
         
-        mainLabel.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height/30)
-        secondaryLabel.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height/30)
-        continueButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height/27.5)
+        mainLabel.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height/32)
+        secondaryLabel.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height/32)
+        continueButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height/33)
     }
     
-    func layoutInitialView() {
+    func layoutView() {
         
         view.addSubview(viewLogo)
         view.addSubview(mainLabel)
@@ -193,7 +173,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: (view.frame.height / -12.5)).isActive = true
         continueButton.heightAnchor.constraint(equalTo: emailField.heightAnchor, multiplier: 0.975).isActive = true
         
-        setPlaceholderTexts()
+        layoutFonts()
     }
     
     
@@ -207,31 +187,17 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        
+
         continueButton.addTarget(self, action: #selector(registerAccount), for: .touchUpInside)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        layoutInitialView()
-        layoutFonts()
-        
-        createdToolbar()
-        
-        mainLabel.text = "Enter a email and password"
-        mainLabel.numberOfLines = 0
-        mainLabel.textAlignment = .center
-        
-        secondaryLabel.text = "Do you have a microphone?"
-        secondaryLabel.numberOfLines = 0
-        secondaryLabel.textAlignment = .center
+        layoutView()
         
         micPicker.delegate = self
         micField.inputView = micPicker
-        //Customization
         micPicker.backgroundColor = .white
         
         consolePicker.delegate = self

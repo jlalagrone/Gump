@@ -20,6 +20,7 @@
 		0F08FE5F243B9AF3001D6478 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */; };
 		0F08FE60243B9AF3001D6478 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */; };
 		0F08FE61243B9AF3001D6478 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */; };
+		0F8DB38E2444B0A600175166 /* UserCreatedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8DB38D2444B0A600175166 /* UserCreatedController.swift */; };
 		0F9AE358243F56F700BC577B /* CustomUIObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AE357243F56F700BC577B /* CustomUIObjects.swift */; };
 		0F9AE35A2441079C00BC577B /* Bubblegum.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F9AE3592441079C00BC577B /* Bubblegum.ttf */; };
 		0F9AE35E2441730000BC577B /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9AE35D2441730000BC577B /* RegistrationController.swift */; };
@@ -62,6 +63,7 @@
 		0F08FE50243B8F5F001D6478 /* GumpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GumpUITests.swift; sourceTree = "<group>"; };
 		0F08FE52243B8F5F001D6478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0F8DB38D2444B0A600175166 /* UserCreatedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreatedController.swift; sourceTree = "<group>"; };
 		0F9AE357243F56F700BC577B /* CustomUIObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIObjects.swift; sourceTree = "<group>"; };
 		0F9AE3592441079C00BC577B /* Bubblegum.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bubblegum.ttf; sourceTree = "<group>"; };
 		0F9AE35D2441730000BC577B /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				0F08FE2F243B8F58001D6478 /* SignInController.swift */,
 				0F9AE35D2441730000BC577B /* RegistrationController.swift */,
 				0F9AE35F2442924000BC577B /* RegistrationExt.swift */,
+				0F8DB38D2444B0A600175166 /* UserCreatedController.swift */,
 				0F08FE31243B8F58001D6478 /* Main.storyboard */,
 				0F08FE37243B8F5F001D6478 /* Assets.xcassets */,
 				0F08FE39243B8F5F001D6478 /* LaunchScreen.storyboard */,
@@ -432,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F08FE30243B8F58001D6478 /* SignInController.swift in Sources */,
+				0F8DB38E2444B0A600175166 /* UserCreatedController.swift in Sources */,
 				0F08FE2C243B8F58001D6478 /* AppDelegate.swift in Sources */,
 				0F08FE36243B8F58001D6478 /* Gump.xcdatamodeld in Sources */,
 				0F08FE2E243B8F58001D6478 /* SceneDelegate.swift in Sources */,

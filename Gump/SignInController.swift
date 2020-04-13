@@ -37,7 +37,7 @@ class SignInController: UIViewController {
     }()
     
     var emailTextField:DefaultTextField = {
-        var textField = DefaultTextField(color: .white, borderColor: UIColor(red: 118.0/255.0, green: 205.0/255.0, blue: 255.0/255.0, alpha: 1).cgColor)
+        var textField = DefaultTextField(color: .white, borderColor: UIColor(red: 118.0/255.0, green: 205.0/255.0, blue: 255.0/255.0, alpha: 1).cgColor,placeholderText: "", placeholderLength: 0)
         
         return textField
     }()
@@ -50,7 +50,7 @@ class SignInController: UIViewController {
     }()
     
     var passwordTextField:DefaultTextField = {
-        var textField = DefaultTextField(color: .white, borderColor: UIColor(red: 118.0/255.0, green: 205.0/255.0, blue: 255.0/255.0, alpha: 1).cgColor)
+        var textField = DefaultTextField(color: .white, borderColor: UIColor(red: 118.0/255.0, green: 205.0/255.0, blue: 255.0/255.0, alpha: 1).cgColor,placeholderText: "", placeholderLength: 0)
         
         return textField
     }()
@@ -78,7 +78,6 @@ class SignInController: UIViewController {
         let registrationVC = RegistrationController()
         
         self.navigationController?.pushViewController(registrationVC, animated: true)
-        
     }
 
     // Button that presents AboutController

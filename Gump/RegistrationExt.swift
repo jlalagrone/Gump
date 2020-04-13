@@ -37,64 +37,18 @@ class RegistrationButton:UIButton {
 
 extension RegistrationController {
    
-    func setPlaceholderTexts() {
-        
-        var emailPlaceholder = NSMutableAttributedString()
-        emailPlaceholder = NSMutableAttributedString(string:"Email", attributes: [NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: 16.5)!])
-        emailPlaceholder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:NSRange(location:0,length:5))
-        
-        emailField.attributedPlaceholder = emailPlaceholder
-        
-        var passwordPlaceholder = NSMutableAttributedString()
-        passwordPlaceholder = NSMutableAttributedString(string:"Password", attributes: [NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: 16.5)!])
-        passwordPlaceholder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:NSRange(location:0,length:8))
-        
-        passwordField.attributedPlaceholder = passwordPlaceholder
-        
-        var confirmPasswordPlaceholder = NSMutableAttributedString()
-        confirmPasswordPlaceholder = NSMutableAttributedString(string:"Re-Enter Password", attributes: [NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: 16.5)!])
-        confirmPasswordPlaceholder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:NSRange(location:0,length:17))
-        
-        confirmPasswordField.attributedPlaceholder = confirmPasswordPlaceholder
-        
-        var usernamePlaceholder = NSMutableAttributedString()
-        usernamePlaceholder = NSMutableAttributedString(string:"Username", attributes: [NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: 16.5)!])
-        usernamePlaceholder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:NSRange(location:0,length:8))
-        
-        usernameField.attributedPlaceholder = usernamePlaceholder
-        
-        var firstNamePlaceholder = NSMutableAttributedString()
-        firstNamePlaceholder = NSMutableAttributedString(string:"First", attributes: [NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: 16.5)!])
-        firstNamePlaceholder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:NSRange(location:0,length:5))
-        
-        firstNameField.attributedPlaceholder = firstNamePlaceholder
-        
-        var lastNamePlaceholder = NSMutableAttributedString()
-        lastNamePlaceholder = NSMutableAttributedString(string:"Last", attributes: [NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: 16.5)!])
-        lastNamePlaceholder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:NSRange(location:0,length:4))
-        
-        lastNameField.attributedPlaceholder = lastNamePlaceholder
-        
-        var consolePlaceholder = NSMutableAttributedString()
-        consolePlaceholder = NSMutableAttributedString(string:"Console", attributes: [NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: 16.5)!])
-        consolePlaceholder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:NSRange(location:0,length:7))
-        
-        consoleField.attributedPlaceholder = consolePlaceholder
-        
-    }
-    
-    
-    
     
     // Method that creates a FirebaseAuth account with user's email & password and other information
     @objc func registerAccount(_ sender:UIButton) {
         let usersRef = Database.database().reference().child("Users")
         ref = Database.database().reference()
 
+        let finishedVC = UserCreatedController()
+        
         sender.tag += 1
         print("SENDER TAG: \(sender.tag)")
         
-        if sender.tag == 4 { sender.tag = 0 }
+        if sender.tag > 3 { sender.tag = 0 }
     
         
         switch sender.tag {
@@ -246,6 +200,8 @@ extension RegistrationController {
         case 3:
             print("Button on third instance")
             
+            finishedVC.modalPresentationStyle = .fullScreen
+            
             guard consoleField.text! != "" || micField.text! != "" else {
                 print("You left a field blank!")
                 sender.tag = 2
@@ -260,10 +216,11 @@ extension RegistrationController {
   
  
             ref?.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["console": consoleField.text!, "mic": micField.text!])
+            present(finishedVC, animated: true) {
+                print("Registration Complete!")
+            }
             
-            
-            
-            
+
         
         default:
             print("Ok")
