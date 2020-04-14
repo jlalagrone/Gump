@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
+
+
 class RegistrationButton:UIButton {
     
     var ref:DatabaseReference?
@@ -21,9 +23,9 @@ class RegistrationButton:UIButton {
         setTitleColor(UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), for: .normal)
         self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
-        layer.borderWidth = 2
+        layer.borderWidth = 3
         layer.borderColor = borderColor
-        layer.cornerRadius = 5
+        layer.cornerRadius = 15
     }
     
     
@@ -31,19 +33,67 @@ class RegistrationButton:UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-  
+    // Animation Code
+    func registrationButtonAnimation(text:String?,labels:[UILabel]?,viewsToHide: [UIView],viewsToShow: [UIView], completion:() -> ()) {
+        
+        UIView.animate(withDuration: 0.05, animations: {
+            for label in labels! {
+                label.alpha = 0
+            }
+        }) { (bool) in
+            
+            UIView.animate(withDuration: 1) {
+                for label in labels! {
+                    label.alpha = 1
+                }
+                labels![0].text = text
+            }
+        }
+ 
+        UIView.animate(withDuration: 0.05, animations: {
+            for view in viewsToHide {
+            view.alpha = 0
+            
+            }
+        }) { (bool) in
+            UIView.animate(withDuration: 1) {
+                    for view in viewsToShow {
+                    view.alpha = 1
+                }
+            }
+        }
+    }
+    
 }
 
 
 extension RegistrationController {
     
+    func showSpinner(onView : UIView) {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.7, green: 0.7, blue: 0.7, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(style: .large)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+            
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        vSpinner = spinnerView
+    }
+        
+    func removeSpinner() {
+        DispatchQueue.main.async {
+            self.vSpinner?.removeFromSuperview()
+            self.vSpinner = nil
+        }
+    }
     
     // Method that creates a FirebaseAuth account with user's email & password and other information
-    @objc func registerAccount(_ sender:UIButton) {
-        
- 
-        
-        
+    @objc func registerAccount(_ sender:RegistrationButton) {
+   
         let usersRef = Database.database().reference().child("Users")
         ref = Database.database().reference()
 
@@ -53,11 +103,13 @@ extension RegistrationController {
         print("SENDER TAG: \(sender.tag)")
         
         if sender.tag > 3 { sender.tag = 0 }
-    
+        
+
         
         switch sender.tag {
         case 1:
             
+            // Code if password fields aren't identical
             guard passwordField.text! == confirmPasswordField.text else {
                  print("Passwords don't match")
                 let alert = UIAlertController(title: "Uh oh!", message: "Your passwords don't match.", preferredStyle: .alert)
@@ -71,23 +123,34 @@ extension RegistrationController {
                  return
              }
 
+            //Displays loading spinner
+            self.showSpinner(onView: self.view)
+            
             Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
                 
+                
+                
+                // Displays error if there is trouble creating the account
                 if error != nil {
+                    self.removeSpinner()
                     let alert = UIAlertController(title: "There's an issue!", message: error!.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Continue", style: .default))
                     self.present(alert, animated: false, completion: {
                         sender.tag = 0
+
                     })
                     
                 }
                 else {
+                    
+                    // Saves newly created user to FirebaseDatabase
                     
                     self.ref?.child("Users").child(Auth.auth().currentUser!.uid).setValue(["email": self.emailField.text!, "password": self.passwordField.text!, "uid": Auth.auth().currentUser?.uid, "username": "n/a"])
                     print("Account created!")
                     
                     Auth.auth().signIn(withEmail: self.emailField.text!, password: self.passwordField.text!) { (result, error) in
                         
+                        // Displays error if newly created user can't be signed in
                         if error != nil {
                             let alert = UIAlertController(title: "Couldn't sign in", message: error!.localizedDescription, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Continue", style: .default))
@@ -95,19 +158,17 @@ extension RegistrationController {
                             self.present(alert, animated: false, completion: nil)
                         }
                         else {
-                            
+
+                            // Code thats ran if user is succesfully created and signed in
+                            self.removeSpinner()
                             print(Auth.auth().currentUser!.uid)
-                            self.emailField.isHidden = true
-                            self.passwordField.isHidden = true
-                            self.confirmPasswordField.isHidden = true
-                            self.emailField.text = nil
-                            self.passwordField.text = nil
-                            self.confirmPasswordField.text = nil
                             
-                            self.mainLabel.text = "Enter your name and desired username"
-                            self.usernameField.isHidden = false
-                            self.firstNameField.isHidden = false
-                            self.lastNameField.isHidden = false
+                            // Animates view on button tap
+                            sender.registrationButtonAnimation(text:"Please enter your name and desired username",labels:[self.mainLabel],viewsToHide: [self.emailField,self.passwordField,self.confirmPasswordField], viewsToShow: [self.usernameField,self.firstNameField,self.lastNameField])   {
+                                
+                                print("Loading complete!")
+                            }
+                            
                             self.navigationItem.setHidesBackButton(true, animated: false)
                         }
                     }
@@ -138,6 +199,7 @@ extension RegistrationController {
                 return
                 
             }
+            
             // Checks to see if the desired username has been registered already
             usersRef.queryOrdered(byChild: "username").queryEqual(toValue: self.usernameField.text!).observeSingleEvent(of: .value , with: { snapshot in
                  
@@ -176,16 +238,11 @@ extension RegistrationController {
                             print("Hey \(self.firstNameField.text!) \(self.lastNameField.text!), your username is \(self.usernameField.text!)")
                             usersRef.child(Auth.auth().currentUser!.uid).updateChildValues(["username": self.usernameField.text!, "firstName": self.firstNameField.text!, "lastName": self.lastNameField.text!])
                             
-                            self.usernameField.isHidden = true
-                            self.usernameField.text = nil
-                            self.firstNameField.isHidden = true
-                            self.firstNameField.text = nil
-                            self.lastNameField.isHidden = true
-                            self.lastNameField.text = nil
+                            // Animates view on button tap
+                            sender.registrationButtonAnimation(text: "Enter your primary gaming console", labels: [self.mainLabel,self.secondaryLabel], viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.micField]) {
+                                
+                            }
                             
-                            self.consoleField.isHidden = false
-                            self.secondaryLabel.isHidden = false
-                            self.micField.isHidden = false
                             self.mainLabel.text = "Enter your primary gaming console"
                         }
                         alert.addAction(UIAlertAction(title: "No", style: .destructive))
@@ -231,14 +288,12 @@ extension RegistrationController {
                 return
             }
   
- 
             ref?.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["console": consoleField.text!, "mic": micField.text!])
             present(finishedVC, animated: true) {
                 print("Registration Complete!")
             }
             
 
-        
         default:
             print("Ok")
         }
@@ -248,3 +303,19 @@ extension RegistrationController {
     
     
 }
+
+
+extension UIViewController {
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+
+}
+

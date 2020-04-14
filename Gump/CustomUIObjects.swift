@@ -17,7 +17,7 @@ class DefaultButton:UIButton {
         translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
-        layer.borderWidth = 2
+        layer.borderWidth = 2.5
         layer.borderColor = borderColor
         
     }
@@ -59,6 +59,7 @@ class DefaultTextField:UITextField {
     // Creates custom toolbar for DefaultTextField's inputAccessoryView
     let customToolbar:() -> (UIToolbar) = {
         var toolbar = UIToolbar()
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
         toolbar.sizeToFit()
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)

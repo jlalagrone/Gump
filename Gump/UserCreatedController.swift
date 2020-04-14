@@ -56,6 +56,7 @@ class UserCreatedController: UIViewController {
         
         aboutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         aboutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: view.frame.height / -27.5).isActive = true
+        aboutButton.isHidden = true
         
         layoutFonts()
     }

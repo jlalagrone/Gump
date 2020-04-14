@@ -15,6 +15,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var consoleStatus:String?
     var micPickerOptions = ["Yes", "No"]
     var micStatus:String?
+    var vSpinner : UIView?
     
     var ref:DatabaseReference?
     
@@ -88,7 +89,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
   
     var continueButton:RegistrationButton = {
-        var button = RegistrationButton(backgroundColor: .white, borderColor: UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0, alpha: 1).cgColor, title: "Continue")
+        var button = RegistrationButton(backgroundColor: .white, borderColor: UIColor(red: 118.0/255.0, green: 205.0/255.0, blue: 255.0/255.0, alpha: 1).cgColor, title: "Continue")
         
         return button
     }()
@@ -140,37 +141,37 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         usernameField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.825).isActive = true
         usernameField.heightAnchor.constraint(equalToConstant: view.frame.height/14.5).isActive = true
         usernameField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height/16.5).isActive = true
-        usernameField.isHidden = true
+        usernameField.alpha = 0
         
         firstNameField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         firstNameField.widthAnchor.constraint(equalTo: usernameField.widthAnchor).isActive = true
         firstNameField.heightAnchor.constraint(equalTo: usernameField.heightAnchor).isActive = true
         firstNameField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: view.frame.height/20).isActive = true
-        firstNameField.isHidden = true
+        firstNameField.alpha = 0
         
         lastNameField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         lastNameField.widthAnchor.constraint(equalTo: usernameField.widthAnchor).isActive = true
         lastNameField.heightAnchor.constraint(equalTo: usernameField.heightAnchor).isActive = true
         lastNameField.topAnchor.constraint(equalTo: firstNameField.bottomAnchor, constant: view.frame.height/20).isActive = true
-        lastNameField.isHidden = true
+        lastNameField.alpha = 0
         
         consoleField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         consoleField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.825).isActive = true
         consoleField.heightAnchor.constraint(equalToConstant: view.frame.height/14.5).isActive = true
         consoleField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height/16.5).isActive = true
-        consoleField.isHidden = true
+        consoleField.alpha = 0
 
         
         secondaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         secondaryLabel.widthAnchor.constraint(equalTo: mainLabel.widthAnchor).isActive = true
         secondaryLabel.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height/25).isActive = true
-        secondaryLabel.isHidden = true
+        secondaryLabel.alpha = 0
         
         micField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         micField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
         micField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
         micField.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: view.frame.height/20).isActive = true
-        micField.isHidden = true
+        micField.alpha = 0
 
         
         continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -196,9 +197,31 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         continueButton.addTarget(self, action: #selector(registerAccount), for: .touchUpInside)
     }
     
+    @objc func keyboardWillShow(_ notification:NSNotification) {
+        let userInfo = notification.userInfo
+        let keyboardFrame = (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        
+        if self.confirmPasswordField.isEditing == true || self.lastNameField.isEditing == true {
+            self.view.frame.origin.y -= (keyboardFrame.height/4)
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification:NSNotification) {
+        let userInfo = notification.userInfo
+        let keyboardFrame = (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y += (keyboardFrame.height/4)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(red: 255.0/255.0, green: 125.0/255.0, blue: 206.0/255.0, alpha: 1)
 
+        hideKeyboardWhenTappedAround()
+        
         layoutView()
         
         micPicker.delegate = self
@@ -209,8 +232,14 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         consoleField.inputView = consolePicker
         consolePicker.backgroundColor = .white
         
-        passwordField.isSecureTextEntry = true
-        confirmPasswordField.isSecureTextEntry = true
+        
+        // Code that adds observers to the displaying/hidding of the keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RegistrationController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        
+//        passwordField.isSecureTextEntry = true
+//        confirmPasswordField.isSecureTextEntry = true
     }
 
 }

@@ -64,6 +64,7 @@ class SignInController: UIViewController {
     
     var signInButton:DefaultButton = {
         var button = DefaultButton(backgroundColor: UIColor(red: 118.0/255.0, green: 205.0/255.0, blue: 255.0/255.0, alpha: 1),borderColor: UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0, alpha: 1).cgColor ,title: "Sign In")
+        button.layer.cornerRadius = 10
         
         return button
     }()
@@ -100,10 +101,9 @@ class SignInController: UIViewController {
         forgotPasswordLabel.font = UIFont(name: "AvenirNext-MediumItalic", size: view.frame.height/57.5)
         
         //Button fonts
-        signInButton.titleLabel?.font = UIFont(name: "BubbleGum", size: view.frame.height/32.5)
-        signInButton.layer.cornerRadius = 3
-        createAccountButton.titleLabel?.font = UIFont(name: "BubbleGum", size: view.frame.height/32.5)
-        aboutButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height/55)
+        signInButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height/35)
+        createAccountButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height/35)
+        aboutButton.titleLabel?.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height/55)
         
     }
     
@@ -179,11 +179,14 @@ class SignInController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        hideKeyboardWhenTappedAround()
+
+        
         // Adds background gradient to SignInController's view
         let gradientLayer = CAGradientLayer()
-               gradientLayer.frame = view.bounds
-               gradientLayer.colors = [UIColor(red: 255.0/255.0, green: 183.0/255.0, blue: 228.0/255.0, alpha: 0.975).cgColor, UIColor.white.cgColor]
-               view.layer.addSublayer(gradientLayer)
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [UIColor(red: 255.0/255.0, green: 183.0/255.0, blue: 228.0/255.0, alpha: 0.975).cgColor, UIColor.white.cgColor]
+        view.layer.addSublayer(gradientLayer)
         
         layoutView()
         layoutFonts()
