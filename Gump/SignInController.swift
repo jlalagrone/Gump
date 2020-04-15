@@ -65,12 +65,14 @@ class SignInController: UIViewController {
     var signInButton:DefaultButton = {
         var button = DefaultButton(backgroundColor: UIColor(red: 118.0/255.0, green: 205.0/255.0, blue: 255.0/255.0, alpha: 1),borderColor: UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0, alpha: 1).cgColor ,title: "Sign In")
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(animateButton(_:)), for: .touchDown)
         
         return button
     }()
     
     var createAccountButton:DefaultButton = {
         var button = DefaultButton(title: "Create Account", textColor: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1))
+        button.addTarget(self, action: #selector(animateButton(_:)), for: .touchDown)
         
         return button
     }()
@@ -84,6 +86,7 @@ class SignInController: UIViewController {
     // Button that presents AboutController
     var aboutButton:DefaultButton = {
         var button = DefaultButton(title: "What's Gump?", textColor: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1))
+        button.addTarget(self, action: #selector(animateButton(_:)), for: .touchDown)
         
         return button
     }()

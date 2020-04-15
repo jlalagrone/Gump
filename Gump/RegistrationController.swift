@@ -183,20 +183,6 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        view.backgroundColor = UIColor(red: 255.0/255.0, green: 125.0/255.0, blue: 206.0/255.0, alpha: 1)
-        
-        self.navigationController?.navigationBar.isHidden = false
-        self.title = "Create Account"
-        
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-
-        continueButton.addTarget(self, action: #selector(registerAccount), for: .touchUpInside)
-    }
-    
     @objc func keyboardWillShow(_ notification:NSNotification) {
         let userInfo = notification.userInfo
         let keyboardFrame = (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
@@ -215,6 +201,21 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
             self.view.frame.origin.y += (keyboardFrame.height/4)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        view.backgroundColor = UIColor(red: 255.0/255.0, green: 125.0/255.0, blue: 206.0/255.0, alpha: 1)
+        
+        self.navigationController?.navigationBar.isHidden = false
+        self.title = "Create Account"
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+
+        continueButton.addTarget(self, action: #selector(registerAccount), for: .touchUpInside)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

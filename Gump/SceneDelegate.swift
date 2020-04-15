@@ -19,13 +19,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
         
-        let vc2 = UserCreatedController()
+        let vc2 = HomeController()
         
         let vc = SignInController()
         let navVC = UINavigationController(rootViewController: vc)
         navVC.navigationBar.isHidden = true
         
-        self.window?.rootViewController = navVC
+        let navVC2 = UINavigationController(rootViewController: vc2)
+        
+        self.window?.rootViewController = navVC2
         self.window?.makeKeyAndVisible()
     }
 
