@@ -61,10 +61,24 @@ class UserCreatedController: UIViewController {
         layoutFonts()
     }
     
+    @objc func goToHomeScreen(_ sender:UIButton) {
+        let homeController = HomeController()
+        homeController.modalPresentationStyle = .fullScreen
+        
+        present(homeController, animated: true) {
+            print("We're home!")
+            homeController.navigationController?.navigationBar.topItem?.title = "Home"
+
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         layoutView()
+        
+        proceedButton.addTarget(self, action: #selector(goToHomeScreen(_:)), for: .touchDown)
         
     }
     

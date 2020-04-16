@@ -109,6 +109,13 @@ extension RegistrationController {
         switch sender.tag {
         case 1:
             
+            self.usernameField.isHidden = true
+            self.firstNameField.isHidden = true
+            self.lastNameField.isHidden = true
+            
+            self.consoleField.isHidden = true
+            self.micField.isHidden = true
+            
             // Code if password fields aren't identical
             guard passwordField.text! == confirmPasswordField.text else {
                  print("Passwords don't match")
@@ -164,8 +171,13 @@ extension RegistrationController {
                             print(Auth.auth().currentUser!.uid)
                             
                             // Animates view on button tap
+                            self.usernameField.isHidden = false
+                            self.firstNameField.isHidden = false
+                            self.lastNameField.isHidden = false
+                            
                             sender.registrationButtonAnimation(text:"Please enter your name and desired username",labels:[self.mainLabel],viewsToHide: [self.emailField,self.passwordField,self.confirmPasswordField], viewsToShow: [self.usernameField,self.firstNameField,self.lastNameField])   {
                                 
+
                                 print("Loading complete!")
                             }
                             
@@ -175,6 +187,12 @@ extension RegistrationController {
                 }
             }
         case 2:
+            
+
+            
+            self.emailField.isHidden = true
+            self.passwordField.isHidden = true
+            self.confirmPasswordField.isHidden = true
             
             // Checks if firstName & lastName textfields are left blank and runs code inside of else block if they are
             guard self.firstNameField.text! != "" && self.lastNameField.text != "" else {
@@ -239,6 +257,9 @@ extension RegistrationController {
                             usersRef.child(Auth.auth().currentUser!.uid).updateChildValues(["username": self.usernameField.text!, "firstName": self.firstNameField.text!, "lastName": self.lastNameField.text!])
                             
                             // Animates view on button tap
+                            self.consoleField.isHidden = false
+                            self.micField.isHidden = false
+                            
                             sender.registrationButtonAnimation(text: "Enter your primary gaming console", labels: [self.mainLabel,self.secondaryLabel], viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.micField]) {
                                 
                             }
@@ -272,6 +293,14 @@ extension RegistrationController {
             print("Button on second instance")
             
         case 3:
+            
+            self.usernameField.isHidden = true
+            self.firstNameField.isHidden = true
+            self.lastNameField.isHidden = true
+            
+            self.consoleField.isHidden = false
+            self.micField.isHidden = false
+            
             print("Button on third instance")
             
             finishedVC.modalPresentationStyle = .fullScreen

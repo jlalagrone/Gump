@@ -105,7 +105,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func layoutView() {
         
-        view.addSubview(viewLogo)
+//        view.addSubview(viewLogo)
         view.addSubview(mainLabel)
         view.addSubview(emailField)
         view.addSubview(passwordField)

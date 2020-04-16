@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 
 class SignInController: UIViewController {
@@ -66,6 +67,9 @@ class SignInController: UIViewController {
         var button = DefaultButton(backgroundColor: UIColor(red: 118.0/255.0, green: 205.0/255.0, blue: 255.0/255.0, alpha: 1),borderColor: UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0, alpha: 1).cgColor ,title: "Sign In")
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(animateButton(_:)), for: .touchDown)
+        button.addTarget(self, action: #selector(signIn(_:)), for: .touchDown)
+
+        
         
         return button
     }()
@@ -76,6 +80,30 @@ class SignInController: UIViewController {
         
         return button
     }()
+    
+    
+    @objc func signIn(_ sender:UIButton) {
+        
+        Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (result, error) in
+            
+            if error != nil {
+                print(error?.localizedDescription)
+                return
+            }
+            
+            let homeController = HomeController()
+            homeController.modalPresentationStyle = .fullScreen
+            self.present(homeController, animated: true) {
+                homeController.navigationController?.navigationBar.topItem?.title = "Home"
+
+            }
+            print("User signed in.")
+            
+            
+        }
+        
+    }
+    
     
     @objc func createAccount() {
         let registrationVC = RegistrationController()
@@ -102,6 +130,11 @@ class SignInController: UIViewController {
         emailLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height/55)
         passwordLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height/55)
         forgotPasswordLabel.font = UIFont(name: "AvenirNext-MediumItalic", size: view.frame.height/57.5)
+        
+        emailTextField.font = UIFont(name: "AvenirNext-MediumItalic", size: view.frame.height/54.5)
+        passwordTextField.font = UIFont(name: "AvenirNext-MediumItalic", size: view.frame.height/54.5)
+        emailTextField.textColor = .black
+        passwordTextField.textColor = .black
         
         //Button fonts
         signInButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height/35)

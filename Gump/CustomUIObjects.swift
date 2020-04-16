@@ -8,6 +8,15 @@
 
 import UIKit
 
+class GumpUser {
+    var email:String
+    var uid:String
+    
+    init(email:String,uid:String) {
+        self.email = email
+        self.uid = uid
+    }
+}
 
 class DefaultButton:UIButton {
     
@@ -19,7 +28,7 @@ class DefaultButton:UIButton {
         self.setTitle(title, for: .normal)
         layer.borderWidth = 2.5
         layer.borderColor = borderColor
-        
+        addTarget(self, action: #selector(animateButton(_:)), for: .touchDown)
     }
     
     convenience init(textColor:UIColor,title:String) {
