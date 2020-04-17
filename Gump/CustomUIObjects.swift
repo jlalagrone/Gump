@@ -11,10 +11,12 @@ import UIKit
 class GumpUser {
     var email:String
     var uid:String
+    var username:String
     
-    init(email:String,uid:String) {
+    init(email:String,uid:String,username:String) {
         self.email = email
         self.uid = uid
+        self.username = username
     }
 }
 

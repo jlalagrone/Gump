@@ -29,6 +29,7 @@
 		0FAD01582447875D00109D92 /* HomeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAD01572447875C00109D92 /* HomeExt.swift */; };
 		0FAD015A2448F2E900109D92 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAD01592448F2E800109D92 /* FriendsController.swift */; };
 		0FAD015C2448F41700109D92 /* FriendSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAD015B2448F41700109D92 /* FriendSystem.swift */; };
+		0FAD015E244912B200109D92 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAD015D244912B200109D92 /* FriendCell.swift */; };
 		E325B5A205F21CAF5E9E1533 /* Pods_Gump_GumpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06F2923EDBFB59AA3DC650E /* Pods_Gump_GumpUITests.framework */; };
 		F509D15619C9467196BE5C80 /* Pods_Gump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E590D2115D0A13650692303 /* Pods_Gump.framework */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,7 @@
 		0FAD01572447875C00109D92 /* HomeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeExt.swift; sourceTree = "<group>"; };
 		0FAD01592448F2E800109D92 /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
 		0FAD015B2448F41700109D92 /* FriendSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSystem.swift; sourceTree = "<group>"; };
+		0FAD015D244912B200109D92 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		0FB2EF96947A637441529107 /* Pods-Gump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gump.debug.xcconfig"; path = "Target Support Files/Pods-Gump/Pods-Gump.debug.xcconfig"; sourceTree = "<group>"; };
 		2685BBF97A0B699E5D9BB231 /* Pods-Gump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gump.release.xcconfig"; path = "Target Support Files/Pods-Gump/Pods-Gump.release.xcconfig"; sourceTree = "<group>"; };
 		5E052A1B7953B00CC94549AF /* Pods-Gump-GumpUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gump-GumpUITests.debug.xcconfig"; path = "Target Support Files/Pods-Gump-GumpUITests/Pods-Gump-GumpUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				0FAD0155244649EC00109D92 /* HomeController.swift */,
 				0FAD01572447875C00109D92 /* HomeExt.swift */,
 				0FAD01592448F2E800109D92 /* FriendsController.swift */,
+				0FAD015D244912B200109D92 /* FriendCell.swift */,
 				0F08FE31243B8F58001D6478 /* Main.storyboard */,
 				0F08FE37243B8F5F001D6478 /* Assets.xcassets */,
 				0F08FE39243B8F5F001D6478 /* LaunchScreen.storyboard */,
@@ -457,6 +460,7 @@
 				0F9AE358243F56F700BC577B /* CustomUIObjects.swift in Sources */,
 				0FAD01582447875D00109D92 /* HomeExt.swift in Sources */,
 				0FAD015C2448F41700109D92 /* FriendSystem.swift in Sources */,
+				0FAD015E244912B200109D92 /* FriendCell.swift in Sources */,
 				0F9AE3602442924100BC577B /* RegistrationExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

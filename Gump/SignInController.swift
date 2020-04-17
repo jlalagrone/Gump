@@ -91,10 +91,12 @@ class SignInController: UIViewController {
                 return
             }
             
+        
             let homeController = HomeController()
-            homeController.modalPresentationStyle = .fullScreen
-            self.present(homeController, animated: true) {
-                homeController.navigationController?.navigationBar.topItem?.title = "Home"
+            let navVC = UINavigationController(rootViewController: homeController)
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true) {
+                navVC.navigationController?.navigationBar.topItem?.title = "Home"
 
             }
             print("User signed in.")

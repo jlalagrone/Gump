@@ -113,18 +113,24 @@ class HomeController: UIViewController {
     
  
     
+    override func viewWillAppear(_ animated: Bool) {
+        title = "Home"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.topItem?.title = "Home"
-        self.navigationController?.navigationBar.standardAppearance.backgroundColor = .white
-        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1)]
-        self.navigationController?.navigationBar.tintColor = UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1)
+//        self.navigationController?.navigationBar.topItem?.title = "Home"
+        self.navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1)
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(white:1, alpha: 1), NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: view.frame.height/32.5)!]
+        self.navigationController?.navigationBar.tintColor = .white
         
         sendSignalLabel.text = "SEND SIGNAL"
         viewProfileLabel.text = "YOUR PROFILE"
         viewFriendsLabel.text = "FRIENDS LIST"
         searchLabel.text = "SEARCH"
+        
+        viewFriendsButton.addTarget(self, action: #selector(showFriendsController(_:)), for: .touchDown)
         
         layoutView()
     }

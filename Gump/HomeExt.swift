@@ -48,9 +48,6 @@ class HomeButton:UIButton {
         addTarget(self, action: #selector(animateButton(_:)), for: .touchDown)
         buttonImage.image = image
 
-        
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -58,6 +55,19 @@ class HomeButton:UIButton {
     }
     
 }
+
+extension HomeController {
+    
+    @objc func showFriendsController(_ sender:UIButton) {
+        print("Showing friends controller")
+        
+        let friendsController = FriendsController()
+        self.navigationController?.pushViewController(friendsController, animated: true)
+        self.title = "Back"
+    }
+    
+}
+
 
 
 extension UIView {
