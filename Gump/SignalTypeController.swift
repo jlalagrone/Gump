@@ -100,12 +100,23 @@ class SignalTypeController: UIViewController {
         let signalController = OnlineSignalController()
         self.navigationController?.pushViewController(signalController, animated: true)
         
+        title = ""
         
+        signalController.layoutOnlineSignalView()
+        signalController.mainLabel.text = "Online Signal"
         
     }
     
     @objc func showInviteSignalController(_ sender:UIButton) {
         print("Invite signal")
+        
+        let signalController = OnlineSignalController()
+        self.navigationController?.pushViewController(signalController, animated: true)
+        
+        title = ""
+        
+        signalController.layoutInviteSignalView()
+        signalController.mainLabel.text = "Invite Signal"
     }
     
     override func viewWillAppear(_ animated: Bool) {

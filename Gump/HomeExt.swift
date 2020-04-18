@@ -72,7 +72,9 @@ extension HomeController {
         
         let signalController = SignalTypeController()
         self.navigationController?.pushViewController(signalController, animated: true)
-        self.title = "Back"
+        self.title = ""
+        
+        
     }
     
 }

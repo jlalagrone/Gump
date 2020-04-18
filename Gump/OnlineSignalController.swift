@@ -13,7 +13,6 @@ class OnlineSignalController: UIViewController {
     var mainLabel:UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Online Signal"
         label.textColor = .white
         
         return label
@@ -30,11 +29,14 @@ class OnlineSignalController: UIViewController {
     
     var consoleLabel = DefaultLabel(title: "CONSOLE")
     var gameLabel = DefaultLabel(title: "GAME")
+    var messageLabel = DefaultLabel(title: "MESSAGE")
     
     var consoleField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Select Console", placeholderLength: 14)
     var gameField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Select Game", placeholderLength: 11)
+    var messageField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Type Invite Message Here", placeholderLength: 24)
         
-    var selectFriendsButton = DefaultButton(backgroundColor: .white, borderColor: darkPinkColor.cgColor, title: "SELECT FRIENDS")
+    var selectFriendsButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "SELECT FRIENDS")
+    var selectFriendButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "SELECT FRIEND")
     
     
     func layoutFonts() {
@@ -47,7 +49,7 @@ class OnlineSignalController: UIViewController {
         gameField.textColor = .black
         
         selectFriendsButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
-        selectFriendsButton.setTitleColor(lightBlueColor, for: .normal)
+        selectFriendsButton.setTitleColor(.white, for: .normal)
         selectFriendsButton.layer.shadowRadius = 1.5
         selectFriendsButton.layer.shadowOpacity = 1.0
         selectFriendsButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
@@ -58,10 +60,8 @@ class OnlineSignalController: UIViewController {
         selectFriendsButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
     }
     
-    func layoutView() {
-        
-        view.backgroundColor = lightPinkColor
-        
+    func layoutOnlineSignalView() {
+                
         view.addSubview(mainLabel)
         view.addSubview(contentView)
         view.addSubview(consoleLabel)
@@ -96,11 +96,16 @@ class OnlineSignalController: UIViewController {
         selectFriendsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         selectFriendsButton.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         selectFriendsButton.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: view.frame.height / 15).isActive = true
-        selectFriendsButton.heightAnchor.constraint(equalToConstant: view.frame.height / 12.5).isActive = true
+        selectFriendsButton.heightAnchor.constraint(equalToConstant: view.frame.height / 13).isActive = true
+        
+    
+    }
+    
+    func layoutInviteSignalView() {
+        
+        view.addSubview(mainLabel)
         
         
-        
-        layoutFonts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,8 +115,9 @@ class OnlineSignalController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        layoutView()
-        
+        view.backgroundColor = lightPinkColor
+
+        layoutFonts()
         selectFriendsButton.layer.cornerRadius = 15
         
         
