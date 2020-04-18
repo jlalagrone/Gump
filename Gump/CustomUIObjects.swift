@@ -130,11 +130,6 @@ class DefaultTextField:UITextField {
 // Default Label UI Object
 class DefaultLabel:UILabel {
     
-    let setFont:(UIFont) -> UIFont = { font in
-        
-        print(font)
-        return font
-    }
     
     
     init(textColor:UIColor) {

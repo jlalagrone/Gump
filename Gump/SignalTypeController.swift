@@ -96,6 +96,12 @@ class SignalTypeController: UIViewController {
     
     @objc func showOnlineSignalController(_ sender:UIButton) {
         print("Online signal")
+        
+        let signalController = OnlineSignalController()
+        self.navigationController?.pushViewController(signalController, animated: true)
+        
+        
+        
     }
     
     @objc func showInviteSignalController(_ sender:UIButton) {
