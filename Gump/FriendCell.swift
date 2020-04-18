@@ -14,15 +14,26 @@ class FriendCell:UITableViewCell {
     var usernameLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "AvenirNext-Bold", size: 15)
+        label.textColor = lightBlueColor
+        
         
         return label
     }()
     var promoLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "AvenirNext-Italic", size: 12)
+        label.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: 12)
         label.text = "The best there is, the best there was, the best there ever will be"
         label.numberOfLines = 0
+        
+        return label
+    }()
+    
+    var onlineLabel: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "AvenirNext-Heavy", size: 10)
         
         return label
     }()
@@ -40,16 +51,21 @@ class FriendCell:UITableViewCell {
     func layoutCell() {
         addSubview(usernameLabel)
         addSubview(promoLabel)
-        
-        
+        addSubview(onlineLabel)
+            
         usernameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width/20).isActive = true
         usernameLabel.topAnchor.constraint(equalTo: topAnchor, constant: frame.height/10).isActive = true
+    
         
         promoLabel.leftAnchor.constraint(equalTo: usernameLabel.leftAnchor).isActive = true
-        promoLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.65).isActive = true
-        promoLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 1.5).isActive = true
+        promoLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.625).isActive = true
+        promoLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor).isActive = true
         
-        bottomAnchor.constraint(equalTo: promoLabel.bottomAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: promoLabel.bottomAnchor, constant: 3.5).isActive = true
+        
+        onlineLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        onlineLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: frame.width / -17.5).isActive = true
+        onlineLabel.text = "ONLINE"
     }
     
     

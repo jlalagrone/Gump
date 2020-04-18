@@ -56,13 +56,22 @@ class HomeButton:UIButton {
     
 }
 
+// Methods that present next view controller once a home button is tapped
 extension HomeController {
+    
     
     @objc func showFriendsController(_ sender:UIButton) {
         print("Showing friends controller")
         
         let friendsController = FriendsController()
         self.navigationController?.pushViewController(friendsController, animated: true)
+        self.title = "Back"
+    }
+    
+    @objc func showSignalTypeController(_ sender:UIButton) {
+        
+        let signalController = SignalTypeController()
+        self.navigationController?.pushViewController(signalController, animated: true)
         self.title = "Back"
     }
     

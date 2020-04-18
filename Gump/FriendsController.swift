@@ -15,7 +15,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     var friendsTableView:UITableView = {
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .blue
+        tableView.backgroundColor = .white
         
         return tableView
     }()
@@ -40,7 +40,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         friendsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         friendsTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        friendsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        friendsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: view.frame.height / -23.5).isActive = true
         friendsTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
     }

@@ -131,6 +131,7 @@ class HomeController: UIViewController {
         searchLabel.text = "SEARCH"
         
         viewFriendsButton.addTarget(self, action: #selector(showFriendsController(_:)), for: .touchDown)
+        sendSignalButton.addTarget(self, action: #selector(showSignalTypeController(_:)), for: .touchDown)
         
         layoutView()
     }
