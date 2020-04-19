@@ -97,7 +97,7 @@ class SignalTypeController: UIViewController {
     @objc func showOnlineSignalController(_ sender:UIButton) {
         print("Online signal")
         
-        let signalController = OnlineSignalController()
+        let signalController = SignalController()
         self.navigationController?.pushViewController(signalController, animated: true)
         
         title = ""
@@ -110,7 +110,7 @@ class SignalTypeController: UIViewController {
     @objc func showInviteSignalController(_ sender:UIButton) {
         print("Invite signal")
         
-        let signalController = OnlineSignalController()
+        let signalController = SignalController()
         self.navigationController?.pushViewController(signalController, animated: true)
         
         title = ""
