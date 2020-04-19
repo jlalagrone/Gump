@@ -33,7 +33,34 @@ class SignalController: UIViewController {
     
     var consoleField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Select Console", placeholderLength: 14)
     var gameField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Select Game", placeholderLength: 11)
-    var messageField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Type Invite Message Here", placeholderLength: 24)
+    
+    
+    // Code that customizes the messageField when creating an invite signal
+    var messageField:UITextView = {
+        var textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.backgroundColor = .white
+        
+        let customToolbar:() -> (UIToolbar) = {
+            var toolbar = UIToolbar()
+            toolbar.translatesAutoresizingMaskIntoConstraints = false
+            toolbar.sizeToFit()
+            
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: nil, action: #selector(hideKeyboard))
+            
+            toolbar.setItems([flexibleSpace,doneButton], animated: false)
+            toolbar.isUserInteractionEnabled = true
+            
+            return toolbar
+           
+        }
+        
+        textView.inputAccessoryView = customToolbar()
+        
+        return textView
+    }()
+
         
     var selectFriendsButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "SELECT FRIENDS")
     var selectFriendButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "SELECT FRIEND")
@@ -45,10 +72,12 @@ class SignalController: UIViewController {
         consoleLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 35)
         gameLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 35)
         messageLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 35)
+        messageField.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
 
         
         consoleField.textColor = .black
         gameField.textColor = .black
+        messageField.textColor = .black
         
         selectFriendsButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
         selectFriendsButton.setTitleColor(.white, for: .normal)
@@ -144,9 +173,10 @@ class SignalController: UIViewController {
         messageField.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 5).isActive = true
         messageField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         messageField.widthAnchor.constraint(equalTo: gameField.widthAnchor).isActive = true
-        messageField.heightAnchor.constraint(equalToConstant: view.frame.height / 3).isActive = true
+        messageField.heightAnchor.constraint(equalToConstant: view.frame.height / 6.75).isActive = true
         messageField.textAlignment = .left
-        messageField.contentVerticalAlignment = .top
+        
+        
         
         contentView.bottomAnchor.constraint(equalTo: messageField.bottomAnchor, constant: view.frame.height / 25).isActive = true
         
@@ -170,6 +200,8 @@ class SignalController: UIViewController {
         layoutFonts()
         selectFriendsButton.layer.cornerRadius = 15
         selectFriendButton.layer.cornerRadius = 15
+        
+        selectFriendButton.addTarget(self, action: #selector(chooseFriendToInvite(_:)), for: .touchDown)
         
         
     }

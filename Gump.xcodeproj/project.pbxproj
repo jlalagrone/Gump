@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01607B46E3975C8B61F5C421 /* Pods_GumpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0BA8BB1617528E3A3549E3 /* Pods_GumpTests.framework */; };
+		0F031E0B244CBD82001A5BB5 /* SignalControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E0A244CBD82001A5BB5 /* SignalControllerExt.swift */; };
 		0F08FE2C243B8F58001D6478 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2B243B8F58001D6478 /* AppDelegate.swift */; };
 		0F08FE2E243B8F58001D6478 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */; };
 		0F08FE30243B8F58001D6478 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2F243B8F58001D6478 /* SignInController.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F031E0A244CBD82001A5BB5 /* SignalControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalControllerExt.swift; sourceTree = "<group>"; };
 		0F08FE28243B8F58001D6478 /* Gump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F08FE2B243B8F58001D6478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				0FAD0155244649EC00109D92 /* HomeController.swift */,
 				0FAD015F244AB69600109D92 /* SignalTypeController.swift */,
 				0FAD0161244AC2A600109D92 /* SignalController.swift */,
+				0F031E0A244CBD82001A5BB5 /* SignalControllerExt.swift */,
 				0FAD01592448F2E800109D92 /* FriendsController.swift */,
 				0FAD015D244912B200109D92 /* FriendCell.swift */,
 				0F08FE31243B8F58001D6478 /* Main.storyboard */,
@@ -462,6 +465,7 @@
 				0F08FE36243B8F58001D6478 /* Gump.xcdatamodeld in Sources */,
 				0F08FE2E243B8F58001D6478 /* SceneDelegate.swift in Sources */,
 				0FAD015A2448F2E900109D92 /* FriendsController.swift in Sources */,
+				0F031E0B244CBD82001A5BB5 /* SignalControllerExt.swift in Sources */,
 				0FAD0162244AC2A600109D92 /* SignalController.swift in Sources */,
 				0FAD0156244649EC00109D92 /* HomeController.swift in Sources */,
 				0F9AE35E2441730000BC577B /* RegistrationController.swift in Sources */,

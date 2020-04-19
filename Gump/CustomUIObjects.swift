@@ -111,7 +111,7 @@ class DefaultTextField:UITextField {
         borderStyle = .roundedRect
         layer.borderColor = borderColor
         layer.borderWidth = 1.25
-        font = UIFont(name: "AvenirNext-Regular", size: 14)
+        font = UIFont(name: "AvenirNext-DemiBold", size: 15)
         textAlignment = .center
         inputAccessoryView = customToolbar()
         attributedPlaceholder = self.placeholderText(placeholderText,placeholderLength,self)
