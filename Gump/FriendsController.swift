@@ -11,6 +11,7 @@ import UIKit
 class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
     var friendsList = [GumpUser]()
+    
 
     var friendsTableView:UITableView = {
         var tableView = UITableView()
@@ -19,7 +20,6 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         return tableView
     }()
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FriendSystem.system.userList.count
