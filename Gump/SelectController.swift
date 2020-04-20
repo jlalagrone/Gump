@@ -33,7 +33,7 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         friendsTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         friendsTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         friendsTableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.9).isActive = true
-        sendSignalButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: view.frame.height / -13.5).isActive = true
+        sendSignalButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: view.frame.height / -10).isActive = true
         sendSignalButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sendSignalButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
         sendSignalButton.heightAnchor.constraint(equalToConstant: view.frame.height / 13).isActive = true
