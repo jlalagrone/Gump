@@ -77,6 +77,13 @@ extension HomeController {
         
     }
     
+    @objc func showProfileController(_ sender:UIButton) {
+        
+        let profileController = ProfileController()
+        self.navigationController?.pushViewController(profileController, animated: true)
+        self.title = ""
+    }
+    
 }
 
 

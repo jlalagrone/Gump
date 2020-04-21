@@ -14,7 +14,7 @@ class FriendCell:UITableViewCell {
     var usernameLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "AvenirNext-Bold", size: 15)
+        label.font = UIFont(name: "AvenirNext-Bold", size: 18)
         label.textColor = lightBlueColor
         
         
@@ -23,7 +23,7 @@ class FriendCell:UITableViewCell {
     var promoLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: 12)
+        label.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: 14)
         label.text = "The best there is, the best there was, the best there ever will be"
         label.numberOfLines = 0
         
@@ -33,7 +33,7 @@ class FriendCell:UITableViewCell {
     var onlineLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "AvenirNext-Heavy", size: 10)
+        label.font = UIFont(name: "AvenirNext-Heavy", size: 12)
         
         return label
     }()
