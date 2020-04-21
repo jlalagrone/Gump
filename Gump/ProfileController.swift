@@ -95,7 +95,7 @@ class ProfileController: UIViewController {
         viewGamesButton.heightAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
         viewGamesButton.centerYAnchor.constraint(equalTo: viewGamesLabel.centerYAnchor).isActive = true
         
-        viewFriendsButton.topAnchor.constraint(equalTo: viewGamesButton.bottomAnchor, constant: view.frame.height / 28.5).isActive = true
+        viewFriendsButton.topAnchor.constraint(equalTo: viewGamesButton.bottomAnchor, constant: view.frame.height / 25).isActive = true
         viewFriendsButton.widthAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
         viewFriendsButton.heightAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
         viewFriendsButton.centerXAnchor.constraint(equalTo: viewGamesButton.centerXAnchor).isActive = true
@@ -104,7 +104,7 @@ class ProfileController: UIViewController {
         viewFriendsLabel.centerYAnchor.constraint(equalTo: viewFriendsButton.centerYAnchor).isActive = true
         
         viewPromoButton.centerXAnchor.constraint(equalTo: viewFriendsButton.centerXAnchor).isActive = true
-        viewPromoButton.topAnchor.constraint(equalTo: viewFriendsButton.bottomAnchor, constant: view.frame.height / 28.5).isActive = true
+        viewPromoButton.topAnchor.constraint(equalTo: viewFriendsButton.bottomAnchor, constant: view.frame.height / 25).isActive = true
         viewPromoButton.widthAnchor.constraint(equalTo: viewFriendsButton.widthAnchor).isActive = true
         viewPromoButton.heightAnchor.constraint(equalTo: viewFriendsButton.heightAnchor).isActive = true
         
@@ -112,7 +112,7 @@ class ProfileController: UIViewController {
         viewPromoLabel.centerYAnchor.constraint(equalTo: viewPromoButton.centerYAnchor).isActive = true
         
         accountInfoButton.centerXAnchor.constraint(equalTo: viewGamesButton.centerXAnchor).isActive = true
-        accountInfoButton.topAnchor.constraint(equalTo: viewPromoButton.bottomAnchor, constant: view.frame.height / 28.5).isActive = true
+        accountInfoButton.topAnchor.constraint(equalTo: viewPromoButton.bottomAnchor, constant: view.frame.height / 25).isActive = true
         accountInfoButton.widthAnchor.constraint(equalTo: viewPromoButton.widthAnchor).isActive = true
         accountInfoButton.heightAnchor.constraint(equalTo: viewPromoButton.heightAnchor).isActive = true
         

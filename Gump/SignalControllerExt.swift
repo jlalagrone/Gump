@@ -10,6 +10,30 @@ import UIKit
 
 extension SignalController {
     
+    @objc func chooseFriends(_ sender:UIButton) {
+        
+        let selectController = SelectController()
+        
+        if consoleField.text == "" || gameField.text == "" {
+            
+            let alert = UIAlertController(title: "You've left a field blank.", message: "", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Go Back", style: .default)
+            
+            alert.addAction(alertAction)
+            present(alert, animated: true)
+            
+        }
+        else {
+            
+            title = ""
+            
+            self.navigationController?.pushViewController(selectController, animated: true)
+            selectController.layoutSelectFriendsView()
+        }
+        
+        
+    }
+    
     @objc func chooseFriendToInvite(_ sender:UIButton) {
         
         let selectController = SelectController()

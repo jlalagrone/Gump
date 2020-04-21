@@ -202,7 +202,7 @@ class SignalController: UIViewController {
         selectFriendButton.layer.cornerRadius = 15
         
         selectFriendButton.addTarget(self, action: #selector(chooseFriendToInvite(_:)), for: .touchDown)
-        
+        selectFriendsButton.addTarget(self, action: #selector(chooseFriends(_:)), for: .touchDown)
         
     }
 
