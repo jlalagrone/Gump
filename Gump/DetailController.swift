@@ -8,23 +8,48 @@
 
 import UIKit
 
-class DetailController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! DetailCell
+        
+        
+        return cell
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    var detailTableView:UITableView = {
+        var tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .blue
+        
+        return tableView
+    }()
+    
+    func layoutView() {
+        
+        view.addSubview(detailTableView)
+        
+        detailTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        detailTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        detailTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
     }
-    */
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = lightPinkColor
+        layoutView()
+
+    }
+    
+
 
 }

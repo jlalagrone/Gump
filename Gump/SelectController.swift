@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import Firebase
+
+var toUserID = String()
+var toUserUsername = String()
 
 class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -68,6 +72,11 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
     
+    @objc func sendInviteSignal(_ sender:UIButton) {
+        
+        FriendSystem.system.userRef.child(Auth.auth().currentUser!.uid).child("signals").child("inviteSignal").updateChildValues(["to":["username":"\(toUserUsername)", "id":"\(toUserID)"]])
+        
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -82,6 +91,14 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       // Code executes when user has selected a friend to send an invite signal to
+        toUserID = FriendSystem.system.userList[indexPath.row].uid
+        toUserUsername = FriendSystem.system.userList[indexPath.row].username
+        
+        print(toUserUsername)
+        
+    }
     
     
     override func viewDidLoad() {
@@ -94,6 +111,8 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         FriendSystem.system.addUserObserver {
             self.friendsTableView.reloadData()
         }
+        
+        sendSignalButton.addTarget(self, action: #selector(sendInviteSignal(_:)), for: .touchDown)
     }
     
 

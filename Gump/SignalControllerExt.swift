@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 extension SignalController {
     
@@ -62,6 +63,7 @@ extension SignalController {
         
         // Execute code that prepares to send invite signal to selected friend
             title = ""
+        FriendSystem.system.userRef.child(Auth.auth().currentUser!.uid).child("signals").child("inviteSignal").setValue(["game":"\(gameField.text!)", "message":"\(messageField.text!)"])
             
             self.navigationController?.pushViewController(selectController, animated: true)
             selectController.layoutSelectFriendView()

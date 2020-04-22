@@ -12,6 +12,9 @@
 		0F031E0D244CE841001A5BB5 /* SelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E0C244CE841001A5BB5 /* SelectController.swift */; };
 		0F031E0F244CECB7001A5BB5 /* SelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E0E244CECB7001A5BB5 /* SelectCell.swift */; };
 		0F031E11244D2AE9001A5BB5 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E10244D2AE9001A5BB5 /* ProfileController.swift */; };
+		0F031E13244FFAB7001A5BB5 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E12244FFAB7001A5BB5 /* DetailController.swift */; };
+		0F031E15244FFBC9001A5BB5 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E14244FFBC9001A5BB5 /* DetailCell.swift */; };
+		0F031E172450001A001A5BB5 /* ProfileExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E162450001A001A5BB5 /* ProfileExt.swift */; };
 		0F08FE2C243B8F58001D6478 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2B243B8F58001D6478 /* AppDelegate.swift */; };
 		0F08FE2E243B8F58001D6478 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */; };
 		0F08FE30243B8F58001D6478 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2F243B8F58001D6478 /* SignInController.swift */; };
@@ -62,6 +65,9 @@
 		0F031E0C244CE841001A5BB5 /* SelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectController.swift; sourceTree = "<group>"; };
 		0F031E0E244CECB7001A5BB5 /* SelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCell.swift; sourceTree = "<group>"; };
 		0F031E10244D2AE9001A5BB5 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		0F031E12244FFAB7001A5BB5 /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
+		0F031E14244FFBC9001A5BB5 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
+		0F031E162450001A001A5BB5 /* ProfileExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileExt.swift; sourceTree = "<group>"; };
 		0F08FE28243B8F58001D6478 /* Gump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F08FE2B243B8F58001D6478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,9 +182,12 @@
 				0FAD01572447875C00109D92 /* HomeExt.swift */,
 				0FAD0155244649EC00109D92 /* HomeController.swift */,
 				0F031E10244D2AE9001A5BB5 /* ProfileController.swift */,
+				0F031E162450001A001A5BB5 /* ProfileExt.swift */,
 				0FAD015F244AB69600109D92 /* SignalTypeController.swift */,
-				0FAD0161244AC2A600109D92 /* SignalController.swift */,
 				0F031E0A244CBD82001A5BB5 /* SignalControllerExt.swift */,
+				0FAD0161244AC2A600109D92 /* SignalController.swift */,
+				0F031E12244FFAB7001A5BB5 /* DetailController.swift */,
+				0F031E14244FFBC9001A5BB5 /* DetailCell.swift */,
 				0F031E0C244CE841001A5BB5 /* SelectController.swift */,
 				0FAD01592448F2E800109D92 /* FriendsController.swift */,
 				0F031E0E244CECB7001A5BB5 /* SelectCell.swift */,
@@ -472,9 +481,11 @@
 				0F031E11244D2AE9001A5BB5 /* ProfileController.swift in Sources */,
 				0F08FE2C243B8F58001D6478 /* AppDelegate.swift in Sources */,
 				0FAD0160244AB69700109D92 /* SignalTypeController.swift in Sources */,
+				0F031E15244FFBC9001A5BB5 /* DetailCell.swift in Sources */,
 				0F08FE36243B8F58001D6478 /* Gump.xcdatamodeld in Sources */,
 				0F08FE2E243B8F58001D6478 /* SceneDelegate.swift in Sources */,
 				0FAD015A2448F2E900109D92 /* FriendsController.swift in Sources */,
+				0F031E13244FFAB7001A5BB5 /* DetailController.swift in Sources */,
 				0F031E0B244CBD82001A5BB5 /* SignalControllerExt.swift in Sources */,
 				0F031E0D244CE841001A5BB5 /* SelectController.swift in Sources */,
 				0FAD0162244AC2A600109D92 /* SignalController.swift in Sources */,
@@ -484,6 +495,7 @@
 				0F9AE358243F56F700BC577B /* CustomUIObjects.swift in Sources */,
 				0FAD01582447875D00109D92 /* HomeExt.swift in Sources */,
 				0FAD015C2448F41700109D92 /* FriendSystem.swift in Sources */,
+				0F031E172450001A001A5BB5 /* ProfileExt.swift in Sources */,
 				0FAD015E244912B200109D92 /* FriendCell.swift in Sources */,
 				0F9AE3602442924100BC577B /* RegistrationExt.swift in Sources */,
 			);

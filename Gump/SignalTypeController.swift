@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignalTypeController: UIViewController {
 
@@ -108,6 +109,8 @@ class SignalTypeController: UIViewController {
     }
     
     @objc func showInviteSignalController(_ sender:UIButton) {
+        
+        // Code that executes when a user starts to create an invite signal
         print("Invite signal")
         
         let signalController = SignalController()
@@ -115,8 +118,13 @@ class SignalTypeController: UIViewController {
         
         title = ""
         
+
+        
+        
         signalController.layoutInviteSignalView()
         signalController.mainLabel.text = "Invite Signal"
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

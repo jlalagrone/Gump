@@ -130,6 +130,7 @@ class ProfileController: UIViewController {
         
         layoutView()
        
+        viewGamesButton.addTarget(self, action: #selector(viewGamesButtonAction(_:)), for: .touchDown)
 
     }
     
