@@ -12,6 +12,7 @@ let darkPinkColor = UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255
 let lightPinkColor = UIColor(red: 255.0/255.0, green: 125.0/255.0, blue: 206.0/255.0, alpha: 1)
 let lightBlueColor = UIColor(red: 118.0/255.0, green: 165.0/255.0, blue: 255.0/255.0, alpha: 1)
 let purpleColor = UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0, alpha: 1)
+let signalBlueColor = UIColor(red: 38.0/255.0, green: 175.0/255.0, blue: 255.0/255.0, alpha: 1)
 
 class GumpUser {
     var email:String

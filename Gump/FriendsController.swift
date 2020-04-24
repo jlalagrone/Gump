@@ -35,6 +35,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     
     
+    
     func layoutView() {
         view.addSubview(friendsTableView)
         

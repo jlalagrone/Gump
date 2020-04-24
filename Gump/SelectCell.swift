@@ -10,10 +10,11 @@ import UIKit
 
 class SelectCell:UITableViewCell {
     
+    var chosen:Bool = false
+    
     var usernameLabel:UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-//        label.font = UIFont(name: "AvenirNext-DemiBold", size: 17)
         
         
         return label
@@ -24,8 +25,11 @@ class SelectCell:UITableViewCell {
         var view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .green
+        view.isHidden = true
         return view
     }()
+    
+ 
     
     func layoutCell() {
      
@@ -45,6 +49,7 @@ class SelectCell:UITableViewCell {
         
     }
     
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
          super.init(style: style, reuseIdentifier: reuseIdentifier)
            
@@ -52,6 +57,12 @@ class SelectCell:UITableViewCell {
            
        }
      
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    
+
+    }
+    
      required init?(coder: NSCoder) {
          fatalError("init(coder:) has not been implemented")
      }

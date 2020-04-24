@@ -118,9 +118,6 @@ class SignalTypeController: UIViewController {
         
         title = ""
         
-
-        
-        
         signalController.layoutInviteSignalView()
         signalController.mainLabel.text = "Invite Signal"
         
