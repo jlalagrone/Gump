@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseMessaging
 
 class HomeController: UIViewController {
 
+    var ref = Database.database().reference()
+    
     var backgroundImage:UIImageView = {
         var imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -119,6 +123,11 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let token = Messaging.messaging().fcmToken
+        print("FCM token: \(token!)")
+        
+        ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(token!)"])
 
 //        self.navigationController?.navigationBar.topItem?.title = "Home"
         self.navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1)

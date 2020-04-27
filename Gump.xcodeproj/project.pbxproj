@@ -68,6 +68,7 @@
 		0F031E12244FFAB7001A5BB5 /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		0F031E14244FFBC9001A5BB5 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		0F031E162450001A001A5BB5 /* ProfileExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileExt.swift; sourceTree = "<group>"; };
+		0F031E182456589D001A5BB5 /* Gump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gump.entitlements; sourceTree = "<group>"; };
 		0F08FE28243B8F58001D6478 /* Gump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F08FE2B243B8F58001D6478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +171,7 @@
 		0F08FE2A243B8F58001D6478 /* Gump */ = {
 			isa = PBXGroup;
 			children = (
+				0F031E182456589D001A5BB5 /* Gump.entitlements */,
 				0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */,
 				0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */,
 				0F08FE2B243B8F58001D6478 /* AppDelegate.swift */,
@@ -671,6 +673,7 @@
 			baseConfigurationReference = 0FB2EF96947A637441529107 /* Pods-Gump.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Gump/Gump.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92T664G7YX;
 				INFOPLIST_FILE = Gump/Info.plist;
@@ -690,6 +693,7 @@
 			baseConfigurationReference = 2685BBF97A0B699E5D9BB231 /* Pods-Gump.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Gump/Gump.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92T664G7YX;
 				INFOPLIST_FILE = Gump/Info.plist;
