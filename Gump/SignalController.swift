@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignalController: UIViewController {
+class SignalController: UIViewController, UITextViewDelegate {
     
     var mainLabel:UILabel = {
         var label = UILabel()
@@ -204,6 +204,7 @@ class SignalController: UIViewController {
         selectFriendButton.addTarget(self, action: #selector(chooseFriendToInvite(_:)), for: .touchDown)
         selectFriendsButton.addTarget(self, action: #selector(chooseFriends(_:)), for: .touchDown)
         
+        messageField.delegate = self
     }
 
 

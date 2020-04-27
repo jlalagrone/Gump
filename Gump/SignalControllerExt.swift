@@ -11,6 +11,22 @@ import Firebase
 
 extension SignalController {
     
+    // Limits messageField to 75 characters maximum
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        // get the current text, or use an empty string if that failed
+        let currentText = textView.text ?? ""
+
+        // attempt to read the range they are trying to change, or exit if we can't
+        guard let stringRange = Range(range, in: currentText) else { return false }
+
+        // add their new text to the existing text
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
+
+        // make sure the result is under 16 characters
+        return updatedText.count <= 75
+    }
+    
+    
     @objc func chooseFriends(_ sender:UIButton) {
         
         let selectController = SelectController()
@@ -39,12 +55,26 @@ extension SignalController {
         
         let selectController = SelectController()
         
-        if gameField.text == "" {
+        guard gameField.text != "" else {
+            
+            let alert = UIAlertController(title: "Please enter a game.", message: "", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Continue", style: .default)
+            alert.addAction(action)
+            
+            present(alert, animated: true)
+            
+            
+            return
+        }
+        
+        if messageField.text == "" {
             let confirmAlert = UIAlertController(title: "Are you sure you want to send an invite signal with a blank message?", message: "", preferredStyle: .alert)
             
             let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
                 
-                // Execute code that prepares to send invite signal notification to the selected friend with blank message
+            // Execute code that prepares to send invite signal notification to the selected friend with blank message
+            FriendSystem.system.userRef.child(Auth.auth().currentUser!.uid).child("signals").child("inviteSignal").setValue(["game": "\(self.gameField.text!)", "message": ""])
+                
                 self.navigationController?.pushViewController(selectController, animated: true)
                 selectController.layoutSelectFriendView()
                 
@@ -61,7 +91,7 @@ extension SignalController {
         
         else {
         
-        // Execute code that prepares to send invite signal to selected friend
+        // Execute code that prepares to send invite signal to selected friend with a message
             title = ""
         FriendSystem.system.userRef.child(Auth.auth().currentUser!.uid).child("signals").child("inviteSignal").setValue(["game":"\(gameField.text!)", "message":"\(messageField.text!)"])
             
