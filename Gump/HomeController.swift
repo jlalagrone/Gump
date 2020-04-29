@@ -142,6 +142,7 @@ class HomeController: UIViewController {
         viewFriendsButton.addTarget(self, action: #selector(showFriendsController(_:)), for: .touchDown)
         sendSignalButton.addTarget(self, action: #selector(showSignalTypeController(_:)), for: .touchDown)
         viewProfileButton.addTarget(self, action: #selector(showProfileController(_:)), for: .touchDown)
+        searchButton.addTarget(self, action: #selector(showSearchController(_:)), for: .touchDown)
         
         layoutView()
     }

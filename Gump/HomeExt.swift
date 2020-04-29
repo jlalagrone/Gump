@@ -84,6 +84,14 @@ extension HomeController {
         self.title = ""
     }
     
+    @objc func showSearchController(_ sender:UIButton) {
+        
+        let searchController = SearchController()
+        self.navigationController?.pushViewController(searchController, animated: true)
+        self.title = ""
+        
+    }
+    
 }
 
 

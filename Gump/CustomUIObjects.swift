@@ -104,11 +104,10 @@ class DefaultTextField:UITextField {
     
     init(color:UIColor,borderColor:CGColor,placeholderText:String,placeholderLength:Int) {
         super.init(frame: .zero)
-
-        
-        
+ 
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = color
+        layer.masksToBounds = true
         borderStyle = .roundedRect
         layer.borderColor = borderColor
         layer.borderWidth = 1.25
