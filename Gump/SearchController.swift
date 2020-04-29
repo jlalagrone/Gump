@@ -8,12 +8,12 @@
 
 import UIKit
 
-class SearchController: UIViewController {
+class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var searchTable:UITableView = {
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+        tableView.backgroundColor = .white
         
         return tableView
     }()
@@ -61,6 +61,10 @@ class SearchController: UIViewController {
         searchField.layer.cornerRadius = (view.frame.width / 10) * 0.5
         searchField.borderStyle = .roundedRect
         searchField.heightAnchor.constraint(equalTo: searchBar.heightAnchor, multiplier: 0.65).isActive = true
+        searchField.textAlignment = .left
+        searchField.setLeftPaddingPoints(10)
+        searchField.textColor = .black
+        searchField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 39.5)
         
         searchTable.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
         searchTable.widthAnchor.constraint(equalToConstant: view.frame.width / 1.1).isActive = true
@@ -69,11 +73,27 @@ class SearchController: UIViewController {
         
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! SearchCell
+        
+        return cell
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = lightPinkColor
         title = "Search"
         layoutView()
+        
+        searchTable.dataSource = self
+        searchTable.delegate = self
+        searchTable.register(SearchCell.self, forCellReuseIdentifier: "cellID")
     }
     
 
