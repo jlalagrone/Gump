@@ -20,9 +20,13 @@ class SearchCell:UITableViewCell {
         addSubview(fullNameLabel)
         
         usernameLabel.textAlignment = .left
-        usernameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 7.5).isActive = true
-        usernameLabel.topAnchor.constraint(equalTo: topAnchor, constant: frame.height / 6.5).isActive = true
+        usernameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        usernameLabel.topAnchor.constraint(equalTo: topAnchor, constant: frame.height / 3.75).isActive = true
         
+        fullNameLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor).isActive = true
+        fullNameLabel.centerXAnchor.constraint(equalTo: usernameLabel.centerXAnchor).isActive = true
+        
+        bottomAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: frame.height / 3).isActive = true
         
     }
     

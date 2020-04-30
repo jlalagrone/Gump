@@ -40,10 +40,13 @@ class FriendSystem {
         currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
             let email = snapshot.childSnapshot(forPath: "email").value as! String
             let username = snapshot.childSnapshot(forPath: "username").value as! String
+            let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
+            let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
+            let fullName = "\(firstName) \(lastName)"
             let id = snapshot.key
             
             // Completion handler (closure) gets the currentUser passed to it
-            completion(GumpUser(email: email, uid: id, username: username))
+            completion(GumpUser(email: email, uid: id, username: username, fullName: fullName))
         }
     }
     
@@ -51,10 +54,13 @@ class FriendSystem {
         userRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
             let email = snapshot.childSnapshot(forPath: "email").value as! String
             let username = snapshot.childSnapshot(forPath: "username").value as! String
+            let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
+            let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
+            let fullName = "\(firstName) \(lastName)"
             let id = snapshot.key
             
             // Completion handler (closure) gets the specified user passed to it
-            completion(GumpUser(email: email, uid: id, username: username))
+            completion(GumpUser(email: email, uid: id, username: username, fullName: fullName))
         }
     }
     
@@ -67,8 +73,11 @@ class FriendSystem {
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let email = child.childSnapshot(forPath: "email").value as! String
                 let username = child.childSnapshot(forPath: "username").value as! String
+                let firstName = child.childSnapshot(forPath: "firstName").value as! String
+                let lastName = child.childSnapshot(forPath: "lastName").value as! String
+                let fullName = "\(firstName) \(lastName)"
                 if email != Auth.auth().currentUser?.email! {
-                    self.userList.append(GumpUser(email: email, uid: child.key, username: username))
+                    self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName))
                 }
             }
             update()

@@ -53,6 +53,8 @@ class FriendCell:UITableViewCell {
         addSubview(promoLabel)
         addSubview(onlineLabel)
             
+        backgroundColor = .white
+        
         usernameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width/20).isActive = true
         usernameLabel.topAnchor.constraint(equalTo: topAnchor, constant: frame.height/10).isActive = true
     

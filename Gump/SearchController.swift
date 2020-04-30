@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
-class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
+    
+    var searchActive:Bool = false
+    var filteredUsers = [GumpUser]()
+    
     var searchTable:UITableView = {
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,73 +23,111 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return tableView
     }()
     
-    var searchBar:UIView = {
-        var view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = lightPinkColor
-        view.layer.cornerRadius = 7.5
+    var searchBar:UISearchBar = {
+        var searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
         
-        return view
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.font = UIFont(name: "AvenirNext-Medium", size: 16.5)
+            textField.textColor = .black
+            textField.backgroundColor = .white
+        }
+        
+        searchBar.barTintColor = lightPinkColor
+        
+        return searchBar
     }()
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        self.filteredUsers = []
+        
+        let queryRef = FriendSystem.system.userRef.queryOrdered(byChild: "username").queryStarting(atValue: searchText)
+        
+        queryRef.observeSingleEvent(of: .value) { (snapshot) in
+            for snap in snapshot.children {
+                let userSnap = snap as! DataSnapshot
+                let uid = userSnap.key
+                let userDict = userSnap.value as! [String:AnyObject]
+                let email = userDict["email"] as! String
+                let username = userDict["username"] as! String
+                let firstName = userDict["firstName"] as! String
+                let lastName = userDict["lastName"] as! String
+                let fullName = "\(firstName) \(lastName)"
+                
+                self.filteredUsers.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName))
+            }
+            
+            if self.filteredUsers.count == 0 {
+                self.searchActive = false
+            } else {
+                self.searchActive = true
+            }
+            self.searchTable.reloadData()
+        }
+        
+        
+    }
     
-    var searchIcon:UIImageView = {
-        var imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "searchIcon")
-        imageView.contentMode = .scaleAspectFit
-        
-        return imageView
-    }()
     
     var searchField = DefaultTextField(color: .white, borderColor: UIColor(white: 0.9, alpha: 1).cgColor, placeholderText: "Enter Username", placeholderLength: 14)
     
     func layoutView() {
+
         
         view.addSubview(searchBar)
-        view.addSubview(searchIcon)
-        view.addSubview(searchField)
         view.addSubview(searchTable)
         
         searchBar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        searchBar.widthAnchor.constraint(equalToConstant: view.frame.width / 1.1).isActive = true
+        searchBar.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         searchBar.heightAnchor.constraint(equalToConstant: view.frame.height / 11).isActive = true
         
-        searchIcon.leftAnchor.constraint(equalTo: searchBar.leftAnchor, constant: view.frame.width / 25).isActive = true
-        searchIcon.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor).isActive = true
-        searchIcon.heightAnchor.constraint(equalTo: searchBar.heightAnchor, multiplier: 0.75).isActive = true
-        searchIcon.widthAnchor.constraint(equalTo: searchBar.heightAnchor, multiplier: 0.75).isActive = true
-        
-        searchField.leftAnchor.constraint(equalTo: searchIcon.rightAnchor, constant: view.frame.width / 25).isActive = true
-        searchField.rightAnchor.constraint(equalTo: searchBar.rightAnchor, constant: view.frame.width / -25).isActive = true
-        searchField.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor).isActive = true
-        searchField.layer.cornerRadius = (view.frame.width / 10) * 0.5
-        searchField.borderStyle = .roundedRect
-        searchField.heightAnchor.constraint(equalTo: searchBar.heightAnchor, multiplier: 0.65).isActive = true
-        searchField.textAlignment = .left
-        searchField.setLeftPaddingPoints(10)
-        searchField.textColor = .black
-        searchField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 39.5)
+
         
         searchTable.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
         searchTable.widthAnchor.constraint(equalToConstant: view.frame.width / 1.1).isActive = true
         searchTable.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         searchTable.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height / -20).isActive = true
+        searchTable.layer.cornerRadius = 7.5
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 12.5
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return view.frame.height / 8
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        
+        return filteredUsers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! SearchCell
         
-        cell.usernameLabel.text = "Username Goes Here"
+        if (searchActive) {
+            cell.usernameLabel.text = filteredUsers[indexPath.row].username
+            cell.fullNameLabel.text = filteredUsers[indexPath.row].fullName
+        } else {
+            cell.usernameLabel.text = "N/A"
+            cell.fullNameLabel.text = "N/A"
+        }
         
         return cell
     }
@@ -93,6 +136,9 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        searchBar.delegate = self
+        
         view.backgroundColor = lightPinkColor
         title = "Search"
         layoutView()

@@ -39,10 +39,11 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     func layoutView() {
         view.addSubview(friendsTableView)
         
-        friendsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        friendsTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        friendsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 25).isActive = true
+        friendsTableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         friendsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: view.frame.height / -23.5).isActive = true
         friendsTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        friendsTableView.layer.cornerRadius = 15
         
     }
     

@@ -15,13 +15,16 @@ let purpleColor = UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0,
 let signalBlueColor = UIColor(red: 38.0/255.0, green: 175.0/255.0, blue: 255.0/255.0, alpha: 1)
 
 class GumpUser {
+    
     var email:String
     var uid:String
     var username:String
+    var fullName:String
     
-    init(email:String,uid:String,username:String) {
+    init(email:String,uid:String,username:String,fullName:String) {
         self.email = email
         self.uid = uid
+        self.fullName = fullName
         self.username = username
     }
 }
