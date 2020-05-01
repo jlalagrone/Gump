@@ -26,12 +26,13 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
             gameCount = games.count
         }
         
-        return gameCount
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! DetailCell
         
+        cell.titleLabel.text = FriendSystem.system.gameList[indexPath.row]
         
         return cell
     }
@@ -107,6 +108,13 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         else if title == "Account" {
             
         }
+        
+        FriendSystem.system.getCurrentUser { (user) in
+            print("Got user \(user.username) and their games are \(user.games!.values)")
+            self.detailTableView.reloadData()
+        }
+        
+    
         
         view.backgroundColor = lightPinkColor
         layoutView()

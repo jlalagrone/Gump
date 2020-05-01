@@ -11,21 +11,22 @@ import UIKit
 
 class DetailCell:UITableViewCell {
     
-    var titleLabel = DefaultLabel(textColor: .purple)
+    var titleLabel = DefaultLabel(textColor: .black)
     
     
     
     func layoutView() {
         
+        backgroundColor = .white
         addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
+        titleLabel.textAlignment = .left
         titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 20).isActive = true
-        titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         
-        
-       
         
     }
     

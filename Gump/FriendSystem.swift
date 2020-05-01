@@ -15,6 +15,7 @@ class FriendSystem {
     static let system = FriendSystem()
     
     var userList = [GumpUser]()
+    var gameList = [String]()
     
     let baseRef = Database.database().reference()
     
@@ -44,8 +45,11 @@ class FriendSystem {
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
             let fullName = "\(firstName) \(lastName)"
             let games = snapshot.childSnapshot(forPath: "Games").value as! [String:String]
+            let gameTitles = Array(games.values)
             let id = snapshot.key
             
+            print(games.values)
+            self.gameList = gameTitles
             
             // Completion handler (closure) gets the currentUser passed to it
             completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, games: games))
@@ -66,8 +70,7 @@ class FriendSystem {
             completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, games: games))
         }
     }
-    
-    
+        
     
     // Code executes every time a new user is created
     func addUserObserver(_ update: @escaping () -> Void) {
