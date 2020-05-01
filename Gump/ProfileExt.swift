@@ -13,24 +13,6 @@ extension ProfileController {
     @objc func addTapped(_ sender:UIButton) {
         print("Tapped!")
 
-        let alert = UIAlertController(title: "Add Game", message: nil, preferredStyle: .alert)
-        alert.addTextField()
-        
-        let addGameAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            let text = alert.textFields![0].text!
-            print(text)
-            
-            FriendSystem.system.currentUserRef.child("Games").childByAutoId().setValue(text)
-        }
-        
-        let exitAction = UIAlertAction(title: "Close", style: .destructive) { (action) in
-            
-        }
-        
-        alert.addAction(exitAction)
-        alert.addAction(addGameAction)
-        
-        present(alert, animated: true, completion: nil)
     }
     
     @objc func editTapped(_ sender:UIButton) {
@@ -43,6 +25,7 @@ extension ProfileController {
 
         detailController.title = "Games"
         detailController.promoTextView.isHidden = true
+        detailController.getGames()
         
         title = ""
         

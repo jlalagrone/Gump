@@ -21,7 +21,6 @@ class ProfileController: UIViewController {
         // Format profile view with user's information
         FriendSystem.system.getCurrentUser { (user) in
             self.username = user.username
-            print("User: \(self.username)")
            
             let attributedText = NSMutableAttributedString(string: self.username, attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue, NSAttributedString.Key.underlineColor : UIColor.white])
             

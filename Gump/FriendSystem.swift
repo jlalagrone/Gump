@@ -39,20 +39,26 @@ class FriendSystem {
     
     func getCurrentUser(_ completion: @escaping (GumpUser) -> Void) {
         currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
+            let id = snapshot.key
             let email = snapshot.childSnapshot(forPath: "email").value as! String
             let username = snapshot.childSnapshot(forPath: "username").value as! String
             let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
             let fullName = "\(firstName) \(lastName)"
-            let games = snapshot.childSnapshot(forPath: "Games").value as! [String:String]
-            let gameTitles = Array(games.values)
-            let id = snapshot.key
             
-            print(games.values)
-            self.gameList = gameTitles
+            if let games = snapshot.childSnapshot(forPath: "Games").value as? [String:String] {
+                let gameTitles = Array(games.values)
             
+                print(games.values)
+                self.gameList = gameTitles
+                
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, games: games))
+                
+            }
+            else {
             // Completion handler (closure) gets the currentUser passed to it
-            completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, games: games))
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, games: nil))
+            }
         }
     }
     

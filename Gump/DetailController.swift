@@ -10,23 +10,13 @@ import UIKit
 
 var gameCount = Int()
 
-class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSource, DetailControllerDelegate {
+class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    func updateDetailTable() {
-        detailTableView.reloadData()
-        print("Delegate pushed.")
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+                
         
-        FriendSystem.system.currentUserRef.observe(.value) { (snapshot) in
-            let value = snapshot.value as! [String:AnyObject]
-            let games = value["Games"] as! [String:String]
-            
-            gameCount = games.count
-        }
-        
-        return 4
+        return FriendSystem.system.gameList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,7 +31,7 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .white
-        
+                
         return tableView
     }()
     
@@ -75,9 +65,10 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func layoutView() {
-        
+                
         view.addSubview(detailTableView)
         view.addSubview(promoTextView)
+        
         
         detailTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         detailTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -91,14 +82,28 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
     
+    // Get current user's game titles and stores them into an array of strings
+    func getGames() {
+        FriendSystem.system.getCurrentUser { (user) in
+            print("Got user \(user.username)")
+            self.detailTableView.reloadData()
+        }
+    }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if title == "Games" {
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(DetailController.addGame(_:)))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(DetailController.addGame(_:)))
+            
+            
         }
         
         else if title == "Promo" {
@@ -109,13 +114,8 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
         }
         
-        FriendSystem.system.getCurrentUser { (user) in
-            print("Got user \(user.username) and their games are \(user.games!.values)")
-            self.detailTableView.reloadData()
-        }
         
     
-        
         view.backgroundColor = lightPinkColor
         layoutView()
 
