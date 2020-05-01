@@ -13,11 +13,18 @@ class SearchCell:UITableViewCell {
     var usernameLabel = DefaultLabel(textColor: signalBlueColor)
     var fullNameLabel = DefaultLabel(textColor: darkPinkColor)
     
+    func layoutProperties() {
+        usernameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
+        fullNameLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: 15)
+        
+    }
     
     func layoutCell() {
         
         addSubview(usernameLabel)
         addSubview(fullNameLabel)
+        
+        layoutProperties()
         
         usernameLabel.textAlignment = .left
         usernameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true

@@ -14,6 +14,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var searchActive:Bool = false
     var filteredUsers = [GumpUser]()
+    var filteredUser = [GumpUser]()
     
     var searchTable:UITableView = {
         var tableView = UITableView()
@@ -52,13 +53,11 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
-    }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
+  
         self.filteredUsers = []
+
         
-        let queryRef = FriendSystem.system.userRef.queryOrdered(byChild: "username").queryStarting(atValue: searchText)
+        let queryRef = FriendSystem.system.userRef.queryOrdered(byChild: "username").queryStarting(atValue: searchBar.text)
         
         queryRef.observeSingleEvent(of: .value) { (snapshot) in
             for snap in snapshot.children {
@@ -70,23 +69,28 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let firstName = userDict["firstName"] as! String
                 let lastName = userDict["lastName"] as! String
                 let fullName = "\(firstName) \(lastName)"
-                
+
+                print(userDict)
+
                 self.filteredUsers.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName))
+                
+                self.searchTable.reloadData()
             }
             
-            if self.filteredUsers.count == 0 {
-                self.searchActive = false
-            } else {
-                self.searchActive = true
-            }
-            self.searchTable.reloadData()
+            
         }
+
         
         
+        print("Leggooo")
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+  
     }
     
-    
-    var searchField = DefaultTextField(color: .white, borderColor: UIColor(white: 0.9, alpha: 1).cgColor, placeholderText: "Enter Username", placeholderLength: 14)
+
     
     func layoutView() {
 
@@ -109,25 +113,20 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return view.frame.height / 8
-//    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return filteredUsers.count
+            return filteredUsers.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! SearchCell
         
-        if (searchActive) {
-            cell.usernameLabel.text = filteredUsers[indexPath.row].username
-            cell.fullNameLabel.text = filteredUsers[indexPath.row].fullName
-        } else {
-            cell.usernameLabel.text = "N/A"
-            cell.fullNameLabel.text = "N/A"
-        }
+        cell.usernameLabel.text = filteredUsers[indexPath.row].username
+        cell.fullNameLabel.text = filteredUsers[indexPath.row].fullName
+        
         
         return cell
     }

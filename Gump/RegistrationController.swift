@@ -118,7 +118,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         view.addSubview(micField)
         view.addSubview(continueButton)
         
-        mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height/15).isActive = true
+        mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height/20).isActive = true
         mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         mainLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.825).isActive = true
         
@@ -175,9 +175,9 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
 
         
         continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        continueButton.widthAnchor.constraint(equalTo: emailField.widthAnchor).isActive = true
-        continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: (view.frame.height / -12.5)).isActive = true
-        continueButton.heightAnchor.constraint(equalTo: emailField.heightAnchor, multiplier: 0.975).isActive = true
+        continueButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.825).isActive = true
+        continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: (view.frame.height / -5.5)).isActive = true
+        continueButton.heightAnchor.constraint(equalToConstant: view.frame.height / 14.5).isActive = true
         
         layoutFonts()
     }
@@ -200,6 +200,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y += (keyboardFrame.height/4)
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

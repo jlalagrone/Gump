@@ -254,14 +254,18 @@ extension RegistrationController {
                         let alertAction = UIAlertAction(title: "Proceed", style: .default) { (action) in
                             
                             print("Hey \(self.firstNameField.text!) \(self.lastNameField.text!), your username is \(self.usernameField.text!)")
+                            
+
                             usersRef.child(Auth.auth().currentUser!.uid).updateChildValues(["username": self.usernameField.text!, "firstName": self.firstNameField.text!, "lastName": self.lastNameField.text!])
                             
                             // Animates view on button tap
                             self.consoleField.isHidden = false
                             self.micField.isHidden = false
+                            self.view.frame.origin.y = 0
                             
                             sender.registrationButtonAnimation(text: "Enter your primary gaming console", labels: [self.mainLabel,self.secondaryLabel], viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.micField]) {
-                                
+                            
+                            
                             }
                             
                             self.mainLabel.text = "Enter your primary gaming console"
@@ -298,10 +302,14 @@ extension RegistrationController {
             self.firstNameField.isHidden = true
             self.lastNameField.isHidden = true
             
+            self.lastNameField.isEnabled = false
+            self.confirmPasswordField.isEnabled = false
+            
             self.consoleField.isHidden = false
             self.micField.isHidden = false
             
-            print("Button on third instance")
+           
+            print("Y axis: \(self.view.frame.origin.y)")
             
             finishedVC.modalPresentationStyle = .fullScreen
             
