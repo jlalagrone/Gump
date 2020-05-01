@@ -44,14 +44,50 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return tableView
     }()
     
+    
+    var promoTextView:UITextView = {
+        var textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.backgroundColor = .white
+        
+        let customToolbar:() -> (UIToolbar) = {
+            var toolbar = UIToolbar()
+            toolbar.translatesAutoresizingMaskIntoConstraints = false
+            toolbar.sizeToFit()
+            
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: nil, action: #selector(hideKeyboard))
+            
+            toolbar.setItems([flexibleSpace,doneButton], animated: false)
+            toolbar.isUserInteractionEnabled = true
+            
+            return toolbar
+           
+        }
+        
+        textView.inputAccessoryView = customToolbar()
+        
+        return textView
+    }()
+    
+    
+    
+    
     func layoutView() {
         
         view.addSubview(detailTableView)
+        view.addSubview(promoTextView)
         
         detailTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         detailTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         detailTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         detailTableView.heightAnchor.constraint(equalToConstant: view.frame.height / 2.75).isActive = true
+        
+        promoTextView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        promoTextView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        promoTextView.heightAnchor.constraint(equalToConstant: view.frame.height / 3.75).isActive = true
+        promoTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
     }
     
     
@@ -66,6 +102,10 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         else if title == "Promo" {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(DetailController.addGame(_:)))
+        }
+        
+        else if title == "Account" {
+            
         }
         
         view.backgroundColor = lightPinkColor

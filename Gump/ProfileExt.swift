@@ -40,23 +40,22 @@ extension ProfileController {
     @objc func viewGamesButtonAction(_ sender:UIButton) {
         
         let detailController = DetailController()
-//        detailController.updateDetailTable()
-        self.navigationController?.pushViewController(detailController, animated: true)
-        
-//        detailController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped(_:)))
+
         detailController.title = "Games"
+        detailController.promoTextView.isHidden = true
         
         title = ""
         
+        self.navigationController?.pushViewController(detailController, animated: true)
+
     }
     
     @objc func viewPromoButtonAction(_ sender:UIButton) {
         
         let detailController = DetailController()
-        detailController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped(_:)))
+
         detailController.title = "Promo"
         detailController.detailTableView.isHidden = true
-        
         
         title = ""
         
