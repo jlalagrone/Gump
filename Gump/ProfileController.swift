@@ -11,6 +11,8 @@ import Firebase
 
 class ProfileController: UIViewController {
     
+    var detailDelegate:DetailControllerDelegate?
+    
     var username = String()
 
     var mainLabel = DefaultLabel(title: "")
@@ -21,7 +23,7 @@ class ProfileController: UIViewController {
             self.username = user.username
             print("User: \(self.username)")
            
-            var attributedText = NSMutableAttributedString(string: self.username, attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue, NSAttributedString.Key.underlineColor : UIColor.white])
+            let attributedText = NSMutableAttributedString(string: self.username, attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue, NSAttributedString.Key.underlineColor : UIColor.white])
             
             self.mainLabel.attributedText = attributedText
             
@@ -129,9 +131,12 @@ class ProfileController: UIViewController {
         super.viewDidLoad()
         
         layoutView()
+        
+       
        
         viewGamesButton.addTarget(self, action: #selector(viewGamesButtonAction(_:)), for: .touchDown)
-
+        viewPromoButton.addTarget(self, action: #selector(viewPromoButtonAction(_:)), for: .touchDown)
+        
     }
     
 

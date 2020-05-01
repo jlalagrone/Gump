@@ -56,9 +56,8 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
   
         self.filteredUsers = []
 
-        
         let queryRef = FriendSystem.system.userRef.queryOrdered(byChild: "username").queryStarting(atValue: searchBar.text)
-        
+                
         queryRef.observeSingleEvent(of: .value) { (snapshot) in
             for snap in snapshot.children {
                 let userSnap = snap as! DataSnapshot
@@ -69,14 +68,16 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let firstName = userDict["firstName"] as! String
                 let lastName = userDict["lastName"] as! String
                 let fullName = "\(firstName) \(lastName)"
+                let games = userDict["Games"] as! [String:String]
 
                 print(userDict)
-
-                self.filteredUsers.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName))
+                                
+                self.filteredUsers.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, games:games))
+                
+                print(self.filteredUsers)
                 
                 self.searchTable.reloadData()
             }
-            
             
         }
 

@@ -26,6 +26,7 @@ class FriendCell:UITableViewCell {
         label.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: 14)
         label.text = "The best there is, the best there was, the best there ever will be"
         label.numberOfLines = 0
+        label.textColor = .black
         
         return label
     }()
@@ -34,6 +35,7 @@ class FriendCell:UITableViewCell {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "AvenirNext-Heavy", size: 12)
+        label.textColor = .green
         
         return label
     }()

@@ -20,6 +20,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         return tableView
     }()
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FriendSystem.system.userList.count

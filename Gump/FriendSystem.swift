@@ -43,10 +43,12 @@ class FriendSystem {
             let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
             let fullName = "\(firstName) \(lastName)"
+            let games = snapshot.childSnapshot(forPath: "Games").value as! [String:String]
             let id = snapshot.key
             
+            
             // Completion handler (closure) gets the currentUser passed to it
-            completion(GumpUser(email: email, uid: id, username: username, fullName: fullName))
+            completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, games: games))
         }
     }
     
@@ -57,10 +59,11 @@ class FriendSystem {
             let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
             let fullName = "\(firstName) \(lastName)"
+            let games = snapshot.childSnapshot(forPath: "Games").value as! [String:String]
             let id = snapshot.key
             
             // Completion handler (closure) gets the specified user passed to it
-            completion(GumpUser(email: email, uid: id, username: username, fullName: fullName))
+            completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, games: games))
         }
     }
     
@@ -76,8 +79,9 @@ class FriendSystem {
                 let firstName = child.childSnapshot(forPath: "firstName").value as! String
                 let lastName = child.childSnapshot(forPath: "lastName").value as! String
                 let fullName = "\(firstName) \(lastName)"
+                let games = child.childSnapshot(forPath: "Games").value as! [String:String]
                 if email != Auth.auth().currentUser?.email! {
-                    self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName))
+                    self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName, games:games))
                 }
             }
             update()

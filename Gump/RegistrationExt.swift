@@ -302,8 +302,6 @@ extension RegistrationController {
             self.firstNameField.isHidden = true
             self.lastNameField.isHidden = true
             
-            self.lastNameField.isEnabled = false
-            self.confirmPasswordField.isEnabled = false
             
             self.consoleField.isHidden = false
             self.micField.isHidden = false

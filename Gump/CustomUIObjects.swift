@@ -20,12 +20,14 @@ class GumpUser {
     var uid:String
     var username:String
     var fullName:String
+    var games:[String:String]?
     
-    init(email:String,uid:String,username:String,fullName:String) {
+    init(email:String,uid:String,username:String,fullName:String, games:[String:String]?) {
         self.email = email
         self.uid = uid
         self.fullName = fullName
         self.username = username
+        self.games = games
     }
 }
 
