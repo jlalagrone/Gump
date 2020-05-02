@@ -79,8 +79,8 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         addTagButton.centerYAnchor.constraint(equalTo: tagsLabel.centerYAnchor).isActive = true
         addTagButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: view.frame.width / -20).isActive = true
-        addTagButton.heightAnchor.constraint(equalToConstant: view.frame.height / 37.5).isActive = true
-        addTagButton.widthAnchor.constraint(equalToConstant: view.frame.height / 37.5).isActive = true
+        addTagButton.heightAnchor.constraint(equalToConstant: view.frame.height / 35).isActive = true
+        addTagButton.widthAnchor.constraint(equalToConstant: view.frame.height / 35).isActive = true
         
         tagsTable.topAnchor.constraint(equalTo: tagsLabel.bottomAnchor).isActive = true
         tagsTable.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
@@ -117,8 +117,13 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         tagsTable.delegate = self
         tagsTable.dataSource = self
         tagsTable.register(DetailCell.self, forCellReuseIdentifier: "cellID")
+        
+        addTagButton.addTarget(self, action: #selector(addTag(_:)), for: .touchDown)
+        
     }
     
-
+    @objc func addTag(_ sender:UIButton) {
+        print("Added tag.")
+    }
 
 }
