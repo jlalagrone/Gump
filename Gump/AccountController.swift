@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AccountController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -30,11 +31,16 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
     }()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return FriendSystem.system.gametags.keys.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! DetailCell
+        
+        let platforms = Array(FriendSystem.system.gametags.keys)
+        let gamerTags = Array(FriendSystem.system.gametags.values)
+        
+        cell.titleLabel.text = "\(platforms[indexPath.row]): \(gamerTags[indexPath.row])"
         
         return cell
     }
@@ -108,6 +114,13 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         getAccountInfo()
     }
     
+    func getUserInfo() {
+        FriendSystem.system.getCurrentUser { (user) in
+            print("Got em \(user.username)")
+            self.tagsTable.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -119,6 +132,8 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         tagsTable.register(DetailCell.self, forCellReuseIdentifier: "cellID")
         
         addTagButton.addTarget(self, action: #selector(addTag(_:)), for: .touchDown)
+        
+        
         
     }
     

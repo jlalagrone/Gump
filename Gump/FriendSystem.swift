@@ -15,6 +15,7 @@ class FriendSystem {
     static let system = FriendSystem()
     
     var userList = [GumpUser]()
+    var gametags = [String:String]()
     var gameList = [String]()
     
     let baseRef = Database.database().reference()
@@ -42,9 +43,12 @@ class FriendSystem {
             let id = snapshot.key
             let email = snapshot.childSnapshot(forPath: "email").value as! String
             let username = snapshot.childSnapshot(forPath: "username").value as! String
+            let gametags = snapshot.childSnapshot(forPath: "gametags").value as! [String:String]
             let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
             let fullName = "\(firstName) \(lastName)"
+            
+            self.gametags = gametags
             
             if let games = snapshot.childSnapshot(forPath: "Games").value as? [String:String] {
                 let gameTitles = Array(games.values)
@@ -52,12 +56,12 @@ class FriendSystem {
                 print(games.values)
                 self.gameList = gameTitles
                 
-                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, games: games))
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags ,games: games))
                 
             }
             else {
             // Completion handler (closure) gets the currentUser passed to it
-                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, games: nil))
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags ,games: nil))
             }
         }
     }
@@ -66,6 +70,7 @@ class FriendSystem {
         userRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
             let email = snapshot.childSnapshot(forPath: "email").value as! String
             let username = snapshot.childSnapshot(forPath: "username").value as! String
+            let gametags = snapshot.childSnapshot(forPath: "gametags").value as! [String:String]
             let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
             let fullName = "\(firstName) \(lastName)"
@@ -73,7 +78,7 @@ class FriendSystem {
             let id = snapshot.key
             
             // Completion handler (closure) gets the specified user passed to it
-            completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, games: games))
+            completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags ,games: games))
         }
     }
         
@@ -85,12 +90,13 @@ class FriendSystem {
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let email = child.childSnapshot(forPath: "email").value as! String
                 let username = child.childSnapshot(forPath: "username").value as! String
+                let gametags = snapshot.childSnapshot(forPath: "gametags").value as! [String:String]
                 let firstName = child.childSnapshot(forPath: "firstName").value as! String
                 let lastName = child.childSnapshot(forPath: "lastName").value as! String
                 let fullName = "\(firstName) \(lastName)"
                 let games = child.childSnapshot(forPath: "Games").value as! [String:String]
                 if email != Auth.auth().currentUser?.email! {
-                    self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName, games:games))
+                    self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName, gametags: gametags ,games:games))
                 }
             }
             update()

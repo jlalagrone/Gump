@@ -64,6 +64,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let uid = userSnap.key
                 let userDict = userSnap.value as! [String:AnyObject]
                 let email = userDict["email"] as! String
+                let gametags = userDict["gametags"] as! [String:String]
                 let username = userDict["username"] as! String
                 let firstName = userDict["firstName"] as! String
                 let lastName = userDict["lastName"] as! String
@@ -72,7 +73,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
                 print(userDict)
                                 
-                self.filteredUsers.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, games:games))
+                self.filteredUsers.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags ,games:games))
                 
                 print(self.filteredUsers)
                 
