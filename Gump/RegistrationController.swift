@@ -45,6 +45,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     let consolePicker = UIPickerView()
     var consoleField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "Console",placeholderLength: 7)
     
+    var tagField = DefaultTextField(color: darkPinkColor, borderColor: UIColor.clear.cgColor, placeholderText: "Enter Gametag", placeholderLength: 13)
     
     // Code for mic pickerViews
     let micPicker = UIPickerView()
@@ -114,6 +115,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         view.addSubview(firstNameField)
         view.addSubview(lastNameField)
         view.addSubview(consoleField)
+        view.addSubview(tagField)
         view.addSubview(secondaryLabel)
         view.addSubview(micField)
         view.addSubview(continueButton)
@@ -161,10 +163,14 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         consoleField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height/16.5).isActive = true
         consoleField.alpha = 0
 
+        tagField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        tagField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
+        tagField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
+        tagField.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height / 20).isActive = true
         
         secondaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         secondaryLabel.widthAnchor.constraint(equalTo: mainLabel.widthAnchor).isActive = true
-        secondaryLabel.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height/25).isActive = true
+        secondaryLabel.topAnchor.constraint(equalTo: tagField.bottomAnchor, constant: view.frame.height/25).isActive = true
         secondaryLabel.alpha = 0
         
         micField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

@@ -45,4 +45,14 @@ extension ProfileController {
         self.navigationController?.pushViewController(detailController, animated: true)
     }
     
+    @objc func viewAccountButtonAction(_ sender:UIButton) {
+        
+        let accountController = AccountController()
+        accountController.title = "Account"
+        
+        title = ""
+        
+        self.navigationController?.pushViewController(accountController, animated: true)
+        
+    }
 }

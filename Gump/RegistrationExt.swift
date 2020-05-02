@@ -263,12 +263,12 @@ extension RegistrationController {
                             self.micField.isHidden = false
                             self.view.frame.origin.y = 0
                             
-                            sender.registrationButtonAnimation(text: "Enter your primary gaming console", labels: [self.mainLabel,self.secondaryLabel], viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.micField]) {
+                            sender.registrationButtonAnimation(text: "Enter your primary gaming console and game tag", labels: [self.mainLabel,self.secondaryLabel], viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.micField]) {
                             
                             
                             }
                             
-                            self.mainLabel.text = "Enter your primary gaming console"
+                            self.mainLabel.text = "Enter your primary gaming console and game tag"
                         }
                         alert.addAction(UIAlertAction(title: "No", style: .destructive))
                         alert.addAction(alertAction)

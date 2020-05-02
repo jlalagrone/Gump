@@ -14,7 +14,6 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                
         
         return FriendSystem.system.gameList.count
     }
@@ -27,6 +26,10 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return cell
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height / 11.5
+    }
+    
     var detailTableView:UITableView = {
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,11 +76,11 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         detailTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         detailTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         detailTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        detailTableView.heightAnchor.constraint(equalToConstant: view.frame.height / 2.75).isActive = true
+        detailTableView.heightAnchor.constraint(equalToConstant: view.frame.height / 2.5).isActive = true
         
         promoTextView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         promoTextView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-        promoTextView.heightAnchor.constraint(equalToConstant: view.frame.height / 3.75).isActive = true
+        promoTextView.heightAnchor.constraint(equalToConstant: view.frame.height / 4.5).isActive = true
         promoTextView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
     }
@@ -107,7 +110,7 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         else if title == "Promo" {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(DetailController.addGame(_:)))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(DetailController.addGame(_:)))
         }
         
         else if title == "Account" {
