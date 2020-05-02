@@ -123,7 +123,25 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @objc func addTag(_ sender:UIButton) {
-        print("Added tag.")
+       
+        let alert = UIAlertController(title: "Add a Gametag", message: "Please enter the platform in the top field and your gametag on the second.", preferredStyle: .alert)
+        alert.addTextField()
+        alert.addTextField()
+        
+        let addTagAction = UIAlertAction(title: "Confirm", style: .default) { (action) in
+            let consoleText = alert.textFields![0]
+            let gamertagText = alert.textFields![1]
+            
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        
+        alert.addAction(cancelAction)
+        alert.addAction(addTagAction)
+        
+        present(alert, animated: true, completion: nil)
+        
     }
 
 }

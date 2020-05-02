@@ -167,6 +167,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         tagField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
         tagField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
         tagField.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height / 20).isActive = true
+        tagField.alpha = 0
         
         secondaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         secondaryLabel.widthAnchor.constraint(equalTo: mainLabel.widthAnchor).isActive = true

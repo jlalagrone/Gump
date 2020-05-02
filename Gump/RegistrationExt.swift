@@ -114,6 +114,7 @@ extension RegistrationController {
             self.lastNameField.isHidden = true
             
             self.consoleField.isHidden = true
+            self.tagField.isHidden = true
             self.micField.isHidden = true
             
             // Code if password fields aren't identical
@@ -261,9 +262,10 @@ extension RegistrationController {
                             // Animates view on button tap
                             self.consoleField.isHidden = false
                             self.micField.isHidden = false
+                            self.tagField.isHidden = false
                             self.view.frame.origin.y = 0
                             
-                            sender.registrationButtonAnimation(text: "Enter your primary gaming console and game tag", labels: [self.mainLabel,self.secondaryLabel], viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.micField]) {
+                            sender.registrationButtonAnimation(text: "Enter your primary gaming console and game tag", labels: [self.mainLabel,self.secondaryLabel], viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.micField,self.tagField]) {
                             
                             
                             }
@@ -304,6 +306,7 @@ extension RegistrationController {
             
             
             self.consoleField.isHidden = false
+            self.tagField.isHidden = false
             self.micField.isHidden = false
             
            
@@ -323,7 +326,7 @@ extension RegistrationController {
                 return
             }
   
-            ref?.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["console": consoleField.text!, "mic": micField.text!])
+            ref?.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["mic": micField.text!, "gametags": [consoleField.text!: tagField.text!]])
             present(finishedVC, animated: true) {
                 print("Registration Complete!")
             }
