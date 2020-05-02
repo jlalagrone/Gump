@@ -11,6 +11,15 @@ import UIKit
 class AccountController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tagsLabel = DefaultLabel(title: "TAGS")
+    
+    var addTagButton:UIButton = {
+        var button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setImage(UIImage(named: "addIcon"), for: .normal)
+        return button
+    }()
+    
     var tagsTable:UITableView = {
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +66,7 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         view.backgroundColor = lightPinkColor
         view.addSubview(tagsLabel)
+        view.addSubview(addTagButton)
         view.addSubview(tagsTable)
         view.addSubview(emailTitleLabel)
         view.addSubview(emailLabel)
@@ -66,6 +76,11 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         tagsLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 27.5)
         tagsLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 30).isActive = true
         tagsLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.frame.width / 20).isActive = true
+        
+        addTagButton.centerYAnchor.constraint(equalTo: tagsLabel.centerYAnchor).isActive = true
+        addTagButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: view.frame.width / -20).isActive = true
+        addTagButton.heightAnchor.constraint(equalToConstant: view.frame.height / 37.5).isActive = true
+        addTagButton.widthAnchor.constraint(equalToConstant: view.frame.height / 37.5).isActive = true
         
         tagsTable.topAnchor.constraint(equalTo: tagsLabel.bottomAnchor).isActive = true
         tagsTable.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
@@ -82,9 +97,13 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         emailLabel.heightAnchor.constraint(equalToConstant: view.frame.height / 18.5).isActive = true
         
         nameTitleLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 27.5)
-        nameTitleLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: view.frame.height / 22.5).isActive = true
+        nameTitleLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: view.frame.height / 25).isActive = true
         nameTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        nameLabel.topAnchor.constraint(equalTo: nameTitleLabel.bottomAnchor).isActive = true
+        nameLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        nameLabel.heightAnchor.constraint(equalTo: emailLabel.heightAnchor).isActive = true
+        nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         getAccountInfo()
     }
