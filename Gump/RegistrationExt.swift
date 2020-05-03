@@ -325,6 +325,8 @@ extension RegistrationController {
                 
                 return
             }
+            
+            // Code executed once registration process has been complete
   
             ref?.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["mic": micField.text!, "gametags": [consoleField.text!: tagField.text!]])
             present(finishedVC, animated: true) {

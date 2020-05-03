@@ -100,7 +100,7 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         emailLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         emailLabel.topAnchor.constraint(equalTo: emailTitleLabel.bottomAnchor).isActive = true
         emailLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-        emailLabel.heightAnchor.constraint(equalToConstant: view.frame.height / 18.5).isActive = true
+        emailLabel.heightAnchor.constraint(equalToConstant: view.frame.height / 16).isActive = true
         
         nameTitleLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 27.5)
         nameTitleLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: view.frame.height / 25).isActive = true
@@ -136,27 +136,6 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         
     }
-    
-    @objc func addTag(_ sender:UIButton) {
-       
-        let alert = UIAlertController(title: "Add a Gametag", message: "Please enter the platform in the top field and your gametag on the second.", preferredStyle: .alert)
-        alert.addTextField()
-        alert.addTextField()
-        
-        let addTagAction = UIAlertAction(title: "Confirm", style: .default) { (action) in
-            let consoleText = alert.textFields![0]
-            let gamertagText = alert.textFields![1]
-            
-            
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
-        
-        alert.addAction(cancelAction)
-        alert.addAction(addTagAction)
-        
-        present(alert, animated: true, completion: nil)
-        
-    }
+
 
 }
