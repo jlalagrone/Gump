@@ -261,11 +261,10 @@ extension RegistrationController {
                             
                             // Animates view on button tap
                             self.consoleField.isHidden = false
-                            self.micField.isHidden = false
                             self.tagField.isHidden = false
                             self.view.frame.origin.y = 0
                             
-                            sender.registrationButtonAnimation(text: "Enter your primary gaming console and game tag", labels: [self.mainLabel,self.secondaryLabel], viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.micField,self.tagField]) {
+                            sender.registrationButtonAnimation(text: "Enter your primary gaming console and game tag", labels: [self.mainLabel,self.secondaryLabel], viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.tagField]) {
                             
                             
                             }
@@ -297,7 +296,8 @@ extension RegistrationController {
                 })
             
             print("Button on second instance")
-            
+ 
+//
         case 3:
             
             self.usernameField.isHidden = true
@@ -307,18 +307,17 @@ extension RegistrationController {
             
             self.consoleField.isHidden = false
             self.tagField.isHidden = false
-            self.micField.isHidden = false
             
            
             print("Y axis: \(self.view.frame.origin.y)")
             
             finishedVC.modalPresentationStyle = .fullScreen
             
-            guard consoleField.text! != "" || micField.text! != "" else {
+            guard consoleField.text! != "" || tagField.text! != "" else {
                 print("You left a field blank!")
                 sender.tag = 2
                 
-                let alert = UIAlertController(title: "Uh oh!", message: "Please provide your primary gaming console and if you have a microphone or not.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Uh oh!", message: "Please provide your primary gaming console and gametag.", preferredStyle: .alert)
                 let alertAction = UIAlertAction(title: "Continue", style: .default)
                 alert.addAction(alertAction)
                 self.present(alert, animated: true, completion: nil)
@@ -328,7 +327,7 @@ extension RegistrationController {
             
             // Code executed once registration process has been complete
   
-            ref?.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["mic": micField.text!, "gametags": [consoleField.text!: tagField.text!]])
+            ref?.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["gametags": [consoleField.text!: tagField.text!]])
             present(finishedVC, animated: true) {
                 print("Registration Complete!")
             }

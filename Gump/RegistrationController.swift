@@ -116,8 +116,8 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         view.addSubview(lastNameField)
         view.addSubview(consoleField)
         view.addSubview(tagField)
-        view.addSubview(secondaryLabel)
-        view.addSubview(micField)
+//        view.addSubview(secondaryLabel)
+//        view.addSubview(micField)
         view.addSubview(continueButton)
         
         mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height/20).isActive = true
@@ -169,33 +169,36 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         tagField.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height / 20).isActive = true
         tagField.alpha = 0
         
-        secondaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        secondaryLabel.widthAnchor.constraint(equalTo: mainLabel.widthAnchor).isActive = true
-        secondaryLabel.topAnchor.constraint(equalTo: tagField.bottomAnchor, constant: view.frame.height/25).isActive = true
-        secondaryLabel.alpha = 0
+//        secondaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        secondaryLabel.widthAnchor.constraint(equalTo: mainLabel.widthAnchor).isActive = true
+//        secondaryLabel.topAnchor.constraint(equalTo: tagField.bottomAnchor, constant: view.frame.height/25).isActive = true
+//        secondaryLabel.alpha = 0
         
-        micField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        micField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
-        micField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
-        micField.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: view.frame.height/20).isActive = true
-        micField.alpha = 0
+//        micField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        micField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
+//        micField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
+//        micField.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: view.frame.height/20).isActive = true
+//        micField.alpha = 0
 
         
+    
         continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         continueButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.825).isActive = true
         continueButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: (view.frame.height / -5.5)).isActive = true
         continueButton.heightAnchor.constraint(equalToConstant: view.frame.height / 14.5).isActive = true
         
+        
         layoutFonts()
     }
     
+
     
     @objc func keyboardWillShow(_ notification:NSNotification) {
         let userInfo = notification.userInfo
         let keyboardFrame = (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         
-        if self.confirmPasswordField.isEditing == true || self.lastNameField.isEditing == true {
+        if self.confirmPasswordField.isEditing == true || self.lastNameField.isEditing == true || self.micField.isEditing == true {
             self.view.frame.origin.y -= (keyboardFrame.height/4)
         }
     }
@@ -222,6 +225,8 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     override func viewDidAppear(_ animated: Bool) {
 
         continueButton.addTarget(self, action: #selector(registerAccount), for: .touchUpInside)
+        
+        
     }
     
     

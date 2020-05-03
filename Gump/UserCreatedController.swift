@@ -62,12 +62,14 @@ class UserCreatedController: UIViewController {
     }
     
     @objc func goToHomeScreen(_ sender:UIButton) {
-        let homeController = HomeController()
-        homeController.modalPresentationStyle = .fullScreen
         
-        present(homeController, animated: true) {
+        let homeController = HomeController()
+        let navVC = UINavigationController(rootViewController: homeController)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true) {
+
+            navVC.navigationController?.navigationBar.topItem?.title = "Home"
             print("We're home!")
-            homeController.navigationController?.navigationBar.topItem?.title = "Home"
 
         }
         

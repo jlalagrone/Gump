@@ -14,7 +14,6 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var searchActive:Bool = false
     var filteredUsers = [GumpUser]()
-    var filteredUser = [GumpUser]()
     
     var searchTable:UITableView = {
         var tableView = UITableView()
@@ -69,22 +68,24 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let firstName = userDict["firstName"] as! String
                 let lastName = userDict["lastName"] as! String
                 let fullName = "\(firstName) \(lastName)"
-                let games = userDict["Games"] as! [String:String]
+                if let games = userDict["Games"] as? [String:String] {
 
+                    self.filteredUsers.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags ,games:games))
+
+                    print(self.filteredUsers)
+                } else {
+
+                    self.filteredUsers.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags, games: nil))
+                }
+                
                 print(userDict)
-                                
-                self.filteredUsers.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags ,games:games))
-                
-                print(self.filteredUsers)
-                
                 self.searchTable.reloadData()
+                    
             }
             
         }
 
-        
-        
-        print("Leggooo")
+  
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
