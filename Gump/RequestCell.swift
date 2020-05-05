@@ -21,6 +21,7 @@ class RequestCell:UITableViewCell {
         button.setTitle("Accept", for: .normal)
         button.setTitleColor(.white, for: .normal)
         
+        
         return button
     }()
     
@@ -45,6 +46,7 @@ class RequestCell:UITableViewCell {
         usernameLabel.text = "Username"
         usernameLabel.numberOfLines = 1
         usernameLabel.textAlignment = .left
+        usernameLabel.backgroundColor = .green
         usernameLabel.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 3)
         usernameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 22.5).isActive = true
         usernameLabel.bottomAnchor.constraint(equalTo: centerYAnchor).isActive = true
@@ -52,16 +54,21 @@ class RequestCell:UITableViewCell {
         fullNameLabel.text = "Full Name"
         fullNameLabel.numberOfLines = 1
         fullNameLabel.textAlignment = .left
+        fullNameLabel.backgroundColor = .yellow
         fullNameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: frame.height / 3.25)
         fullNameLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor).isActive = true
         fullNameLabel.leftAnchor.constraint(equalTo: usernameLabel.leftAnchor).isActive = true
+        fullNameLabel.widthAnchor.constraint(equalToConstant: frame.width / 2.15).isActive = true
         
-        
+        acceptButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 3.15)
         acceptButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        acceptButton.leftAnchor.constraint(equalTo: fullNameLabel.rightAnchor, constant: frame.width / 15).isActive = true
+        acceptButton.leftAnchor.constraint(equalTo: fullNameLabel.rightAnchor, constant: frame.width / 17.5).isActive = true
         acceptButton.rightAnchor.constraint(equalTo: denyButton.leftAnchor, constant: -5).isActive = true
-        acceptButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.285).isActive = true
+        acceptButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.225).isActive = true
         
+        denyButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 3.15)
+        denyButton.layer.borderWidth = 1.5
+        denyButton.layer.borderColor = UIColor.lightGray.cgColor
         denyButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         denyButton.rightAnchor.constraint(equalTo: rightAnchor, constant: frame.width / -20).isActive = true
         
