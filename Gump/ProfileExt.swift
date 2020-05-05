@@ -55,4 +55,15 @@ extension ProfileController {
         self.navigationController?.pushViewController(accountController, animated: true)
         
     }
+    
+    @objc func viewFriendRequestsButtonAction(_ sender:UIButton) {
+        
+        let requestController = RequestsController()
+        requestController.title = "Friend Requests"
+        
+        title = ""
+        
+        self.navigationController?.pushViewController(requestController, animated: true)
+        
+    }
 }

@@ -136,6 +136,7 @@ class ProfileController: UIViewController {
         viewGamesButton.addTarget(self, action: #selector(viewGamesButtonAction(_:)), for: .touchDown)
         viewPromoButton.addTarget(self, action: #selector(viewPromoButtonAction(_:)), for: .touchDown)
         accountInfoButton.addTarget(self, action: #selector(viewAccountButtonAction(_:)), for: .touchDown)
+        viewFriendsButton.addTarget(self, action: #selector(viewFriendRequestsButtonAction(_:)), for: .touchDown)
     }
     
 
