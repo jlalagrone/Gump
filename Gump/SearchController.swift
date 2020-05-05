@@ -117,6 +117,9 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return (view.frame.height / 10.5)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

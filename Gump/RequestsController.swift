@@ -30,6 +30,9 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! RequestCell
         
+        cell.acceptButton.addTarget(self, action: #selector(acceptRequest(_:)), for: .touchDown)
+        cell.denyButton.addTarget(self, action: #selector(denyRequest(_:)), for: .touchDown)
+        
         return cell
     }
     
