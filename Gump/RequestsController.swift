@@ -20,7 +20,7 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
     }()
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (view.frame.height / 15)
+        return (view.frame.height / 10.5)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
