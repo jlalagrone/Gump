@@ -15,6 +15,8 @@ class FriendSystem {
     static let system = FriendSystem()
     
     var userList = [GumpUser]()
+    var friendsList = [GumpUser]()
+    var requestList = [GumpUser]()
     var gametags = [String:String]()
     var gameList = [String]()
     
@@ -33,6 +35,10 @@ class FriendSystem {
         return currentUserRef.child("friends")
     }
     
+    var currentUserRequestsRef: DatabaseReference {
+        return currentUserRef.child("requests")
+    }
+    
     var currentUserID:String {
         let id = Auth.auth().currentUser!.uid
         return id
@@ -44,6 +50,7 @@ class FriendSystem {
             let email = snapshot.childSnapshot(forPath: "email").value as! String
             let username = snapshot.childSnapshot(forPath: "username").value as! String
             let gametags = snapshot.childSnapshot(forPath: "gametags").value as! [String:String]
+            let requests = snapshot.childSnapshot(forPath: "requests").value as? [String:Bool]
             let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
             let fullName = "\(firstName) \(lastName)"
@@ -56,12 +63,12 @@ class FriendSystem {
                 print(games.values)
                 self.gameList = gameTitles
                 
-                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags ,games: games))
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags, requests: requests,games: games))
                 
             }
             else {
             // Completion handler (closure) gets the currentUser passed to it
-                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags ,games: nil))
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags, requests: requests, games: nil))
             }
         }
     }
@@ -71,14 +78,28 @@ class FriendSystem {
             let email = snapshot.childSnapshot(forPath: "email").value as! String
             let username = snapshot.childSnapshot(forPath: "username").value as! String
             let gametags = snapshot.childSnapshot(forPath: "gametags").value as! [String:String]
+            let requests = snapshot.childSnapshot(forPath: "requests").value as? [String:Bool]
             let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
             let fullName = "\(firstName) \(lastName)"
-            let games = snapshot.childSnapshot(forPath: "Games").value as! [String:String]
             let id = snapshot.key
             
-            // Completion handler (closure) gets the specified user passed to it
-            completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags ,games: games))
+            self.gametags = gametags
+            
+            if let games = snapshot.childSnapshot(forPath: "Games").value as? [String:String] {
+                
+                let gameTitles = Array(games.values)
+                
+                self.gameList = gameTitles
+                
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags, requests: requests, games: games))
+                
+            } else {
+                
+                // Completion handler (closure) gets the specified user passed to it
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags, requests: requests,games: nil))
+                
+            }
         }
     }
         
@@ -91,16 +112,48 @@ class FriendSystem {
                 let email = child.childSnapshot(forPath: "email").value as! String
                 let username = child.childSnapshot(forPath: "username").value as! String
                 let gametags = snapshot.childSnapshot(forPath: "gametags").value as! [String:String]
+                let requests = snapshot.childSnapshot(forPath: "requests").value as? [String:Bool]
                 let firstName = child.childSnapshot(forPath: "firstName").value as! String
                 let lastName = child.childSnapshot(forPath: "lastName").value as! String
                 let fullName = "\(firstName) \(lastName)"
                 let games = child.childSnapshot(forPath: "Games").value as! [String:String]
                 if email != Auth.auth().currentUser?.email! {
-                    self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName, gametags: gametags ,games:games))
+                    
+                    self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName, gametags: gametags, requests: requests ,games:games))
                 }
             }
             update()
         })
     }
     
+    // Sends friend request to the user with the specified ID
+    func sendRequestToUser(_ userID: String) {
+        
+        userRef.child(userID).child("requests").child(currentUserID).setValue(true)
+    }
+    
+    func acceptFriendRequest(_ userID: String) {
+        currentUserRef.child("requests").child(userID).removeValue()
+        currentUserRef.child("friends").child(userID).setValue(true)
+        userRef.child(userID).child("friends").child(currentUserID).setValue(true)
+        userRef.child(userID).child("requests").child(currentUserID).removeValue()
+    }
+    
+
+    func addRequestObserver(_ update: @escaping () -> Void) {
+        currentUserRequestsRef.observe(DataEventType.value, with: { (snapshot) in
+            self.requestList.removeAll()
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let id = child.key
+                self.getUser(id, completion: { (user) in
+                    self.requestList.append(user)
+                    update()
+                })
+            }
+            // If there are no children, run completion here instead
+            if snapshot.childrenCount == 0 {
+                update()
+            }
+        })
+    }
 }

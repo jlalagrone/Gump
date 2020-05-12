@@ -24,14 +24,31 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return FriendSystem.system.requestList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! RequestCell
         
-        cell.acceptButton.addTarget(self, action: #selector(acceptRequest(_:)), for: .touchDown)
-        cell.denyButton.addTarget(self, action: #selector(denyRequest(_:)), for: .touchDown)
+        cell.usernameLabel.text = FriendSystem.system.requestList[indexPath.row].username
+        cell.fullNameLabel.text = FriendSystem.system.requestList[indexPath.row].fullName
+        
+        cell.declineButton.addTarget(self, action: #selector(denyRequest(_:)), for: .touchDown)
+        
+        cell.setAcceptFunction {
+    
+            
+            let id = FriendSystem.system.requestList[indexPath.row].uid
+            FriendSystem.system.acceptFriendRequest(id)
+            
+            FriendSystem.system.addRequestObserver {
+                print(FriendSystem.system.requestList)
+                self.requestTable.reloadData()
+                
+                print("Request accepted!")
+            }
+            
+        }
         
         return cell
     }
@@ -45,6 +62,17 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
         requestTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         requestTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print(FriendSystem.system.requestList)
+
+        FriendSystem.system.addRequestObserver {
+            print(FriendSystem.system.requestList)
+            self.requestTable.reloadData()
+        }
         
     }
     

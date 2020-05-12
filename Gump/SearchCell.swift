@@ -6,12 +6,20 @@
 //  Copyright © 2020 JordanLaGrone. All rights reserved.
 //
 
+import Firebase
 import UIKit
 
 class SearchCell:UITableViewCell {
     
     var usernameLabel = DefaultLabel(textColor: signalBlueColor)
     var fullNameLabel = DefaultLabel(textColor: darkPinkColor)
+    
+    @objc func sendFriendRequestTapped(_ sender:UIButton) {
+        
+        buttonAction()
+    }
+    
+    var buttonAction: (() -> (Void))!
     
     var sendRequestButton:UIButton = {
         var button = UIButton()
@@ -24,10 +32,18 @@ class SearchCell:UITableViewCell {
         return button
     }()
     
+    func setFunction(_ function: @escaping () -> Void) {
+        self.buttonAction = function
+    }
+
+    
     func layoutProperties() {
-        usernameLabel.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 3)
-        fullNameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: frame.height / 3.25)
+        usernameLabel.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 2.75)
+        fullNameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: frame.height / 3)
+        
+        sendRequestButton.addTarget(self, action: #selector(sendFriendRequestTapped(_:)), for: .touchDown)
         sendRequestButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 3.15)
+        
         
     }
     
@@ -51,7 +67,7 @@ class SearchCell:UITableViewCell {
         
         sendRequestButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         sendRequestButton.rightAnchor.constraint(equalTo: rightAnchor, constant: frame.width / -22.5).isActive = true
-        sendRequestButton.widthAnchor.constraint(equalToConstant: frame.width / 3).isActive = true
+        sendRequestButton.widthAnchor.constraint(equalToConstant: frame.width / 2.75).isActive = true
         sendRequestButton.leftAnchor.constraint(equalTo: fullNameLabel.rightAnchor, constant: frame.width / 17.5).isActive = true
         
         bottomAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: frame.height / 3).isActive = true

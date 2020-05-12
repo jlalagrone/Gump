@@ -9,11 +9,12 @@
 import UIKit
 import Firebase
 
+var requestID = String()
+
 class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     
     var searchActive:Bool = false
-    var filteredUsers = [GumpUser]()
     
     var searchTable:UITableView = {
         var tableView = UITableView()
@@ -53,7 +54,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
   
-        self.filteredUsers = []
+        FriendSystem.system.userList = []
 
         let queryRef = FriendSystem.system.userRef.queryOrdered(byChild: "username").queryStarting(atValue: searchBar.text)
                 
@@ -64,18 +65,19 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let userDict = userSnap.value as! [String:AnyObject]
                 let email = userDict["email"] as! String
                 let gametags = userDict["gametags"] as! [String:String]
+                let requests = userDict["requests"] as? [String:Bool]
                 let username = userDict["username"] as! String
                 let firstName = userDict["firstName"] as! String
                 let lastName = userDict["lastName"] as! String
                 let fullName = "\(firstName) \(lastName)"
                 if let games = userDict["Games"] as? [String:String] {
+                    
+                    FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags,requests: requests ,games:games))
 
-                    self.filteredUsers.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags ,games:games))
-
-                    print(self.filteredUsers)
+                    print(FriendSystem.system.userList)
                 } else {
-
-                    self.filteredUsers.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags, games: nil))
+                    
+                    FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags, requests: requests,games:nil))
                 }
                 
                 print(userDict)
@@ -97,7 +99,6 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func layoutView() {
 
-        
         view.addSubview(searchBar)
         view.addSubview(searchTable)
         
@@ -105,9 +106,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         searchBar.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         searchBar.heightAnchor.constraint(equalToConstant: view.frame.height / 11).isActive = true
-        
-
-        
+    
         searchTable.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
         searchTable.widthAnchor.constraint(equalToConstant: view.frame.width / 1.1).isActive = true
         searchTable.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -123,22 +122,33 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-            return filteredUsers.count
+        return FriendSystem.system.userList.count
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! SearchCell
         
-        cell.usernameLabel.text = filteredUsers[indexPath.row].username
-        cell.fullNameLabel.text = filteredUsers[indexPath.row].fullName
         
+        
+        
+        cell.usernameLabel.text = FriendSystem.system.userList[indexPath.row].username
+        cell.fullNameLabel.text = FriendSystem.system.userList[indexPath.row].fullName
+
+        cell.setFunction {
+            
+            FriendSystem.system.sendRequestToUser(FriendSystem.system.userList[indexPath.row].uid)
+            
+            print("Request sent to \(FriendSystem.system.userList[indexPath.row].uid))!")
+            
+            cell.sendRequestButton.backgroundColor = .white
+            cell.sendRequestButton.setTitle("Sent!", for: .normal)
+            cell.sendRequestButton.setTitleColor(signalBlueColor, for: .normal)
+        }
         
         return cell
     }
-    
-    
-    
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()

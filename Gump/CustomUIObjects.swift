@@ -21,14 +21,17 @@ class GumpUser {
     var username:String
     var fullName:String
     var gametags:[String:String]
+    var requests:[String:Bool]?
     var games:[String:String]?
     
-    init(email:String,uid:String,username:String,fullName:String,gametags:[String:String] ,games:[String:String]?) {
+    
+    init(email:String,uid:String,username:String,fullName:String,gametags:[String:String] ,requests:[String:Bool]?,games:[String:String]?) {
         self.email = email
         self.uid = uid
         self.fullName = fullName
         self.username = username
         self.gametags = gametags
+        self.requests = requests
         self.games = games
     }
 }
