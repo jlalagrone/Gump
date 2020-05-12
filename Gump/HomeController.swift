@@ -119,6 +119,12 @@ class HomeController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         title = "Home"
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "signOutIcon"), style: .plain, target: self, action: #selector(signOutTapped(_:)))
+        
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .reply
+//            , target: self, action: #selector(signOutTapped(_:)))
+        
     }
     
     override func viewDidLoad() {
@@ -129,7 +135,6 @@ class HomeController: UIViewController {
         
         ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(token!)"])
 
-//        self.navigationController?.navigationBar.topItem?.title = "Home"
         self.navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(white:1, alpha: 1), NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: view.frame.height/32.5)!]
         self.navigationController?.navigationBar.tintColor = .white

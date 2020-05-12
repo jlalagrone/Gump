@@ -103,6 +103,14 @@ class FriendSystem {
         }
     }
         
+    func logoutAccount() {
+        
+        print("About to sign out user \(FriendSystem.system.currentUserID)")
+        
+        try! Auth.auth().signOut()
+        print("User signed out.")
+        
+    }
     
     // Code executes every time a new user is created
     func addUserObserver(_ update: @escaping () -> Void) {

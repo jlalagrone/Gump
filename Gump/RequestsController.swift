@@ -36,13 +36,11 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
         cell.declineButton.addTarget(self, action: #selector(denyRequest(_:)), for: .touchDown)
         
         cell.setAcceptFunction {
-    
             
             let id = FriendSystem.system.requestList[indexPath.row].uid
             FriendSystem.system.acceptFriendRequest(id)
             
             FriendSystem.system.addRequestObserver {
-                print(FriendSystem.system.requestList)
                 self.requestTable.reloadData()
                 
                 print("Request accepted!")
@@ -70,7 +68,11 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
         print(FriendSystem.system.requestList)
 
         FriendSystem.system.addRequestObserver {
-            print(FriendSystem.system.requestList)
+            
+            for user in FriendSystem.system.requestList {
+                print("Requests from: \(user.username)!")
+            }
+            
             self.requestTable.reloadData()
         }
         

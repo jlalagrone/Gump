@@ -59,6 +59,18 @@ class HomeButton:UIButton {
 // Methods that present next view controller once a home button is tapped
 extension HomeController {
     
+    @objc func signOutTapped(_ sender:UIButton) {
+        
+        FriendSystem.system.logoutAccount()
+        
+        let signInVC = SignInController()
+        signInVC.modalPresentationStyle = .fullScreen
+        
+        present(signInVC, animated: true) {
+                        
+        }
+        
+    }
     
     @objc func showFriendsController(_ sender:UIButton) {
         print("Showing friends controller")
