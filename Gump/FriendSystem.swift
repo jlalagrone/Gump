@@ -138,6 +138,8 @@ class FriendSystem {
     func sendRequestToUser(_ userID: String) {
         
         userRef.child(userID).child("requests").child(currentUserID).setValue(true)
+        
+
     }
     
     func acceptFriendRequest(_ userID: String) {
@@ -160,6 +162,7 @@ class FriendSystem {
             }
             // If there are no children, run completion here instead
             if snapshot.childrenCount == 0 {
+                print("No requests!")
                 update()
             }
         })

@@ -115,7 +115,6 @@ extension RegistrationController {
             
             self.consoleField.isHidden = true
             self.tagField.isHidden = true
-            self.micField.isHidden = true
             
             // Code if password fields aren't identical
             guard passwordField.text! == confirmPasswordField.text else {

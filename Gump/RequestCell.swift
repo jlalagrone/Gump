@@ -71,7 +71,6 @@ class RequestCell:UITableViewCell {
         acceptButton.addTarget(self, action: #selector(requestAcceptedTapped(_:)), for: .touchDown)
         declineButton.addTarget(self, action: #selector(requestDeclinedTapped(_:)), for: .touchDown)
         
-//        usernameLabel.text = "Username"
         usernameLabel.numberOfLines = 1
         usernameLabel.textAlignment = .left
         usernameLabel.backgroundColor = .green
@@ -79,7 +78,6 @@ class RequestCell:UITableViewCell {
         usernameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 22.5).isActive = true
         usernameLabel.bottomAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-//        fullNameLabel.text = "Full Name"
         fullNameLabel.numberOfLines = 1
         fullNameLabel.textAlignment = .left
         fullNameLabel.backgroundColor = .yellow
@@ -99,7 +97,7 @@ class RequestCell:UITableViewCell {
         declineButton.layer.borderColor = UIColor.lightGray.cgColor
         declineButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         declineButton.widthAnchor.constraint(equalToConstant: frame.width / 5).isActive = true
-        declineButton.rightAnchor.constraint(equalTo: rightAnchor, constant: frame.width / -15).isActive = true
+        declineButton.rightAnchor.constraint(equalTo: rightAnchor, constant: frame.width / -22.5).isActive = true
         
         
         

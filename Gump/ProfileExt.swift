@@ -62,6 +62,7 @@ extension ProfileController {
         requestController.title = "Friend Requests"
         
         title = ""
+
         
         self.navigationController?.pushViewController(requestController, animated: true)
         

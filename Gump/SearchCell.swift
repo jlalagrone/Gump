@@ -56,19 +56,18 @@ class SearchCell:UITableViewCell {
         layoutProperties()
         
         usernameLabel.textAlignment = .left
-        usernameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 22.5).isActive = true
+        usernameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 27.5).isActive = true
         usernameLabel.bottomAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         fullNameLabel.textAlignment = .left
         fullNameLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor).isActive = true
         fullNameLabel.leftAnchor.constraint(equalTo: usernameLabel.leftAnchor).isActive = true
-        fullNameLabel.widthAnchor.constraint(equalToConstant: frame.width / 2.15).isActive = true
 
         
         sendRequestButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        sendRequestButton.rightAnchor.constraint(equalTo: rightAnchor, constant: frame.width / -22.5).isActive = true
-        sendRequestButton.widthAnchor.constraint(equalToConstant: frame.width / 2.75).isActive = true
-        sendRequestButton.leftAnchor.constraint(equalTo: fullNameLabel.rightAnchor, constant: frame.width / 17.5).isActive = true
+        sendRequestButton.rightAnchor.constraint(equalTo: rightAnchor, constant: frame.width / -27.5).isActive = true
+        sendRequestButton.widthAnchor.constraint(equalToConstant: frame.width / 3).isActive = true
+        sendRequestButton.leftAnchor.constraint(equalTo: fullNameLabel.rightAnchor, constant: frame.width / 18.5).isActive = true
         
         bottomAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: frame.height / 3).isActive = true
         

@@ -64,19 +64,23 @@ class SignInController: UIViewController, UITextFieldDelegate {
     }()
     
     var signInButton:DefaultButton = {
-        var button = DefaultButton(backgroundColor: UIColor(red: 118.0/255.0, green: 205.0/255.0, blue: 255.0/255.0, alpha: 1),borderColor: UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0, alpha: 1).cgColor ,title: "Sign In")
+        var button = DefaultButton(backgroundColor: lightPinkColor,borderColor: UIColor.clear.cgColor ,title: "Sign In")
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(animateButton(_:)), for: .touchDown)
         button.addTarget(self, action: #selector(signIn(_:)), for: .touchDown)
-
-        
         
         return button
     }()
     
     var createAccountButton:DefaultButton = {
-        var button = DefaultButton(title: "Create Account", textColor: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1))
+        var button = DefaultButton(title: "Create Account", textColor: darkPinkColor)
         button.addTarget(self, action: #selector(animateButton(_:)), for: .touchDown)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 2.5
+        button.layer.borderColor = signalBlueColor.cgColor
+        button.addTarget(self, action: #selector(createAccount), for: .touchUpInside)
+
         
         return button
     }()
@@ -90,7 +94,6 @@ class SignInController: UIViewController, UITextFieldDelegate {
                 print(error?.localizedDescription)
                 return
             }
-            
         
             let homeController = HomeController()
             let navVC = UINavigationController(rootViewController: homeController)
@@ -101,7 +104,6 @@ class SignInController: UIViewController, UITextFieldDelegate {
             }
             print("User signed in.")
             
-            
         }
         
     }
@@ -110,6 +112,8 @@ class SignInController: UIViewController, UITextFieldDelegate {
     @objc func createAccount() {
         let registrationVC = RegistrationController()
         
+        title = ""
+        registrationVC.title = "Create Account"
         self.navigationController?.pushViewController(registrationVC, animated: true)
     }
 
@@ -120,12 +124,6 @@ class SignInController: UIViewController, UITextFieldDelegate {
         
         return button
     }()
-
-    func configureButtonActions() {
-        
-        createAccountButton.addTarget(self, action: #selector(createAccount), for: .touchUpInside)
-        
-    }
         
     
     func layoutFonts() {
@@ -196,6 +194,8 @@ class SignInController: UIViewController, UITextFieldDelegate {
         
         createAccountButton.centerXAnchor.constraint(equalTo: signInButton.centerXAnchor).isActive = true
         createAccountButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: view.frame.height/20).isActive = true
+        createAccountButton.widthAnchor.constraint(equalTo: signInButton.widthAnchor).isActive = true
+        createAccountButton.heightAnchor.constraint(equalTo: signInButton.heightAnchor).isActive = true
         
         aboutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         aboutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25).isActive = true
@@ -204,11 +204,11 @@ class SignInController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        
 
     }
     
@@ -229,12 +229,12 @@ class SignInController: UIViewController, UITextFieldDelegate {
         
         layoutView()
         layoutFonts()
-        configureButtonActions()
     
     }
     
     // Edits passwordTextField's length to 16 characters
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
          // get the current text, or use an empty string if that failed
          let currentText = textField.text ?? ""
 

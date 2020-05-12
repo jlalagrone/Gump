@@ -122,8 +122,9 @@ class HomeController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "signOutIcon"), style: .plain, target: self, action: #selector(signOutTapped(_:)))
         
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .reply
-//            , target: self, action: #selector(signOutTapped(_:)))
+        FriendSystem.system.getCurrentUser { (user) in
+            print("Welcome \(user.username)!")
+        }
         
     }
     

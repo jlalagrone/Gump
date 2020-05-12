@@ -11,6 +11,7 @@ import Firebase
 
 
 class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
     var consolePickerOptions = ["PS4", "Xbox One", "PC", "Nintendo Switch"]
     var consoleStatus:String?
     var micPickerOptions = ["Yes", "No"]
@@ -47,50 +48,38 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     var tagField = DefaultTextField(color: darkPinkColor, borderColor: UIColor.clear.cgColor, placeholderText: "Enter Gametag", placeholderLength: 13)
     
-    // Code for mic pickerViews
-    let micPicker = UIPickerView()
-    var micField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "",placeholderLength: 0)
+//    // Code for mic pickerViews
+//    let micPicker = UIPickerView()
+//    var micField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "",placeholderLength: 0)
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
+        return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == micPicker {
-            return micPickerOptions.count
-        }
-        else {
-            return consolePickerOptions.count
-        }
+        return consolePickerOptions.count
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == micPicker {
-            micStatus = micPickerOptions[row]
-            micField.text = micStatus
-        }
-        else {
-            consoleStatus = consolePickerOptions[row]
-            consoleField.text = consoleStatus
-        }
+        
+        consoleStatus = consolePickerOptions[row]
+        consoleField.text = consoleStatus
+
     }
     
  
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
         var attributedString:NSAttributedString!
-        if pickerView == micPicker {
-            attributedString = NSAttributedString(string: micPickerOptions[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-            return attributedString
-        }
-        else {
-            attributedString = NSAttributedString(string: consolePickerOptions[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-            return attributedString
-        }
+        
+        attributedString = NSAttributedString(string: consolePickerOptions[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        return attributedString
+        
     }
   
     var continueButton:RegistrationButton = {
-        var button = RegistrationButton(backgroundColor: .white, borderColor: UIColor(red: 118.0/255.0, green: 205.0/255.0, blue: 255.0/255.0, alpha: 1).cgColor, title: "Continue")
+        var button = RegistrationButton(backgroundColor: .white, borderColor: signalBlueColor.cgColor, title: "Continue")
         
         return button
     }()
@@ -116,8 +105,6 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         view.addSubview(lastNameField)
         view.addSubview(consoleField)
         view.addSubview(tagField)
-//        view.addSubview(secondaryLabel)
-//        view.addSubview(micField)
         view.addSubview(continueButton)
         
         mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height/20).isActive = true
@@ -168,19 +155,6 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         tagField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
         tagField.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height / 20).isActive = true
         tagField.alpha = 0
-        
-//        secondaryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        secondaryLabel.widthAnchor.constraint(equalTo: mainLabel.widthAnchor).isActive = true
-//        secondaryLabel.topAnchor.constraint(equalTo: tagField.bottomAnchor, constant: view.frame.height/25).isActive = true
-//        secondaryLabel.alpha = 0
-        
-//        micField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        micField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
-//        micField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
-//        micField.topAnchor.constraint(equalTo: secondaryLabel.bottomAnchor, constant: view.frame.height/20).isActive = true
-//        micField.alpha = 0
-
-        
     
         continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         continueButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.825).isActive = true
@@ -198,7 +172,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let keyboardFrame = (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
         
-        if self.confirmPasswordField.isEditing == true || self.lastNameField.isEditing == true || self.micField.isEditing == true {
+        if self.confirmPasswordField.isEditing == true || self.lastNameField.isEditing == true {
             self.view.frame.origin.y -= (keyboardFrame.height/4)
         }
     }
@@ -217,7 +191,6 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         view.backgroundColor = UIColor(red: 255.0/255.0, green: 125.0/255.0, blue: 206.0/255.0, alpha: 1)
         
         self.navigationController?.navigationBar.isHidden = false
-        self.title = "Create Account"
         
         
     }
@@ -237,10 +210,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         hideKeyboardWhenTappedAround()
         
         layoutView()
-        
-        micPicker.delegate = self
-        micField.inputView = micPicker
-        micPicker.backgroundColor = .white
+   
         
         consolePicker.delegate = self
         consoleField.inputView = consolePicker
