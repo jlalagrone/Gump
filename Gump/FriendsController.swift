@@ -23,13 +23,13 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FriendSystem.system.userList.count
+        return FriendSystem.system.friendsList.count
      }
      
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! FriendCell
         
-        cell.usernameLabel.text = FriendSystem.system.userList[indexPath.row].username
+        cell.usernameLabel.text = FriendSystem.system.friendsList[indexPath.row].username
         
         return cell
      }
@@ -59,6 +59,8 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("Friends Count---> \(FriendSystem.system.userList.count)!")
+        
         layoutView()
         
         friendsTableView.delegate = self
@@ -67,11 +69,8 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
    
         self.navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         
-        FriendSystem.system.getCurrentUser { (user) in
-            print("Got user \(user)")
-        }
-        
-        FriendSystem.system.addUserObserver {
+        FriendSystem.system.addFriendObserver {
+            print("Friends Count: \(FriendSystem.system.friendsList.count)!")
             self.friendsTableView.reloadData()
         }
         

@@ -112,6 +112,24 @@ class FriendSystem {
         
     }
     
+    func addFriendObserver(_ update: @escaping () -> Void) {
+        currentUserFriendsRef.observe(DataEventType.value, with: { (snapshot) in
+            self.friendsList.removeAll()
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                let id = child.key
+                self.getUser(id, completion: { (user) in
+                    self.friendsList.append(user)
+                    update()
+                })
+            }
+            // If there are no children, run completion here instead
+            if snapshot.childrenCount == 0 {
+                update()
+            }
+        })
+    }
+    
+    
     // Code executes every time a new user is created
     func addUserObserver(_ update: @escaping () -> Void) {
         FriendSystem.system.userRef.observe(DataEventType.value, with: { (snapshot) in
@@ -119,12 +137,15 @@ class FriendSystem {
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let email = child.childSnapshot(forPath: "email").value as! String
                 let username = child.childSnapshot(forPath: "username").value as! String
-                let gametags = snapshot.childSnapshot(forPath: "gametags").value as! [String:String]
+                let gametags = snapshot.childSnapshot(forPath: "gametags").value as? [String:String]
                 let requests = snapshot.childSnapshot(forPath: "requests").value as? [String:Bool]
                 let firstName = child.childSnapshot(forPath: "firstName").value as! String
                 let lastName = child.childSnapshot(forPath: "lastName").value as! String
                 let fullName = "\(firstName) \(lastName)"
-                let games = child.childSnapshot(forPath: "Games").value as! [String:String]
+                let games = child.childSnapshot(forPath: "Games").value as? [String:String]
+                
+//                self.gametags = gametags
+                
                 if email != Auth.auth().currentUser?.email! {
                     
                     self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName, gametags: gametags, requests: requests ,games:games))
