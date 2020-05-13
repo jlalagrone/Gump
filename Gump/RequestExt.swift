@@ -15,9 +15,9 @@ extension RequestsController {
         print("Request accepted!")
     }
     
-    @objc func denyRequest(_ sender:UIButton) {
-        print("Request denied.")
-        
-    }
+//    @objc func denyRequest(_ sender:UIButton) {
+//        print("Request denied.")
+//        
+//    }
     
 }

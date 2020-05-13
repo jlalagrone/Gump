@@ -74,13 +74,11 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                     
                     FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags,requests: requests ,games:games))
 
-                    print(FriendSystem.system.userList)
                 } else {
                     
                     FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags, requests: requests,games:nil))
                 }
                 
-                print(userDict)
                 self.searchTable.reloadData()
                     
             }
@@ -129,21 +127,24 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! SearchCell
         
-        
-        
-        
         cell.usernameLabel.text = FriendSystem.system.userList[indexPath.row].username
         cell.fullNameLabel.text = FriendSystem.system.userList[indexPath.row].fullName
 
         cell.setFunction {
+
+            let id = FriendSystem.system.userList[indexPath.row].uid
+            print("Requested ID: \(id)")
             
-            FriendSystem.system.sendRequestToUser(FriendSystem.system.userList[indexPath.row].uid)
+            FriendSystem.system.sendRequestToUser(id)
             
-            print("Request sent to \(FriendSystem.system.userList[indexPath.row].uid))!")
+            cell.sendRequestButton.isHidden = true
             
-            cell.sendRequestButton.backgroundColor = .white
-            cell.sendRequestButton.setTitle("Sent!", for: .normal)
-            cell.sendRequestButton.setTitleColor(signalBlueColor, for: .normal)
+            print("Request List --> \(FriendSystem.system.requestList)")
+            
+
+//            cell.sendRequestButton.backgroundColor = .white
+//            cell.sendRequestButton.setTitle("Sent!", for: .normal)
+//            cell.sendRequestButton.setTitleColor(signalBlueColor, for: .normal)
         }
         
         return cell

@@ -9,9 +9,7 @@
 import UIKit
 
 class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
- 
-    var friendsList = [GumpUser]()
-    
+     
 
     var friendsTableView:UITableView = {
         var tableView = UITableView()

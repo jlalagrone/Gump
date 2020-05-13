@@ -170,9 +170,9 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         friendsTableView.dataSource = self
         friendsTableView.register(SelectCell.self, forCellReuseIdentifier: "cellID")
         
-        FriendSystem.system.addUserObserver {
-            self.friendsTableView.reloadData()
-        }
+//        FriendSystem.system.addUserObserver {
+//            self.friendsTableView.reloadData()
+//        }
         
         sendSignalButton.addTarget(self, action: #selector(sendInviteSignal(_:)), for: .touchDown)
     }

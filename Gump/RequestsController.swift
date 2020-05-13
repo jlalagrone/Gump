@@ -44,17 +44,20 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.usernameLabel.text = FriendSystem.system.requestList[indexPath.row].username
         cell.fullNameLabel.text = FriendSystem.system.requestList[indexPath.row].fullName
-        
-        cell.declineButton.addTarget(self, action: #selector(denyRequest(_:)), for: .touchDown)
-        
+                
         cell.setAcceptFunction {
             
             let id = FriendSystem.system.requestList[indexPath.row].uid
+            print("Accepted request from \(id)")
             FriendSystem.system.acceptFriendRequest(id)
-            
-            print("Request accepted from \(id)")
+//
+//            print("Request accepted from \(id)")
             self.requestTable.reloadData()
             
+        }
+        
+        cell.setDeclineFunction {
+            print("Request declined.")
         }
         
         return cell
@@ -72,7 +75,7 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
         
         mainLabel.topAnchor.constraint(equalTo: view.centerYAnchor, constant: view.frame.height / -7.5).isActive = true
         mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        mainLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 2).isActive = true
+        mainLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 1.25).isActive = true
         
         
     }

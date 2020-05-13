@@ -132,7 +132,7 @@ class FriendSystem {
     
     // Code executes every time a new user is created
     func addUserObserver(_ update: @escaping () -> Void) {
-        FriendSystem.system.userRef.observe(DataEventType.value, with: { (snapshot) in
+        userRef.observe(DataEventType.value, with: { (snapshot) in
             self.userList.removeAll()
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let email = child.childSnapshot(forPath: "email").value as! String
@@ -146,10 +146,9 @@ class FriendSystem {
                 
 //                self.gametags = gametags
                 
-                if email != Auth.auth().currentUser?.email! {
-                    
-                    self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName, gametags: gametags, requests: requests ,games:games))
-                }
+                self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName, gametags: gametags, requests: requests ,games:games))
+                
+                print("Users Count --> \(self.userList.count)")
             }
             update()
         })
