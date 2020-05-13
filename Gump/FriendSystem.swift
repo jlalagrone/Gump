@@ -158,17 +158,23 @@ class FriendSystem {
     func sendRequestToUser(_ userID: String) {
         
         userRef.child(userID).child("requests").child(currentUserID).setValue(true)
-        
 
     }
     
     func acceptFriendRequest(_ userID: String) {
+        
+        
         currentUserRef.child("requests").child(userID).removeValue()
         currentUserRef.child("friends").child(userID).setValue(true)
         userRef.child(userID).child("friends").child(currentUserID).setValue(true)
         userRef.child(userID).child("requests").child(currentUserID).removeValue()
     }
     
+    func declineFriendRequest(_ userID: String) {
+        currentUserRef.child("requests").child(userID).removeValue()
+        
+        
+    }
 
     func addRequestObserver(_ update: @escaping () -> Void) {
         currentUserRequestsRef.observe(DataEventType.value, with: { (snapshot) in

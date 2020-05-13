@@ -127,24 +127,17 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! SearchCell
         
+        let id = FriendSystem.system.userList[indexPath.row].uid
+
         cell.usernameLabel.text = FriendSystem.system.userList[indexPath.row].username
         cell.fullNameLabel.text = FriendSystem.system.userList[indexPath.row].fullName
 
+        
         cell.setFunction {
 
-            let id = FriendSystem.system.userList[indexPath.row].uid
-            print("Requested ID: \(id)")
-            
             FriendSystem.system.sendRequestToUser(id)
             
-            cell.sendRequestButton.isHidden = true
-            
-            print("Request List --> \(FriendSystem.system.requestList)")
-            
 
-//            cell.sendRequestButton.backgroundColor = .white
-//            cell.sendRequestButton.setTitle("Sent!", for: .normal)
-//            cell.sendRequestButton.setTitleColor(signalBlueColor, for: .normal)
         }
         
         return cell

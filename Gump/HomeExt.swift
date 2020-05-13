@@ -63,10 +63,15 @@ extension HomeController {
         
         FriendSystem.system.logoutAccount()
         
-        let signInVC = SignInController()
-        signInVC.modalPresentationStyle = .fullScreen
         
-        present(signInVC, animated: true) {
+        let signInVC = SignInController()
+        let navVC = UINavigationController(rootViewController: signInVC)
+        
+        navVC.modalPresentationStyle = .fullScreen
+        navVC.navigationBar.isHidden = true
+
+        
+        present(navVC, animated: true) {
                         
         }
         

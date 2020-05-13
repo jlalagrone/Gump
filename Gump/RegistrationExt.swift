@@ -189,10 +189,12 @@ extension RegistrationController {
         case 2:
             
 
-            
             self.emailField.isHidden = true
+            self.emailField.removeFromSuperview()
             self.passwordField.isHidden = true
+            self.passwordField.removeFromSuperview()
             self.confirmPasswordField.isHidden = true
+            self.confirmPasswordField.removeFromSuperview()
             
             // Checks if firstName & lastName textfields are left blank and runs code inside of else block if they are
             guard self.firstNameField.text! != "" && self.lastNameField.text != "" else {

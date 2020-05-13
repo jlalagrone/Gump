@@ -44,20 +44,25 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.usernameLabel.text = FriendSystem.system.requestList[indexPath.row].username
         cell.fullNameLabel.text = FriendSystem.system.requestList[indexPath.row].fullName
-                
+               
+        
+        // Code that executes once user accepts friend request
         cell.setAcceptFunction {
-            
             let id = FriendSystem.system.requestList[indexPath.row].uid
             print("Accepted request from \(id)")
             FriendSystem.system.acceptFriendRequest(id)
-//
-//            print("Request accepted from \(id)")
+
             self.requestTable.reloadData()
             
         }
         
+        // Code tht executes once user declines friend request
         cell.setDeclineFunction {
+            let id = FriendSystem.system.requestList[indexPath.row].uid
             print("Request declined.")
+            FriendSystem.system.declineFriendRequest(id)
+
+            self.requestTable.reloadData()
         }
         
         return cell
@@ -91,16 +96,35 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
         
         layoutView()
         
-        print("Requests --> \(FriendSystem.system.requestList)!")
-
         requestTable.delegate = self
         requestTable.dataSource = self
         requestTable.register(RequestCell.self, forCellReuseIdentifier: "cellID")
         
+        FriendSystem.system.currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
+            let value = snapshot.value as! [String:AnyObject]
+            let email = value["email"] as! String
+            if let requests = value["requests"] as? [String:Bool] {
+                
+                // Code executed if user has pending friend requests
+                self.requestTable.isHidden = false
+                self.mainLabel.isHidden = true
+                print("We have some requests pending.")
+            }
+            else {
+                // Code executed if user has no friend requests pending
+                self.requestTable.isHidden = true
+                self.mainLabel.isHidden = false
+                print("No requests pending.")
+                return
+            }
+            print(email)
+        }
+        
+        
         FriendSystem.system.addRequestObserver {
             print("Requests Count--> \(FriendSystem.system.requestList)!")
             self.requestTable.reloadData()
-            
+
             if FriendSystem.system.requestList.count == 0 {
                 print("No requests at the moment")
                 self.requestTable.isHidden = true
