@@ -11,8 +11,15 @@ import UIKit
 
 class SearchCell:UITableViewCell {
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+//        cellID = String()
+    }
+    
     var usernameLabel = DefaultLabel(textColor: signalBlueColor)
     var fullNameLabel = DefaultLabel(textColor: darkPinkColor)
+    var cellID = String()
     
     @objc func sendFriendRequestTapped(_ sender:UIButton) {
         
@@ -21,11 +28,11 @@ class SearchCell:UITableViewCell {
     
     var buttonAction: (() -> (Void))!
     
-    var sendRequestButton:UIButton = {
+    var viewProfileButton:UIButton = {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = darkPinkColor
-        button.setTitle("Send Request", for: .normal)
+        button.setTitle("View Profile", for: .normal)
         button.setTitleColor(.white, for: .normal)
         
         
@@ -41,8 +48,8 @@ class SearchCell:UITableViewCell {
         usernameLabel.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 2.75)
         fullNameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: frame.height / 3)
         
-        sendRequestButton.addTarget(self, action: #selector(sendFriendRequestTapped(_:)), for: .touchDown)
-        sendRequestButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 3.15)
+        viewProfileButton.addTarget(self, action: #selector(sendFriendRequestTapped(_:)), for: .touchDown)
+        viewProfileButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 3.15)
         
         
     }
@@ -51,7 +58,7 @@ class SearchCell:UITableViewCell {
         
         addSubview(usernameLabel)
         addSubview(fullNameLabel)
-        addSubview(sendRequestButton)
+        addSubview(viewProfileButton)
         
         layoutProperties()
         
@@ -64,10 +71,10 @@ class SearchCell:UITableViewCell {
         fullNameLabel.leftAnchor.constraint(equalTo: usernameLabel.leftAnchor).isActive = true
 
         
-        sendRequestButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        sendRequestButton.rightAnchor.constraint(equalTo: rightAnchor, constant: frame.width / -27.5).isActive = true
-        sendRequestButton.widthAnchor.constraint(equalToConstant: frame.width / 3).isActive = true
-        sendRequestButton.leftAnchor.constraint(equalTo: fullNameLabel.rightAnchor, constant: frame.width / 18.5).isActive = true
+        viewProfileButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        viewProfileButton.rightAnchor.constraint(equalTo: rightAnchor, constant: frame.width / -27.5).isActive = true
+        viewProfileButton.widthAnchor.constraint(equalToConstant: frame.width / 3).isActive = true
+        viewProfileButton.leftAnchor.constraint(equalTo: fullNameLabel.rightAnchor, constant: frame.width / 18.5).isActive = true
         
         bottomAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: frame.height / 3).isActive = true
         
@@ -79,6 +86,8 @@ class SearchCell:UITableViewCell {
         backgroundColor = .white
         
         layoutCell()
+
+        
           
       }
     

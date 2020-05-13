@@ -73,16 +73,18 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 if let games = userDict["Games"] as? [String:String] {
                     
                     FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags,requests: requests ,games:games))
+                    self.searchTable.reloadData()
 
                 } else {
                     
                     FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName, gametags: gametags, requests: requests,games:nil))
+                    self.searchTable.reloadData()
                 }
                 
-                self.searchTable.reloadData()
                     
             }
-            
+//            self.searchTable.reloadData()
+
         }
 
   
@@ -128,14 +130,16 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! SearchCell
         
         let id = FriendSystem.system.userList[indexPath.row].uid
-
+        
         cell.usernameLabel.text = FriendSystem.system.userList[indexPath.row].username
         cell.fullNameLabel.text = FriendSystem.system.userList[indexPath.row].fullName
-
+        
         
         cell.setFunction {
-
-            FriendSystem.system.sendRequestToUser(id)
+            
+            let viewVC = ViewProfileController()
+            viewVC.profileID = id
+            self.navigationController?.pushViewController(viewVC, animated: true)
             
 
         }

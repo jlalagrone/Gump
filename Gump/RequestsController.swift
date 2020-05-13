@@ -32,7 +32,7 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
     }()
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (view.frame.height / 10.5)
+        return (view.frame.height / 10)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,12 +84,7 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
         
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-
-        
-
-    }
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,7 +103,7 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
                 // Code executed if user has pending friend requests
                 self.requestTable.isHidden = false
                 self.mainLabel.isHidden = true
-                print("We have some requests pending.")
+                print("You have \(requests.keys.count) friend request(s) pending.")
             }
             else {
                 // Code executed if user has no friend requests pending
@@ -117,12 +112,12 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
                 print("No requests pending.")
                 return
             }
-            print(email)
+            
         }
         
         
         FriendSystem.system.addRequestObserver {
-            print("Requests Count--> \(FriendSystem.system.requestList)!")
+            
             self.requestTable.reloadData()
 
             if FriendSystem.system.requestList.count == 0 {
@@ -133,7 +128,7 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
             else if FriendSystem.system.requestList.count != 0 {
                 self.requestTable.isHidden = false
                 self.mainLabel.isHidden = true
-                print("You have pending requests.")
+                
             }
 
         }

@@ -24,6 +24,7 @@
 		0F031E2624610464001A5BB5 /* RequestsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E2524610464001A5BB5 /* RequestsController.swift */; };
 		0F031E28246104C3001A5BB5 /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E27246104C3001A5BB5 /* RequestCell.swift */; };
 		0F031E2A24611BC9001A5BB5 /* RequestExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E2924611BC9001A5BB5 /* RequestExt.swift */; };
+		0F031E2C246C6BF2001A5BB5 /* ViewProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E2B246C6BF1001A5BB5 /* ViewProfileController.swift */; };
 		0F08FE2C243B8F58001D6478 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2B243B8F58001D6478 /* AppDelegate.swift */; };
 		0F08FE2E243B8F58001D6478 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */; };
 		0F08FE30243B8F58001D6478 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08FE2F243B8F58001D6478 /* SignInController.swift */; };
@@ -87,6 +88,7 @@
 		0F031E2524610464001A5BB5 /* RequestsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsController.swift; sourceTree = "<group>"; };
 		0F031E27246104C3001A5BB5 /* RequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
 		0F031E2924611BC9001A5BB5 /* RequestExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestExt.swift; sourceTree = "<group>"; };
+		0F031E2B246C6BF1001A5BB5 /* ViewProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProfileController.swift; sourceTree = "<group>"; };
 		0F08FE28243B8F58001D6478 /* Gump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F08FE2B243B8F58001D6478 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -196,8 +198,9 @@
 				0F031E1F245C1AD9001A5BB5 /* Protocols.swift */,
 				0F9AE357243F56F700BC577B /* CustomUIObjects.swift */,
 				0FAD015B2448F41700109D92 /* FriendSystem.swift */,
-				0F031E192458FE12001A5BB5 /* SearchController.swift */,
 				0F031E1B2459111B001A5BB5 /* SearchCell.swift */,
+				0F031E192458FE12001A5BB5 /* SearchController.swift */,
+				0F031E2B246C6BF1001A5BB5 /* ViewProfileController.swift */,
 				0F08FE2F243B8F58001D6478 /* SignInController.swift */,
 				0F9AE35D2441730000BC577B /* RegistrationController.swift */,
 				0F9AE35F2442924000BC577B /* RegistrationExt.swift */,
@@ -511,6 +514,7 @@
 				0F8DB38E2444B0A600175166 /* UserCreatedController.swift in Sources */,
 				0F031E11244D2AE9001A5BB5 /* ProfileController.swift in Sources */,
 				0F031E2624610464001A5BB5 /* RequestsController.swift in Sources */,
+				0F031E2C246C6BF2001A5BB5 /* ViewProfileController.swift in Sources */,
 				0F08FE2C243B8F58001D6478 /* AppDelegate.swift in Sources */,
 				0FAD0160244AB69700109D92 /* SignalTypeController.swift in Sources */,
 				0F031E28246104C3001A5BB5 /* RequestCell.swift in Sources */,

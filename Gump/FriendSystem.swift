@@ -206,12 +206,13 @@ class FriendSystem {
                 let id = child.key
                 self.getUser(id, completion: { (user) in
                     self.requestList.append(user)
+                    
                     update()
                 })
             }
             // If there are no children, run completion here instead
             if snapshot.childrenCount == 0 {
-                print("No requests!")
+                
                 update()
             }
         })
