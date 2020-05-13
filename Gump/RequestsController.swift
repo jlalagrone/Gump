@@ -56,7 +56,7 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
             
         }
         
-        // Code tht executes once user declines friend request
+        // Code that executes once user declines friend request
         cell.setDeclineFunction {
             let id = FriendSystem.system.requestList[indexPath.row].uid
             print("Request declined.")
