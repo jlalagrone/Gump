@@ -160,30 +160,30 @@ class FriendSystem {
     // Sends friend request to the user with the specified ID
     func sendRequestToUser(_ userID: String) {
         
-        userRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
-            let value = snapshot.value as! [String:AnyObject]
-            if let requests = value["requests"] as? [String:Bool] {
-                let requestIDs = requests.keys
-                
-                if requestIDs.contains(self.currentUserID) {
-                    print("Request has already been sent!")
-                    return
-                }
-            }
-            
-            if let friends = value["friends"] as? [String:Bool] {
-                let friendIDs = friends.keys
-                
-                if friendIDs.contains(self.currentUserID) {
-                    print("This user is already your friend!")
-                    return
-                }
-            }
+//        userRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
+//            let value = snapshot.value as! [String:AnyObject]
+//            if let requests = value["requests"] as? [String:Bool] {
+//                let requestIDs = requests.keys
+//
+//                if requestIDs.contains(self.currentUserID) {
+//                    print("Request has already been sent!")
+//                    return
+//                }
+//            }
+//
+//            if let friends = value["friends"] as? [String:Bool] {
+//                let friendIDs = friends.keys
+//
+//                if friendIDs.contains(self.currentUserID) {
+//                    print("This user is already your friend!")
+//                    return
+//                }
+//            }
             
             self.userRef.child(userID).child("requests").child(self.currentUserID).setValue(true)
             print("Request has been sent!")
             
-        }
+//        }
         
 
     }
