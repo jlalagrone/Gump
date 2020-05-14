@@ -33,13 +33,13 @@ class ProfileController: UIViewController {
     
     
     var viewGamesLabel = DefaultLabel(title: "Your Games")
-    var viewFriendsLabel = DefaultLabel(title: "Your Friends")
+    var viewRequestsLabel = DefaultLabel(title: "Friend Requests")
     var viewPromoLabel = DefaultLabel(title: "Your Promo")
     var accountInfoLabel = DefaultLabel(title: "Account Info")
     
     
     var viewGamesButton = HomeButton(image: UIImage(named: "gameIcon")!)
-    var viewFriendsButton = HomeButton(image: UIImage(named:"listIcon")!)
+    var viewRequestsButton = HomeButton(image: UIImage(named:"listIcon")!)
     var viewPromoButton = HomeButton(image: UIImage(named: "chatIcon")!)
     var accountInfoButton = HomeButton(image: UIImage(named: "gearIcon")!)
     
@@ -74,11 +74,11 @@ class ProfileController: UIViewController {
         
         view.addSubview(mainLabel)
         view.addSubview(viewGamesLabel)
-        view.addSubview(viewFriendsLabel)
+        view.addSubview(viewRequestsLabel)
         view.addSubview(viewPromoLabel)
         view.addSubview(accountInfoLabel)
         view.addSubview(viewGamesButton)
-        view.addSubview(viewFriendsButton)
+        view.addSubview(viewRequestsButton)
         view.addSubview(viewPromoButton)
         view.addSubview(accountInfoButton)
         
@@ -96,18 +96,18 @@ class ProfileController: UIViewController {
         viewGamesButton.heightAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
         viewGamesButton.centerYAnchor.constraint(equalTo: viewGamesLabel.centerYAnchor).isActive = true
         
-        viewFriendsButton.topAnchor.constraint(equalTo: viewGamesButton.bottomAnchor, constant: view.frame.height / 25).isActive = true
-        viewFriendsButton.widthAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
-        viewFriendsButton.heightAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
-        viewFriendsButton.centerXAnchor.constraint(equalTo: viewGamesButton.centerXAnchor).isActive = true
+        viewRequestsButton.topAnchor.constraint(equalTo: viewGamesButton.bottomAnchor, constant: view.frame.height / 25).isActive = true
+        viewRequestsButton.widthAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
+        viewRequestsButton.heightAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
+        viewRequestsButton.centerXAnchor.constraint(equalTo: viewGamesButton.centerXAnchor).isActive = true
         
-        viewFriendsLabel.leftAnchor.constraint(equalTo: viewGamesLabel.leftAnchor).isActive = true
-        viewFriendsLabel.centerYAnchor.constraint(equalTo: viewFriendsButton.centerYAnchor).isActive = true
+        viewRequestsLabel.leftAnchor.constraint(equalTo: viewGamesLabel.leftAnchor).isActive = true
+        viewRequestsLabel.centerYAnchor.constraint(equalTo: viewRequestsButton.centerYAnchor).isActive = true
         
-        viewPromoButton.centerXAnchor.constraint(equalTo: viewFriendsButton.centerXAnchor).isActive = true
-        viewPromoButton.topAnchor.constraint(equalTo: viewFriendsButton.bottomAnchor, constant: view.frame.height / 25).isActive = true
-        viewPromoButton.widthAnchor.constraint(equalTo: viewFriendsButton.widthAnchor).isActive = true
-        viewPromoButton.heightAnchor.constraint(equalTo: viewFriendsButton.heightAnchor).isActive = true
+        viewPromoButton.centerXAnchor.constraint(equalTo: viewRequestsButton.centerXAnchor).isActive = true
+        viewPromoButton.topAnchor.constraint(equalTo: viewRequestsButton.bottomAnchor, constant: view.frame.height / 25).isActive = true
+        viewPromoButton.widthAnchor.constraint(equalTo: viewRequestsButton.widthAnchor).isActive = true
+        viewPromoButton.heightAnchor.constraint(equalTo: viewRequestsButton.heightAnchor).isActive = true
         
         viewPromoLabel.leftAnchor.constraint(equalTo: viewGamesLabel.leftAnchor).isActive = true
         viewPromoLabel.centerYAnchor.constraint(equalTo: viewPromoButton.centerYAnchor).isActive = true
@@ -121,7 +121,7 @@ class ProfileController: UIViewController {
         accountInfoLabel.centerYAnchor.constraint(equalTo: accountInfoButton.centerYAnchor).isActive = true
         
         
-        layoutProfileObjects(buttons: [viewGamesButton,viewFriendsButton,viewPromoButton,accountInfoButton], labels: [viewGamesLabel,viewFriendsLabel,viewPromoLabel,accountInfoLabel])
+        layoutProfileObjects(buttons: [viewGamesButton,viewRequestsButton,viewPromoButton,accountInfoButton], labels: [viewGamesLabel,viewRequestsLabel,viewPromoLabel,accountInfoLabel])
         
     }
     
@@ -136,7 +136,7 @@ class ProfileController: UIViewController {
         viewGamesButton.addTarget(self, action: #selector(viewGamesButtonAction(_:)), for: .touchDown)
         viewPromoButton.addTarget(self, action: #selector(viewPromoButtonAction(_:)), for: .touchDown)
         accountInfoButton.addTarget(self, action: #selector(viewAccountButtonAction(_:)), for: .touchDown)
-        viewFriendsButton.addTarget(self, action: #selector(viewFriendRequestsButtonAction(_:)), for: .touchDown)
+        viewRequestsButton.addTarget(self, action: #selector(viewFriendRequestsButtonAction(_:)), for: .touchDown)
     }
     
 

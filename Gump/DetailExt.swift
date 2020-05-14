@@ -19,7 +19,7 @@ extension DetailController {
             let text = alert.textFields![0].text!
             print(text)
             
-            FriendSystem.system.currentUserRef.child("Games").childByAutoId().setValue(text)
+            FriendSystem.system.currentUserRef.child("games").childByAutoId().setValue(text)
             print("The game \(text) has been added to your library.")
             
             FriendSystem.system.gameList.append(text)

@@ -42,13 +42,13 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! RequestCell
         
+        let id = FriendSystem.system.requestList[indexPath.row].uid
+
         cell.usernameLabel.text = FriendSystem.system.requestList[indexPath.row].username
         cell.fullNameLabel.text = FriendSystem.system.requestList[indexPath.row].fullName
                
-        
         // Code that executes once user accepts friend request
         cell.setAcceptFunction {
-            let id = FriendSystem.system.requestList[indexPath.row].uid
             print("Accepted request from \(id)")
             FriendSystem.system.acceptFriendRequest(id)
 
@@ -58,7 +58,6 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
         
         // Code that executes once user declines friend request
         cell.setDeclineFunction {
-            let id = FriendSystem.system.requestList[indexPath.row].uid
             print("Request declined.")
             FriendSystem.system.declineFriendRequest(id)
 
