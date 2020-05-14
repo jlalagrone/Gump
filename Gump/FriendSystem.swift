@@ -54,6 +54,7 @@ class FriendSystem {
             let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
             let fullName = "\(firstName) \(lastName)"
+            let promo = snapshot.childSnapshot(forPath: "promo").value as! String
             
             self.gametags = gametags
             
@@ -63,12 +64,12 @@ class FriendSystem {
                 print(games.values)
                 self.gameList = gameTitles
                 
-                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags, requests: requests,games: games))
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName,promo: promo, gametags: gametags, requests: requests,games: games))
                 
             }
             else {
             // Completion handler (closure) gets the currentUser passed to it
-                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags, requests: requests, games: nil))
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName,promo: promo, gametags: gametags, requests: requests, games: nil))
             }
         }
     }
@@ -81,6 +82,7 @@ class FriendSystem {
             let requests = snapshot.childSnapshot(forPath: "requests").value as? [String:Bool]
             let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
+            let promo = snapshot.childSnapshot(forPath: "promo").value as! String
             let fullName = "\(firstName) \(lastName)"
             let id = snapshot.key
             
@@ -92,12 +94,12 @@ class FriendSystem {
                 
                 self.gameList = gameTitles
                 
-                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags, requests: requests, games: games))
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName,promo: promo, gametags: gametags, requests: requests, games: games))
                 
             } else {
                 
                 // Completion handler (closure) gets the specified user passed to it
-                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, gametags: gametags, requests: requests,games: nil))
+                completion(GumpUser(email: email, uid: id, username: username, fullName: fullName, promo: promo,gametags: gametags, requests: requests,games: nil))
                 
             }
         }
@@ -142,11 +144,12 @@ class FriendSystem {
                 let firstName = child.childSnapshot(forPath: "firstName").value as! String
                 let lastName = child.childSnapshot(forPath: "lastName").value as! String
                 let fullName = "\(firstName) \(lastName)"
+                let promo = child.childSnapshot(forPath: "promo").value as! String
                 let games = child.childSnapshot(forPath: "Games").value as? [String:String]
                 
 //                self.gametags = gametags
                 
-                self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName, gametags: gametags, requests: requests ,games:games))
+                self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName,promo: promo,gametags: gametags, requests: requests ,games:games))
                 
                 print("Users Count --> \(self.userList.count)")
             }
