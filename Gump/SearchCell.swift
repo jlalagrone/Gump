@@ -34,7 +34,7 @@ class SearchCell:UITableViewCell {
         button.backgroundColor = darkPinkColor
         button.setTitle("View Profile", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        
+        button.layer.cornerRadius = 7.5
         
         return button
     }()

@@ -11,6 +11,7 @@ import Firebase
 
 extension ViewProfileController {
     
+    //Code that executes once sendFriendRequestButton is tapped
     @objc func sendFriendRequestAction(_ sender:UIButton) {
         
         FriendSystem.system.userRef.child(profileID).observeSingleEvent(of: .value) { (snapshot) in
@@ -30,11 +31,11 @@ extension ViewProfileController {
             }
             
             FriendSystem.system.sendRequestToUser(self.profileID)
-           let alert = UIAlertController(title: "Friend request sent!", message: nil, preferredStyle: .alert)
-           let continueAction = UIAlertAction(title: "Continue", style: .default)
+            let alert = UIAlertController(title: "Friend request sent!", message: nil, preferredStyle: .alert)
+            let continueAction = UIAlertAction(title: "Continue", style: .default)
            
-           alert.addAction(continueAction)
-           self.present(alert, animated: true, completion: nil)
+            alert.addAction(continueAction)
+            self.present(alert, animated: true, completion: nil)
             
         }
         

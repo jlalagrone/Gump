@@ -17,6 +17,10 @@ class ViewProfileController: UIViewController {
     var promoLabel = DefaultLabel(textColor: .white)
     var consoleTitle = DefaultLabel(textColor: darkPinkColor)
     var consoleLabel = DefaultLabel(textColor: signalBlueColor)
+    var viewTagsButton = HomeButton(image: UIImage(named: "listIcon")!)
+    var viewGamesButton = HomeButton(image: UIImage(named: "gameIcon")!)
+
+
     
     var sendFriendRequestButton:DefaultButton = {
         var button = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "SEND FRIEND REQUEST")
@@ -26,6 +30,8 @@ class ViewProfileController: UIViewController {
         
         return button
     }()
+    
+    
     
     var consoleIcon:UIImageView = {
         var imageView = UIImageView()
@@ -78,6 +84,7 @@ class ViewProfileController: UIViewController {
             if promoText == "no promo" {
                 self.promoLabel.text = "This user has yet to create their promo message."
             } else {
+                print(promoText.count)
                 self.promoLabel.text = promoText
             }
             
@@ -103,6 +110,24 @@ class ViewProfileController: UIViewController {
         sendFriendRequestButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
         sendFriendRequestButton.layer.cornerRadius = 15
     
+    }
+    
+    func layoutFriendView() {
+        
+        view.addSubview(viewTagsButton)
+        view.addSubview(viewGamesButton)
+        
+        viewTagsButton.layer.cornerRadius = (view.frame.height / 8.5) * 0.5
+        viewTagsButton.topAnchor.constraint(equalTo: consoleLabel.bottomAnchor, constant: view.frame.height / 9).isActive = true
+        viewTagsButton.leftAnchor.constraint(equalTo: promoView.leftAnchor, constant: view.frame.width / 15).isActive = true
+        viewTagsButton.widthAnchor.constraint(equalToConstant: view.frame.height/8.5).isActive = true
+        viewTagsButton.heightAnchor.constraint(equalToConstant: view.frame.height/8.5).isActive = true
+        
+        viewGamesButton.layer.cornerRadius = (view.frame.height / 8.5) * 0.5
+        viewGamesButton.topAnchor.constraint(equalTo: viewTagsButton.topAnchor).isActive = true
+        viewGamesButton.rightAnchor.constraint(equalTo: promoView.rightAnchor, constant: view.frame.width / -15).isActive = true
+        viewGamesButton.widthAnchor.constraint(equalToConstant: view.frame.height/8.5).isActive = true
+        viewGamesButton.heightAnchor.constraint(equalToConstant: view.frame.height/8.5).isActive = true
         
     }
     
@@ -167,6 +192,7 @@ class ViewProfileController: UIViewController {
             
             if friendIDs.contains(self.profileID) {
                 print("Users are already friends")
+                self.layoutFriendView()
             } else {
                 self.layoutNonFriendView()
                 self.sendFriendRequestButton.addTarget(self, action: #selector(self.sendFriendRequestAction(_:)), for: .touchDown)
