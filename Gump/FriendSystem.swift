@@ -58,7 +58,7 @@ class FriendSystem {
             
             self.gametags = gametags
             
-            if let games = snapshot.childSnapshot(forPath: "Games").value as? [String:String] {
+            if let games = snapshot.childSnapshot(forPath: "games").value as? [String:String] {
                 let gameTitles = Array(games.values)
             
                 print(games.values)
@@ -88,7 +88,7 @@ class FriendSystem {
             
             self.gametags = gametags
             
-            if let games = snapshot.childSnapshot(forPath: "Games").value as? [String:String] {
+            if let games = snapshot.childSnapshot(forPath: "games").value as? [String:String] {
                 
                 let gameTitles = Array(games.values)
                 
@@ -139,13 +139,13 @@ class FriendSystem {
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let email = child.childSnapshot(forPath: "email").value as! String
                 let username = child.childSnapshot(forPath: "username").value as! String
-                let gametags = snapshot.childSnapshot(forPath: "gametags").value as? [String:String]
+                let gametags = snapshot.childSnapshot(forPath: "gametags").value as! [String:String]
                 let requests = snapshot.childSnapshot(forPath: "requests").value as? [String:Bool]
                 let firstName = child.childSnapshot(forPath: "firstName").value as! String
                 let lastName = child.childSnapshot(forPath: "lastName").value as! String
                 let fullName = "\(firstName) \(lastName)"
                 let promo = child.childSnapshot(forPath: "promo").value as! String
-                let games = child.childSnapshot(forPath: "Games").value as? [String:String]
+                let games = child.childSnapshot(forPath: "games").value as? [String:String]
                 
 //                self.gametags = gametags
                 

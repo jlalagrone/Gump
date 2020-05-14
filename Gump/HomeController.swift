@@ -41,7 +41,7 @@ class HomeController: UIViewController {
         }
   
         for label in labels {
-            label.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 50)
+            label.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 48.5)
             label.textAlignment = .center
             label.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
             label.layer.shadowOpacity = 1.0

@@ -18,9 +18,31 @@ class ViewProfileController: UIViewController {
     var consoleTitle = DefaultLabel(textColor: darkPinkColor)
     var consoleLabel = DefaultLabel(textColor: signalBlueColor)
     var viewTagsButton = HomeButton(image: UIImage(named: "listIcon")!)
+    var viewTagsTitle:DefaultLabel = {
+        var label = DefaultLabel(textColor: darkPinkColor)
+        label.text = "VIEW GAMETAGS"
+        label.textAlignment = .center
+        label.layer.shadowColor = UIColor(white: 0.75, alpha: 0.75).cgColor
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowRadius = 1.0
+        label.layer.shadowOffset = CGSize(width: 1, height: 1)
+        
+        return label
+    }()
+    
+    
     var viewGamesButton = HomeButton(image: UIImage(named: "gameIcon")!)
-
-
+    var viewGamesTitle:DefaultLabel = {
+        var label = DefaultLabel(textColor: darkPinkColor)
+        label.text = "VIEW GAMES"
+        label.textAlignment = .center
+        label.layer.shadowColor = UIColor(white: 0.75, alpha: 0.75).cgColor
+        label.layer.shadowOpacity = 1.0
+        label.layer.shadowRadius = 1.0
+        label.layer.shadowOffset = CGSize(width: 1, height: 1)
+        
+        return label
+    }()
     
     var sendFriendRequestButton:DefaultButton = {
         var button = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "SEND FRIEND REQUEST")
@@ -66,6 +88,8 @@ class ViewProfileController: UIViewController {
         nameLabel.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 30)
         consoleLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height / 23)
         sendFriendRequestButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
+        viewTagsTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 42.5)
+        viewGamesTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 42.5)
         
         consoleTitle.text = "Primary Console"
         consoleTitle.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 30)
@@ -76,7 +100,7 @@ class ViewProfileController: UIViewController {
             self.usernameLabel.text = user.username
             self.nameLabel.text = user.fullName
             
-            let consoles = Array(user.gametags!.keys)
+            let consoles = Array(user.gametags.keys)
             self.consoleLabel.text = consoles[0]
             
             let promoText = user.promo
@@ -92,6 +116,7 @@ class ViewProfileController: UIViewController {
         
     }
     
+    // Code executed that updates UI if the user is not friends with the current user
     func layoutNonFriendView() {
         
         view.addSubview(sendFriendRequestButton)
@@ -112,22 +137,32 @@ class ViewProfileController: UIViewController {
     
     }
     
+    // Code executed that updates UI if the user is friends with the current user
     func layoutFriendView() {
         
         view.addSubview(viewTagsButton)
+        view.addSubview(viewTagsTitle)
         view.addSubview(viewGamesButton)
+        view.addSubview(viewGamesTitle)
         
         viewTagsButton.layer.cornerRadius = (view.frame.height / 8.5) * 0.5
         viewTagsButton.topAnchor.constraint(equalTo: consoleLabel.bottomAnchor, constant: view.frame.height / 9).isActive = true
-        viewTagsButton.leftAnchor.constraint(equalTo: promoView.leftAnchor, constant: view.frame.width / 15).isActive = true
+        viewTagsButton.leftAnchor.constraint(equalTo: promoView.leftAnchor, constant: view.frame.width / 10.5).isActive = true
         viewTagsButton.widthAnchor.constraint(equalToConstant: view.frame.height/8.5).isActive = true
         viewTagsButton.heightAnchor.constraint(equalToConstant: view.frame.height/8.5).isActive = true
         
+        viewTagsTitle.centerXAnchor.constraint(equalTo: viewTagsButton.centerXAnchor).isActive = true
+        viewTagsTitle.topAnchor.constraint(equalTo: viewTagsButton.bottomAnchor, constant: 7.5).isActive = true
+        
         viewGamesButton.layer.cornerRadius = (view.frame.height / 8.5) * 0.5
         viewGamesButton.topAnchor.constraint(equalTo: viewTagsButton.topAnchor).isActive = true
-        viewGamesButton.rightAnchor.constraint(equalTo: promoView.rightAnchor, constant: view.frame.width / -15).isActive = true
+        viewGamesButton.rightAnchor.constraint(equalTo: promoView.rightAnchor, constant: view.frame.width / -10.5).isActive = true
         viewGamesButton.widthAnchor.constraint(equalToConstant: view.frame.height/8.5).isActive = true
         viewGamesButton.heightAnchor.constraint(equalToConstant: view.frame.height/8.5).isActive = true
+        
+        viewGamesTitle.centerXAnchor.constraint(equalTo: viewGamesButton.centerXAnchor).isActive = true
+        viewGamesTitle.centerYAnchor.constraint(equalTo: viewTagsTitle.centerYAnchor).isActive = true
+        
         
     }
     
@@ -185,7 +220,6 @@ class ViewProfileController: UIViewController {
         
         FriendSystem.system.currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
             let value = snapshot.value as! [String:AnyObject]
-            let username = value["username"] as! String
             let friends = value["friends"] as! [String:Bool]
             
             let friendIDs = Array(friends.keys)
@@ -193,6 +227,8 @@ class ViewProfileController: UIViewController {
             if friendIDs.contains(self.profileID) {
                 print("Users are already friends")
                 self.layoutFriendView()
+                self.viewTagsButton.addTarget(self, action: #selector(self.viewTagsButtonAction(_:)), for: .touchDown)
+                self.viewGamesButton.addTarget(self, action: #selector(self.viewGamesButtonAction(_:)), for: .touchDown)
             } else {
                 self.layoutNonFriendView()
                 self.sendFriendRequestButton.addTarget(self, action: #selector(self.sendFriendRequestAction(_:)), for: .touchDown)

@@ -41,6 +41,64 @@ extension ViewProfileController {
         
     }
     
+    @objc func viewTagsButtonAction(_ sender:UIButton) {
+        
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+        
+        alert.addAction(closeAction)
+        
+        FriendSystem.system.getUser(profileID) { (user) in
+            let gametagDict = user.gametags
+            let gametags = Array(gametagDict.values)
+            
+            print("Gametags -> \(gametagDict)")
+            
+            
+            alert.title = "\(user.username)'s gametags"
+            alert.message = "\(gametagDict)"
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
+    @objc func viewGamesButtonAction(_ sender:UIButton) {
+        
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Close", style: .default, handler: nil)
+          
+        alert.addAction(closeAction)
+          
+        FriendSystem.system.getUser(profileID) { (user) in
+            
+            if let gamesDict = user.games {
+                let games = Array(gamesDict.values)
+                
+                var gameText = String()
+                
+                for game in games {
+                    gameText.append("\(game), ")
+                }
+                
+                print("Games -> \(games)")
+
+                alert.title = "\(user.username)'s games"
+                alert.message = "\(gameText)"
+                    
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            alert.title = "The user currently hasn't entered any games."
+            self.present(alert, animated: true, completion: nil)
+
+            
+        }
+        
+                 
+    }
+    
     
     
 }
