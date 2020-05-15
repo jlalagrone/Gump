@@ -33,7 +33,7 @@ class ProfileController: UIViewController {
     
     
     var viewGamesLabel = DefaultLabel(title: "Your Games")
-    var viewRequestsLabel = DefaultLabel(title: "Friend Requests")
+    var viewRequestsLabel = DefaultLabel(title: "Friend\nRequests")
     var viewPromoLabel = DefaultLabel(title: "Your Promo")
     var accountInfoLabel = DefaultLabel(title: "Account Info")
     
@@ -63,10 +63,7 @@ class ProfileController: UIViewController {
         
     }
         
-   
-    
-    
-    
+ 
     
     func layoutView() {
         
@@ -88,10 +85,10 @@ class ProfileController: UIViewController {
         mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 30).isActive = true
         mainLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height / 20)
         
-        viewGamesLabel.leftAnchor.constraint(equalTo: mainLabel.leftAnchor, constant: view.frame.width / 7.5).isActive = true
+        viewGamesLabel.leftAnchor.constraint(equalTo: mainLabel.leftAnchor, constant: view.frame.width / 17.5).isActive = true
         viewGamesLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height / 16.5).isActive = true
         
-        viewGamesButton.leftAnchor.constraint(equalTo: viewGamesLabel.rightAnchor, constant: view.frame.width / 15).isActive = true
+        viewGamesButton.leftAnchor.constraint(equalTo: viewGamesLabel.rightAnchor, constant: view.frame.width / 12.5).isActive = true
         viewGamesButton.widthAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
         viewGamesButton.heightAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
         viewGamesButton.centerYAnchor.constraint(equalTo: viewGamesLabel.centerYAnchor).isActive = true

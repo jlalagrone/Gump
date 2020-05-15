@@ -20,7 +20,7 @@ class ViewProfileController: UIViewController {
     var viewTagsButton = HomeButton(image: UIImage(named: "listIcon")!)
     var viewTagsTitle:DefaultLabel = {
         var label = DefaultLabel(textColor: darkPinkColor)
-        label.text = "VIEW GAMETAGS"
+        label.text = "Gametags"
         label.textAlignment = .center
         label.layer.shadowColor = UIColor(white: 0.75, alpha: 0.75).cgColor
         label.layer.shadowOpacity = 1.0
@@ -34,7 +34,7 @@ class ViewProfileController: UIViewController {
     var viewGamesButton = HomeButton(image: UIImage(named: "gameIcon")!)
     var viewGamesTitle:DefaultLabel = {
         var label = DefaultLabel(textColor: darkPinkColor)
-        label.text = "VIEW GAMES"
+        label.text = "Games"
         label.textAlignment = .center
         label.layer.shadowColor = UIColor(white: 0.75, alpha: 0.75).cgColor
         label.layer.shadowOpacity = 1.0
@@ -152,7 +152,7 @@ class ViewProfileController: UIViewController {
         viewTagsButton.heightAnchor.constraint(equalToConstant: view.frame.height/8.5).isActive = true
         
         viewTagsTitle.centerXAnchor.constraint(equalTo: viewTagsButton.centerXAnchor).isActive = true
-        viewTagsTitle.topAnchor.constraint(equalTo: viewTagsButton.bottomAnchor, constant: 7.5).isActive = true
+        viewTagsTitle.topAnchor.constraint(equalTo: viewTagsButton.bottomAnchor, constant: view.frame.height / 40).isActive = true
         
         viewGamesButton.layer.cornerRadius = (view.frame.height / 8.5) * 0.5
         viewGamesButton.topAnchor.constraint(equalTo: viewTagsButton.topAnchor).isActive = true
