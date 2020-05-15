@@ -28,6 +28,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! FriendCell
         let id = FriendSystem.system.friendsList[indexPath.row].uid
         
+        cell.selectionStyle = .none
         cell.usernameLabel.text = FriendSystem.system.friendsList[indexPath.row].username
         
         // Logic that determines if online label is shown or not

@@ -11,7 +11,7 @@ import Firebase
 
 class AccountController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var tagsLabel = DefaultLabel(title: "TAGS")
+    var tagsLabel = DefaultLabel(title: "Your Gametags")
     
     var addTagButton:UIButton = {
         var button = UIButton()
@@ -45,19 +45,21 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    var emailTitleLabel = DefaultLabel(title: "EMAIL")
-    var nameTitleLabel = DefaultLabel(title: "NAME")
+    var emailTitleLabel = DefaultLabel(title: "Email Address")
+    var nameTitleLabel = DefaultLabel(title: "Name")
     
     var emailLabel = DefaultLabel(textColor: .black)
     var nameLabel = DefaultLabel(textColor: .black)
     
     func getAccountInfo() {
         
-        emailLabel.backgroundColor = .white
-        emailLabel.font = UIFont(name: "AvenirNext-MediumItalic", size: view.frame.height / 32.5)
+        emailLabel.backgroundColor = darkPinkColor
+        emailLabel.layer.cornerRadius = 12.5
+        emailLabel.font = UIFont(name: "AvenirNext-MediumItalic", size: view.frame.height / 39.5)
         
-        nameLabel.backgroundColor = .white
-        nameLabel.font = UIFont(name: "AvenirNext-MediumItalic", size: view.frame.height / 32.5)
+        nameLabel.backgroundColor = darkPinkColor
+        nameLabel.layer.cornerRadius = 12.5
+        nameLabel.font = UIFont(name: "AvenirNext-MediumItalic", size: view.frame.height / 39.5)
         
         FriendSystem.system.getCurrentUser { (user) in
             
@@ -94,22 +96,22 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         tagsTable.heightAnchor.constraint(equalToConstant: view.frame.height / 5.5).isActive = true
         
         emailTitleLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 27.5)
-        emailTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        emailTitleLabel.leftAnchor.constraint(equalTo: tagsLabel.leftAnchor).isActive = true
         emailTitleLabel.topAnchor.constraint(equalTo: tagsTable.bottomAnchor, constant: view.frame.height / 25).isActive = true
         
-        emailLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        emailLabel.leftAnchor.constraint(equalTo: emailTitleLabel.leftAnchor).isActive = true
         emailLabel.topAnchor.constraint(equalTo: emailTitleLabel.bottomAnchor).isActive = true
-        emailLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        emailLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 1.3).isActive = true
         emailLabel.heightAnchor.constraint(equalToConstant: view.frame.height / 16).isActive = true
         
         nameTitleLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 27.5)
         nameTitleLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: view.frame.height / 25).isActive = true
-        nameTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nameTitleLabel.leftAnchor.constraint(equalTo: tagsLabel.leftAnchor).isActive = true
         
         nameLabel.topAnchor.constraint(equalTo: nameTitleLabel.bottomAnchor).isActive = true
-        nameLabel.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        nameLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 1.3).isActive = true
         nameLabel.heightAnchor.constraint(equalTo: emailLabel.heightAnchor).isActive = true
-        nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: nameTitleLabel.leftAnchor).isActive = true
         
         getAccountInfo()
     }

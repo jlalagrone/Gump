@@ -132,6 +132,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         let id = FriendSystem.system.userList[indexPath.row].uid
         
+        cell.selectionStyle = .none
         cell.usernameLabel.text = FriendSystem.system.userList[indexPath.row].username
         cell.fullNameLabel.text = FriendSystem.system.userList[indexPath.row].fullName
         

@@ -67,7 +67,7 @@ class SearchCell:UITableViewCell {
         usernameLabel.bottomAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         fullNameLabel.textAlignment = .left
-        fullNameLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: -5).isActive = true
+        fullNameLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: -3.5).isActive = true
         fullNameLabel.leftAnchor.constraint(equalTo: usernameLabel.leftAnchor).isActive = true
 
         
