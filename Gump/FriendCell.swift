@@ -33,7 +33,7 @@ class FriendCell:UITableViewCell {
     var onlineLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "AvenirNext-Heavy", size: 12)
+        label.font = UIFont(name: "AvenirNext-Heavy", size: 15)
         label.textColor = .green
         
         return label

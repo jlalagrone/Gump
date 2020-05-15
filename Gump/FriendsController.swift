@@ -19,6 +19,9 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         return tableView
     }()
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height / 10
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return FriendSystem.system.friendsList.count

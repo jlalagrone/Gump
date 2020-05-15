@@ -26,19 +26,27 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var sendSignalButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "Send Signal")
     
-    var sendOnlineSignalButton:UIButton = {
-        var button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = signalBlueColor
-        button.setTitleColor(.white, for: .normal)
+    var sendOnlineSignalBackgroundView:UIView = {
+        var view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = signalBlueColor
         
-        return button
+        return view
+    }()
+    
+    var sendOnlineSignalLabel = DefaultLabel(textColor: .white)
+    var sendOnlineSignalIcon:UIImageView = {
+        var imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "sendIcon")
+        imageView.contentMode = .scaleAspectFit
+        
+        return imageView
     }()
     
     func layoutFriendsTableView() {
         
         view.addSubview(friendsTableView)
-        
         
         friendsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         friendsTableView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
@@ -53,13 +61,25 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         layoutFriendsTableView()
 
-        view.addSubview(sendOnlineSignalButton)
+        view.addSubview(sendOnlineSignalBackgroundView)
+        view.addSubview(sendOnlineSignalLabel)
+        view.addSubview(sendOnlineSignalIcon)
         
-        sendOnlineSignalButton.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-        sendOnlineSignalButton.heightAnchor.constraint(equalToConstant: view.frame.height / 9).isActive = true
-        sendOnlineSignalButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        sendOnlineSignalButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        sendOnlineSignalButton.isHidden = true
+        sendOnlineSignalBackgroundView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        sendOnlineSignalBackgroundView.heightAnchor.constraint(equalToConstant: view.frame.height / 8.5).isActive = true
+        sendOnlineSignalBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        sendOnlineSignalBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        sendOnlineSignalBackgroundView.isHidden = true
+        
+        sendOnlineSignalLabel.leftAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.leftAnchor, constant: 10).isActive = true
+        sendOnlineSignalLabel.centerYAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.centerYAnchor, constant: -2).isActive = true
+        sendOnlineSignalLabel.isHidden = true
+        
+        sendOnlineSignalIcon.rightAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.rightAnchor, constant: -15).isActive = true
+        sendOnlineSignalIcon.centerYAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.centerYAnchor).isActive = true
+        sendOnlineSignalIcon.heightAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.heightAnchor, multiplier: 0.6).isActive = true
+        sendOnlineSignalIcon.widthAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.heightAnchor, multiplier: 0.6).isActive = true
+        sendOnlineSignalIcon.isHidden = true
         
     }
     
@@ -92,22 +112,34 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @objc func sendInviteSignal(_ sender:UIButton) {
         
-//        FriendSystem.system.userRef.child(Auth.auth().currentUser!.uid).child("signals").child("inviteSignal").updateChildValues(["to":["username":"\(toUserUsername)", "id":"\(toUserID)"]])
+        print("Let's get cooking")
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height / 14.5
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FriendSystem.system.userList.count
+        return FriendSystem.system.friendsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! SelectCell
         
-        cell.usernameLabel.text = FriendSystem.system.userList[indexPath.row].username
+        cell.usernameLabel.text = FriendSystem.system.friendsList[indexPath.row].username
         cell.selectionStyle = .none
         
-        
+        if title == "Select Friend" {
+            
+            if cell.usernameLabel.text == toUserUsername {
+                cell.chosenView.isHidden = false
+            } else {
+                cell.chosenView.isHidden = true
+                
+            }
+            
+        }
         
         return cell
     }
@@ -120,26 +152,30 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
        // Code executes when user has selected a friend to send an invite signal to a friend
         
         let cell = tableView.cellForRow(at: indexPath) as! SelectCell
-        
-        
-        
+
         if title == "Select Friend" {
             
-            sendOnlineSignalButton.isHidden = false
+            sendOnlineSignalBackgroundView.isHidden = false
+            sendOnlineSignalIcon.isHidden = false
+            sendOnlineSignalLabel.isHidden = false
             
-            toUserID = FriendSystem.system.userList[indexPath.row].uid
-            let username = FriendSystem.system.userList[indexPath.row].username
+            let id = FriendSystem.system.friendsList[indexPath.row].uid
+            let username = FriendSystem.system.friendsList[indexPath.row].username
+            toUserUsername = username
+            friendsTableView.reloadData()
             
-            sendOnlineSignalButton.setTitle("Send To \(username)", for: .normal)
-            sendOnlineSignalButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 16)
+            sendOnlineSignalLabel.text = "Tap to invite \(username)"
+            sendOnlineSignalLabel.font = UIFont(name: "AvenirNext-Heavy", size: 14.5)
             
+            print("Value: \(toUserUsername)")
 
-        FriendSystem.system.userRef.child(Auth.auth().currentUser!.uid).child("signals").child("inviteSignal").updateChildValues(["to":["username":"\(toUserUsername)", "id":"\(toUserID)"]])
+        FriendSystem.system.userRef.child(Auth.auth().currentUser!.uid).child("signals").child("inviteSignal").updateChildValues(["to":["username":"\(username)", "id":"\(id)"]])
         
         }
         else {            
     
-            let username = FriendSystem.system.userList[indexPath.row].username
+            let username = FriendSystem.system.friendsList[indexPath.row].username
+            let id = FriendSystem.system.friendsList[indexPath.row].uid
             
             if !selectedUsersUsernames.contains(username) {
                 selectedUsersUsernames.append(username)
@@ -170,9 +206,9 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         friendsTableView.dataSource = self
         friendsTableView.register(SelectCell.self, forCellReuseIdentifier: "cellID")
         
-//        FriendSystem.system.addUserObserver {
-//            self.friendsTableView.reloadData()
-//        }
+        FriendSystem.system.addFriendObserver {
+            self.friendsTableView.reloadData()
+        }
         
         sendSignalButton.addTarget(self, action: #selector(sendInviteSignal(_:)), for: .touchDown)
     }

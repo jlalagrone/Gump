@@ -27,9 +27,9 @@ class SignalController: UIViewController, UITextViewDelegate {
         return view
     }()
     
-    var consoleLabel = DefaultLabel(title: "CONSOLE")
-    var gameLabel = DefaultLabel(title: "GAME")
-    var messageLabel = DefaultLabel(title: "MESSAGE")
+    var consoleLabel = DefaultLabel(title: "Console")
+    var gameLabel = DefaultLabel(title: "Game")
+    var messageLabel = DefaultLabel(title: "Message")
     
     var consoleField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Select Console", placeholderLength: 14)
     var gameField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Select Game", placeholderLength: 11)
@@ -62,8 +62,8 @@ class SignalController: UIViewController, UITextViewDelegate {
     }()
 
         
-    var selectFriendsButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "SELECT FRIENDS")
-    var selectFriendButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "SELECT FRIEND")
+    var selectFriendsButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "CONTINUE")
+    var selectFriendButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "CONTINUE")
     
     
     func layoutFonts() {
@@ -125,6 +125,7 @@ class SignalController: UIViewController, UITextViewDelegate {
         consoleField.topAnchor.constraint(equalTo: consoleLabel.bottomAnchor, constant: 5).isActive = true
         consoleField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         consoleField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
+        consoleField.heightAnchor.constraint(equalToConstant: view.frame.height / 18.5).isActive = true
         
         gameLabel.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height / 35).isActive = true
         gameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
@@ -132,13 +133,14 @@ class SignalController: UIViewController, UITextViewDelegate {
         gameField.topAnchor.constraint(equalTo: gameLabel.bottomAnchor, constant: 5).isActive = true
         gameField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         gameField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
+        gameField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
         
         contentView.bottomAnchor.constraint(equalTo: gameField.bottomAnchor, constant: view.frame.height / 25).isActive = true
         
         selectFriendsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         selectFriendsButton.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         selectFriendsButton.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: view.frame.height / 15).isActive = true
-        selectFriendsButton.heightAnchor.constraint(equalToConstant: view.frame.height / 13).isActive = true
+        selectFriendsButton.heightAnchor.constraint(equalToConstant: view.frame.height / 13.5).isActive = true
         
     
     }
@@ -163,6 +165,7 @@ class SignalController: UIViewController, UITextViewDelegate {
         gameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         gameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
+        gameField.widthAnchor.constraint(equalToConstant: view.frame.height / 18.5).isActive = true
         gameField.topAnchor.constraint(equalTo: gameLabel.bottomAnchor, constant: 5).isActive = true
         gameField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         gameField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
@@ -170,20 +173,19 @@ class SignalController: UIViewController, UITextViewDelegate {
         messageLabel.topAnchor.constraint(equalTo: gameField.bottomAnchor, constant: view.frame.height / 35).isActive = true
         messageLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
+        
         messageField.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 5).isActive = true
         messageField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         messageField.widthAnchor.constraint(equalTo: gameField.widthAnchor).isActive = true
-        messageField.heightAnchor.constraint(equalToConstant: view.frame.height / 6.75).isActive = true
+        messageField.heightAnchor.constraint(equalToConstant: view.frame.height / 6).isActive = true
         messageField.textAlignment = .left
         
-        
-        
-        contentView.bottomAnchor.constraint(equalTo: messageField.bottomAnchor, constant: view.frame.height / 25).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: messageField.bottomAnchor, constant: view.frame.height / 30).isActive = true
         
         selectFriendButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         selectFriendButton.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         selectFriendButton.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: view.frame.height / 23.5).isActive = true
-        selectFriendButton.heightAnchor.constraint(equalToConstant: view.frame.height / 13).isActive = true
+        selectFriendButton.heightAnchor.constraint(equalToConstant: view.frame.height / 13.5).isActive = true
     
         
     }

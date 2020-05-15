@@ -15,7 +15,7 @@ class SelectCell:UITableViewCell {
     var usernameLabel:UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.textColor = .black
         
         return label
         
@@ -33,12 +33,14 @@ class SelectCell:UITableViewCell {
     
     func layoutCell() {
      
+        backgroundColor = .white
+        
         addSubview(usernameLabel)
         addSubview(chosenView)
         
         usernameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 10).isActive = true
         usernameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        usernameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: frame.height / 3)
+        usernameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: frame.height / 2.25)
         
         chosenView.rightAnchor.constraint(equalTo: rightAnchor, constant: frame.width / -10).isActive = true
         chosenView.centerYAnchor.constraint(equalTo: usernameLabel.centerYAnchor).isActive = true
