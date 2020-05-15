@@ -78,6 +78,8 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         detailTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         detailTableView.heightAnchor.constraint(equalToConstant: view.frame.height / 2.5).isActive = true
         
+        
+        promoTextView.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 37.5)
         promoTextView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         promoTextView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
         promoTextView.heightAnchor.constraint(equalToConstant: view.frame.height / 4.5).isActive = true

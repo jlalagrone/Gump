@@ -23,7 +23,7 @@ extension SignalController {
         let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
 
         // make sure the result is under 16 characters
-        return updatedText.count <= 75
+        return updatedText.count <= 100
     }
     
     
