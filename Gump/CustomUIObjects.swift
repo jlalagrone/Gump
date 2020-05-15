@@ -142,8 +142,7 @@ class DefaultTextField:UITextField {
 
 // Default Label UI Object
 class DefaultLabel:UILabel {
-    
-    
+
     
     init(textColor:UIColor) {
           super.init(frame: .zero)

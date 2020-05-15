@@ -37,4 +37,15 @@ extension DetailController {
         
     }
     
+    @objc func updatePromo(_ sender:UIButton) {
+        
+        let promoText = promoTextView.text
+        
+        if promoText != "" {
+            
+            FriendSystem.system.currentUserRef.child("promo").setValue(promoText)
+        }
+        
+    }
+    
 }

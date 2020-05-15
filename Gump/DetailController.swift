@@ -110,7 +110,14 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         else if title == "Promo" {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(DetailController.addGame(_:)))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(DetailController.updatePromo(_:)))
+            
+            FriendSystem.system.currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
+                let userDict = snapshot.value as! [String:AnyObject]
+                let promo = userDict["promo"] as! String
+                
+                self.promoTextView.text = promo
+            }
         }
         
         else if title == "Account" {
