@@ -100,6 +100,7 @@ extension HomeController {
         let profileController = ProfileController()
         self.navigationController?.pushViewController(profileController, animated: true)
         self.title = ""
+        profileController.title = "Edit Profile"
     }
     
     @objc func showSearchController(_ sender:UIButton) {

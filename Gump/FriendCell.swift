@@ -20,16 +20,15 @@ class FriendCell:UITableViewCell {
         
         return label
     }()
-    var promoLabel: UILabel = {
-        var label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: 14)
-        label.text = "The best there is, the best there was, the best there ever will be"
-        label.numberOfLines = 0
-        label.textColor = .black
-        
-        return label
-    }()
+//    var promoLabel: UILabel = {
+//        var label = UILabel()
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: 14)
+//        label.numberOfLines = 0
+//        label.textColor = .black
+//
+//        return label
+//    }()
     
     var onlineLabel: UILabel = {
         var label = UILabel()
@@ -52,20 +51,26 @@ class FriendCell:UITableViewCell {
     
     func layoutCell() {
         addSubview(usernameLabel)
-        addSubview(promoLabel)
         addSubview(onlineLabel)
             
         backgroundColor = .white
         
         usernameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width/20).isActive = true
         usernameLabel.topAnchor.constraint(equalTo: topAnchor, constant: frame.height/10).isActive = true
-    
+        usernameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        promoLabel.leftAnchor.constraint(equalTo: usernameLabel.leftAnchor).isActive = true
-        promoLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.625).isActive = true
-        promoLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 5).isActive = true
         
-        bottomAnchor.constraint(equalTo: promoLabel.bottomAnchor, constant: 3.5).isActive = true
+//    
+//            
+//            for friend in FriendSystem.system.friendsList {
+//                print("FRIEND ID: \(friend.uid)")
+//                
+//                if friend.uid == "GJHnopO4nmeKejUwoNZMLI1a2Wq2" {
+//                    self.onlineLabel.isHidden = true
+//                }
+//            }
+            
         
         onlineLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         onlineLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: frame.width / -17.5).isActive = true

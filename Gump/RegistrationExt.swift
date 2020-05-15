@@ -26,6 +26,8 @@ class RegistrationButton:UIButton {
         layer.borderWidth = 3
         layer.borderColor = borderColor
         layer.cornerRadius = 15
+        addTarget(self, action: #selector(animateButton(_:)), for: .touchDown)
+
     }
     
     

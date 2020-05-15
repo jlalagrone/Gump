@@ -84,17 +84,17 @@ class ViewProfileController: UIViewController {
     
     func getSearchedUser() {
         
-        usernameLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height / 22.5)
-        nameLabel.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 30)
-        consoleLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height / 23)
+        usernameLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height / 27.5)
+        nameLabel.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 34.5)
+        consoleLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height / 28)
         sendFriendRequestButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
-        viewTagsTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 42.5)
-        viewGamesTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 42.5)
+        viewTagsTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 43.5)
+        viewGamesTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 43.5)
         
         consoleTitle.text = "Primary Console"
-        consoleTitle.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 30)
+        consoleTitle.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 34.5)
         
-        promoLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 36.5)
+        promoLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 40)
         
         FriendSystem.system.getUser(profileID) { (user) in
             self.usernameLabel.text = user.username

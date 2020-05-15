@@ -26,13 +26,33 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
      
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! FriendCell
+        let id = FriendSystem.system.friendsList[indexPath.row].uid
         
         cell.usernameLabel.text = FriendSystem.system.friendsList[indexPath.row].username
+        
+        // Logic that determines if online label is shown or not
+        FriendSystem.system.userRef.child(id).observeSingleEvent(of: .value) { (snapshot) in
+            let userDict = snapshot.value as! [String:AnyObject]
+            let username = userDict["username"] as! String
+            
+            if username == "Thor" {
+                cell.onlineLabel.isHidden = true
+            }
+            
+        }
         
         return cell
      }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let id = FriendSystem.system.friendsList[indexPath.row].uid
+        
+        let viewProfileVC = ViewProfileController()
+        viewProfileVC.profileID = id
+        
+        self.navigationController?.pushViewController(viewProfileVC, animated: true)
+        
+    }
     
     
     func layoutView() {

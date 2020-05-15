@@ -88,7 +88,7 @@ class ProfileController: UIViewController {
         viewGamesLabel.leftAnchor.constraint(equalTo: mainLabel.leftAnchor, constant: view.frame.width / 17.5).isActive = true
         viewGamesLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height / 16.5).isActive = true
         
-        viewGamesButton.leftAnchor.constraint(equalTo: viewGamesLabel.rightAnchor, constant: view.frame.width / 12.5).isActive = true
+        viewGamesButton.leftAnchor.constraint(equalTo: viewGamesLabel.rightAnchor, constant: view.frame.width / 9.5).isActive = true
         viewGamesButton.widthAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
         viewGamesButton.heightAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
         viewGamesButton.centerYAnchor.constraint(equalTo: viewGamesLabel.centerYAnchor).isActive = true
@@ -98,8 +98,9 @@ class ProfileController: UIViewController {
         viewRequestsButton.heightAnchor.constraint(equalToConstant: view.frame.height / 9.5).isActive = true
         viewRequestsButton.centerXAnchor.constraint(equalTo: viewGamesButton.centerXAnchor).isActive = true
         
-        viewRequestsLabel.leftAnchor.constraint(equalTo: viewGamesLabel.leftAnchor).isActive = true
+//        viewRequestsLabel.leftAnchor.constraint(equalTo: viewGamesLabel.leftAnchor).isActive = true
         viewRequestsLabel.centerYAnchor.constraint(equalTo: viewRequestsButton.centerYAnchor).isActive = true
+        viewRequestsLabel.centerXAnchor.constraint(equalTo: viewGamesLabel.centerXAnchor).isActive = true
         
         viewPromoButton.centerXAnchor.constraint(equalTo: viewRequestsButton.centerXAnchor).isActive = true
         viewPromoButton.topAnchor.constraint(equalTo: viewRequestsButton.bottomAnchor, constant: view.frame.height / 25).isActive = true

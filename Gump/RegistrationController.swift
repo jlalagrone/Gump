@@ -48,9 +48,6 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     var tagField = DefaultTextField(color: darkPinkColor, borderColor: UIColor.clear.cgColor, placeholderText: "Enter Gametag", placeholderLength: 13)
     
-//    // Code for mic pickerViews
-//    let micPicker = UIPickerView()
-//    var micField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "",placeholderLength: 0)
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -79,7 +76,8 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
   
     var continueButton:RegistrationButton = {
-        var button = RegistrationButton(backgroundColor: .white, borderColor: signalBlueColor.cgColor, title: "Continue")
+        var button = RegistrationButton(backgroundColor: .white, borderColor: UIColor.clear.cgColor, title: "CONTINUE")
+        button.setTitleColor(signalBlueColor, for: .normal)
         
         return button
     }()
@@ -90,7 +88,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         mainLabel.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height/32)
         secondaryLabel.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height/32)
-        continueButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height/33)
+        continueButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height/33)
     }
     
     func layoutView() {
