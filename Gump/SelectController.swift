@@ -246,6 +246,12 @@ extension SelectController {
         
         FriendSystem.system.getUser(toUserID) { (user) in
             FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["toUID":user.uid, "toUsername": user.username])
+            
+            if let token = user.notificationToken {
+                print("Sending to token: \(token)")
+            } else {
+                print("User hasnt registered for notifications")
+            }
         }
         
         self.present(sentVC, animated: true, completion: nil)

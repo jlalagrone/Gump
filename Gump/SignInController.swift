@@ -120,14 +120,14 @@ class SignInController: UIViewController, UITextFieldDelegate {
         
     
     func layoutFonts() {
-        emailLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height/45)
-        passwordLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height/45)
-        forgotPasswordButton.titleLabel!.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height/45)
-        subtitleLabel.font = UIFont(name: "AvenirNext-MediumItalic", size: view.frame.height / 35)
+        emailLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height/50)
+        passwordLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height/50)
+        forgotPasswordButton.titleLabel!.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height/50)
+        subtitleLabel.font = UIFont(name: "AvenirNext-MediumItalic", size: view.frame.height / 42.5)
         
         
-        emailTextField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height/43.5)
-        passwordTextField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height/43.5)
+        emailTextField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height/48.5)
+        passwordTextField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height/48.5)
         emailTextField.textColor = .white
         passwordTextField.textColor = .white
         
@@ -156,9 +156,9 @@ class SignInController: UIViewController, UITextFieldDelegate {
         mainTitle.heightAnchor.constraint(equalToConstant: view.frame.height/9).isActive = true
         
         subtitleLabel.centerXAnchor.constraint(equalTo: mainTitle.centerXAnchor).isActive = true
-        subtitleLabel.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 3.5).isActive = true
+        subtitleLabel.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: view.frame.height / 60).isActive = true
         
-        emailLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 12.5).isActive = true
+        emailLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: view.frame.height / 37.5).isActive = true
         
         emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         emailTextField.widthAnchor.constraint(equalToConstant: view.frame.width/1.2).isActive = true

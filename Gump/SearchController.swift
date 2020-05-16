@@ -71,14 +71,15 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let lastName = userDict["lastName"] as! String
                 let fullName = "\(firstName) \(lastName)"
                 let promo = userDict["promo"] as! String
+                let token = userDict["fcmToken"] as? String
                 if let games = userDict["Games"] as? [String:String] {
                     
-                    FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName,promo: promo,gametags: gametags,requests: requests ,games:games))
+                    FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName,promo: promo,gametags: gametags,requests: requests ,games:games, notificationToken: token))
                     self.searchTable.reloadData()
 
                 } else {
                     
-                    FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName,promo: promo,gametags: gametags, requests: requests,games:nil))
+                    FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName,promo: promo,gametags: gametags, requests: requests,games:nil, notificationToken: token))
                     self.searchTable.reloadData()
                 }
                 
