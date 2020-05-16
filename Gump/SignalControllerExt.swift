@@ -43,6 +43,7 @@ extension SignalController {
         else {
             
             title = ""
+        FriendSystem.system.currentUserRef.child("signals").child("onlineSignal").setValue(["game": "\(self.gameField.text!)", "console": self.consoleField.text!])
             
             self.navigationController?.pushViewController(selectController, animated: true)
             selectController.layoutSelectFriendsView()
@@ -55,7 +56,6 @@ extension SignalController {
         
         let selectController = SelectController()
         
-        
         guard gameField.text != "" else {
             
             let alert = UIAlertController(title: "Please enter a game.", message: "", preferredStyle: .alert)
@@ -63,8 +63,6 @@ extension SignalController {
             alert.addAction(action)
             
             present(alert, animated: true)
-            
-            
             return
         }
         
@@ -74,7 +72,7 @@ extension SignalController {
             let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
                 
             // Execute code that prepares to send invite signal notification to the selected friend with blank message
-            FriendSystem.system.userRef.child(Auth.auth().currentUser!.uid).child("signals").child("inviteSignal").setValue(["game": "\(self.gameField.text!)", "message": ""])
+                FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").setValue(["game": "\(self.gameField.text!)", "message": ""])
                 
                 self.navigationController?.pushViewController(selectController, animated: true)
                 selectController.layoutSelectFriendView()
@@ -94,7 +92,7 @@ extension SignalController {
         
         // Execute code that prepares to send invite signal to selected friend with a message
             title = ""
-        FriendSystem.system.userRef.child(Auth.auth().currentUser!.uid).child("signals").child("inviteSignal").setValue(["game":"\(gameField.text!)", "message":"\(messageField.text!)"])
+        FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").setValue(["game":"\(gameField.text!)", "message":"\(messageField.text!)"])
             
             self.navigationController?.pushViewController(selectController, animated: true)
             selectController.layoutSelectFriendView()

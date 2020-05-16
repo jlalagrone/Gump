@@ -24,7 +24,7 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return tableView
     }()
     
-    var sendOnlineSignalButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "Send Signal")
+    var sendOnlineSignalButton = DefaultButton(backgroundColor: signalBlueColor, borderColor: UIColor.clear.cgColor, title: "Send Signal")
     
     var sendInviteSignalBackgroundView:UIView = {
         var view = UIView()
@@ -99,14 +99,14 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         sendOnlineSignalButton.layer.cornerRadius = 15
         sendOnlineSignalButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
         sendOnlineSignalButton.setTitleColor(.white, for: .normal)
-        sendOnlineSignalButton.layer.shadowRadius = 1.5
-        sendOnlineSignalButton.layer.shadowOpacity = 1.0
-        sendOnlineSignalButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
-        sendOnlineSignalButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
-        sendOnlineSignalButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
-        sendOnlineSignalButton.titleLabel?.layer.shadowOpacity = 1.0
-        sendOnlineSignalButton.titleLabel?.layer.shadowRadius = 0.5
-        sendOnlineSignalButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
+//        sendOnlineSignalButton.layer.shadowRadius = 1.5
+//        sendOnlineSignalButton.layer.shadowOpacity = 1.0
+//        sendOnlineSignalButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
+//        sendOnlineSignalButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
+//        sendOnlineSignalButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
+//        sendOnlineSignalButton.titleLabel?.layer.shadowOpacity = 1.0
+//        sendOnlineSignalButton.titleLabel?.layer.shadowRadius = 0.5
+//        sendOnlineSignalButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
         
     }
     
@@ -173,16 +173,16 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let username = FriendSystem.system.friendsList[indexPath.row].username
             let id = FriendSystem.system.friendsList[indexPath.row].uid
             
-            if !selectedUsersUsernames.contains(username) {
-                selectedUsersUsernames.append(username)
+            if !selectedUsersID.contains(id) {
+                selectedUsersID.append(id)
                 cell.chosenView.isHidden = false
             }
             else {
-                selectedUsersUsernames = selectedUsersUsernames.filter { $0 != username }
+                selectedUsersID = selectedUsersID.filter { $0 != id }
                 cell.chosenView.isHidden = true
             }
     
-            print("Selecting \(selectedUsersUsernames)")
+            
         }
         
     }
@@ -223,7 +223,16 @@ extension SelectController {
     
     @objc func sendInvites(_ sender:UIButton) {
         
-        print("Let's get cooking")
+        let sentVC = UserCreatedController()
+        sentVC.modalPresentationStyle = .fullScreen
+        sentVC.mainLabel.text = "Online signal(s) have been sent!"
+        print("Selected IDs: \(selectedUsersID)")
+        
+        FriendSystem.system.getCurrentUser { (user) in
+            FriendSystem.system.currentUserRef.child("signals").child("onlineSignal").updateChildValues(["toUIDs":selectedUsersID])
+        }
+        
+        self.present(sentVC, animated: true, completion: nil)
         
     }
     
@@ -234,8 +243,6 @@ extension SelectController {
         let sentVC = UserCreatedController()
         sentVC.modalPresentationStyle = .fullScreen
         sentVC.mainLabel.text = "Invite signal has been sent!"
-        
-//    FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["to":toUserID])
         
         FriendSystem.system.getUser(toUserID) { (user) in
             FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["toUID":user.uid, "toUsername": user.username])

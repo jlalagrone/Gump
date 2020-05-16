@@ -80,7 +80,7 @@ class UserCreatedController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("SENT \(toUserID)")
+        
         
         layoutView()
         

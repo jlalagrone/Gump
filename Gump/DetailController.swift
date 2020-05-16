@@ -118,7 +118,13 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let userDict = snapshot.value as! [String:AnyObject]
                 let promo = userDict["promo"] as! String
                 
-                self.promoTextView.text = promo
+                if promo == "no promo" {
+                    self.promoTextView.text = ""
+                } else {
+                    self.promoTextView.text = promo
+
+                }
+                
             }
         }
         
