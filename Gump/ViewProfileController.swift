@@ -22,10 +22,10 @@ class ViewProfileController: UIViewController {
         var label = DefaultLabel(textColor: darkPinkColor)
         label.text = "Gametags"
         label.textAlignment = .center
-        label.layer.shadowColor = UIColor(white: 0.75, alpha: 0.75).cgColor
-        label.layer.shadowOpacity = 1.0
-        label.layer.shadowRadius = 1.0
-        label.layer.shadowOffset = CGSize(width: 1, height: 1)
+//        label.layer.shadowColor = UIColor(white: 0.75, alpha: 0.75).cgColor
+//        label.layer.shadowOpacity = 1.0
+//        label.layer.shadowRadius = 1.0
+//        label.layer.shadowOffset = CGSize(width: 1, height: 1)
         
         return label
     }()
@@ -36,10 +36,10 @@ class ViewProfileController: UIViewController {
         var label = DefaultLabel(textColor: darkPinkColor)
         label.text = "Games"
         label.textAlignment = .center
-        label.layer.shadowColor = UIColor(white: 0.75, alpha: 0.75).cgColor
-        label.layer.shadowOpacity = 1.0
-        label.layer.shadowRadius = 1.0
-        label.layer.shadowOffset = CGSize(width: 1, height: 1)
+//        label.layer.shadowColor = UIColor(white: 0.75, alpha: 0.75).cgColor
+//        label.layer.shadowOpacity = 1.0
+//        label.layer.shadowRadius = 1.0
+//        label.layer.shadowOffset = CGSize(width: 1, height: 1)
         
         return label
     }()
@@ -88,8 +88,8 @@ class ViewProfileController: UIViewController {
         nameLabel.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 34.5)
         consoleLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height / 28)
         sendFriendRequestButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
-        viewTagsTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 43.5)
-        viewGamesTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 43.5)
+        viewTagsTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 42.5)
+        viewGamesTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 42.5)
         
         consoleTitle.text = "Primary Console"
         consoleTitle.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 34.5)

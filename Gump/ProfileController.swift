@@ -32,7 +32,7 @@ class ProfileController: UIViewController {
     }
     
     
-    var viewGamesLabel = DefaultLabel(title: "Your Games")
+    var viewGamesLabel = DefaultLabel(title: "Game Library")
     var viewRequestsLabel = DefaultLabel(title: "Friend\nRequests")
     var viewPromoLabel = DefaultLabel(title: "Your Promo")
     var accountInfoLabel = DefaultLabel(title: "Account Info")

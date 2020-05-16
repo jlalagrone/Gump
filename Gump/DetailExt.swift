@@ -25,6 +25,29 @@ extension DetailController {
         return updatedText.count <= 100
     }
     
+    @objc func displayGamesHelpAlert(_ sender:UIButton) {
+        
+        print("Games help alert")
+        
+        let alert = UIAlertController(title: "Help", message: "Adding games to your game library allows your friends to view your games. When sending a signal, your game options consists of your game library so make sure yours is up-to-date.", preferredStyle: .alert)
+        let continueAction = UIAlertAction(title: "Continue", style: .default)
+        alert.addAction(continueAction)
+        
+        present(alert, animated: true, completion: nil)
+        
+    }
+    
+    @objc func displayPromoHelpAlert(_ sender:UIButton) {
+        
+        print("Promo help alert")
+        
+        let alert = UIAlertController(title: "Help", message: "Your promo is similar to a profile bio. This is what users see when they view your profile. Use your promo as a way to state your gaming greatness or however you seem fit.", preferredStyle: .alert)
+          let continueAction = UIAlertAction(title: "Continue", style: .default)
+          alert.addAction(continueAction)
+          
+          present(alert, animated: true, completion: nil)
+        
+    }
     
     @objc func addGame(_ sender:UIButton) {
         

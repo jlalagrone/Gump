@@ -38,6 +38,13 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return tableView
     }()
     
+    var helpButton:DefaultButton = {
+        var button = DefaultButton(title: "", textColor: UIColor.clear)
+        button.setImage(UIImage(named: "helpIcon"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        
+        return button
+    }()
     
     var promoTextView:UITextView = {
         var textView = UITextView()
@@ -65,7 +72,26 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }()
     
     
-    
+    func layoutHelpButton() {
+        
+        view.addSubview(helpButton)
+        helpButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        helpButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        if title == "Games" {
+            helpButton.topAnchor.constraint(equalTo: detailTableView.bottomAnchor, constant: view.frame.height / 30).isActive = true
+            helpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            helpButton.addTarget(self, action: #selector(displayGamesHelpAlert(_:)), for: .touchDown)
+        }
+        
+        else if title == "Promo" {
+            
+            helpButton.topAnchor.constraint(equalTo: promoTextView.bottomAnchor, constant: view.frame.height / 30).isActive = true
+            helpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            helpButton.addTarget(self, action: #selector(displayPromoHelpAlert(_:)), for: .touchDown)
+        }
+        
+    }
     
     func layoutView() {
                 
@@ -104,6 +130,7 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         if title == "Games" {
         
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(DetailController.addGame(_:)))
@@ -136,6 +163,7 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
         view.backgroundColor = lightPinkColor
         layoutView()
+        layoutHelpButton()
 
         detailTableView.delegate = self
         detailTableView.dataSource = self

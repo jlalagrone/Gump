@@ -69,9 +69,9 @@ class SignalController: UIViewController, UITextViewDelegate {
     func layoutFonts() {
         
         mainLabel.font = UIFont(name: "AvenirNext-Medium", size: view.frame.height / 28)
-        consoleLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 35)
-        gameLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 35)
-        messageLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 35)
+        consoleLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 35)
+        gameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 35)
+        messageLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 35)
         messageField.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
 
         
@@ -81,25 +81,25 @@ class SignalController: UIViewController, UITextViewDelegate {
         
         selectFriendsButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
         selectFriendsButton.setTitleColor(.white, for: .normal)
-        selectFriendsButton.layer.shadowRadius = 1.5
-        selectFriendsButton.layer.shadowOpacity = 1.0
-        selectFriendsButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
-        selectFriendsButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
-        selectFriendsButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
-        selectFriendsButton.titleLabel?.layer.shadowOpacity = 1.0
-        selectFriendsButton.titleLabel?.layer.shadowRadius = 0.5
-        selectFriendsButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
+//        selectFriendsButton.layer.shadowRadius = 1.5
+//        selectFriendsButton.layer.shadowOpacity = 1.0
+//        selectFriendsButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
+//        selectFriendsButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
+//        selectFriendsButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
+//        selectFriendsButton.titleLabel?.layer.shadowOpacity = 1.0
+//        selectFriendsButton.titleLabel?.layer.shadowRadius = 0.5
+//        selectFriendsButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
         
         selectFriendButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
         selectFriendButton.setTitleColor(.white, for: .normal)
-        selectFriendButton.layer.shadowRadius = 1.5
-        selectFriendButton.layer.shadowOpacity = 1.0
-        selectFriendButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
-        selectFriendButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
-        selectFriendButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
-        selectFriendButton.titleLabel?.layer.shadowOpacity = 1.0
-        selectFriendButton.titleLabel?.layer.shadowRadius = 0.5
-        selectFriendButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
+//        selectFriendButton.layer.shadowRadius = 1.5
+//        selectFriendButton.layer.shadowOpacity = 1.0
+//        selectFriendButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
+//        selectFriendButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
+//        selectFriendButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
+//        selectFriendButton.titleLabel?.layer.shadowOpacity = 1.0
+//        selectFriendButton.titleLabel?.layer.shadowRadius = 0.5
+//        selectFriendButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
     }
     
     func layoutOnlineSignalView() {
