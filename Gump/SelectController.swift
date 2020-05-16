@@ -24,9 +24,9 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return tableView
     }()
     
-    var sendSignalButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "Send Signal")
+    var sendOnlineSignalButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "Send Signal")
     
-    var sendOnlineSignalBackgroundView:UIView = {
+    var sendInviteSignalBackgroundView:UIView = {
         var view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = signalBlueColor
@@ -34,15 +34,15 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return view
     }()
     
-    var sendOnlineSignalLabel = DefaultLabel(textColor: .white)
-    var sendOnlineSignalIcon:UIImageView = {
-        var imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "sendIcon")
-        imageView.contentMode = .scaleAspectFit
+    var sendInviteSignalLabel = DefaultLabel(textColor: .white)
+    var sendInviteSignalButton:DefaultButton = {
+        var button = DefaultButton(backgroundColor: UIColor.clear, borderColor: UIColor.clear.cgColor, title: "")
+        button.setImage(UIImage(named: "sendIcon"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
         
-        return imageView
+        return button
     }()
+
     
     func layoutFriendsTableView() {
         
@@ -61,25 +61,25 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         layoutFriendsTableView()
 
-        view.addSubview(sendOnlineSignalBackgroundView)
-        view.addSubview(sendOnlineSignalLabel)
-        view.addSubview(sendOnlineSignalIcon)
+        view.addSubview(sendInviteSignalBackgroundView)
+        view.addSubview(sendInviteSignalLabel)
+        view.addSubview(sendInviteSignalButton)
         
-        sendOnlineSignalBackgroundView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-        sendOnlineSignalBackgroundView.heightAnchor.constraint(equalToConstant: view.frame.height / 8.5).isActive = true
-        sendOnlineSignalBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        sendOnlineSignalBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        sendOnlineSignalBackgroundView.isHidden = true
+        sendInviteSignalBackgroundView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        sendInviteSignalBackgroundView.heightAnchor.constraint(equalToConstant: view.frame.height / 8.5).isActive = true
+        sendInviteSignalBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        sendInviteSignalBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        sendInviteSignalBackgroundView.isHidden = true
         
-        sendOnlineSignalLabel.leftAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.leftAnchor, constant: 10).isActive = true
-        sendOnlineSignalLabel.centerYAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.centerYAnchor, constant: -2).isActive = true
-        sendOnlineSignalLabel.isHidden = true
+        sendInviteSignalLabel.leftAnchor.constraint(equalTo: sendInviteSignalBackgroundView.leftAnchor, constant: 10).isActive = true
+        sendInviteSignalLabel.centerYAnchor.constraint(equalTo: sendInviteSignalBackgroundView.centerYAnchor, constant: -2).isActive = true
+        sendInviteSignalLabel.isHidden = true
         
-        sendOnlineSignalIcon.rightAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.rightAnchor, constant: -15).isActive = true
-        sendOnlineSignalIcon.centerYAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.centerYAnchor).isActive = true
-        sendOnlineSignalIcon.heightAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.heightAnchor, multiplier: 0.6).isActive = true
-        sendOnlineSignalIcon.widthAnchor.constraint(equalTo: sendOnlineSignalBackgroundView.heightAnchor, multiplier: 0.6).isActive = true
-        sendOnlineSignalIcon.isHidden = true
+        sendInviteSignalButton.rightAnchor.constraint(equalTo: sendInviteSignalBackgroundView.rightAnchor, constant: -15).isActive = true
+        sendInviteSignalButton.centerYAnchor.constraint(equalTo: sendInviteSignalBackgroundView.centerYAnchor).isActive = true
+        sendInviteSignalButton.heightAnchor.constraint(equalTo: sendInviteSignalBackgroundView.heightAnchor, multiplier: 0.6).isActive = true
+        sendInviteSignalButton.widthAnchor.constraint(equalTo: sendInviteSignalBackgroundView.heightAnchor, multiplier: 0.6).isActive = true
+        sendInviteSignalButton.isHidden = true
         
     }
     
@@ -89,30 +89,24 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         layoutFriendsTableView()
         
-        view.addSubview(sendSignalButton)
+        view.addSubview(sendOnlineSignalButton)
         
-        sendSignalButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: view.frame.height / -10).isActive = true
-        sendSignalButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        sendSignalButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
-        sendSignalButton.heightAnchor.constraint(equalToConstant: view.frame.height / 13).isActive = true
+        sendOnlineSignalButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: view.frame.height / -10).isActive = true
+        sendOnlineSignalButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        sendOnlineSignalButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
+        sendOnlineSignalButton.heightAnchor.constraint(equalToConstant: view.frame.height / 13).isActive = true
         
-        sendSignalButton.layer.cornerRadius = 15
-        sendSignalButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
-        sendSignalButton.setTitleColor(.white, for: .normal)
-        sendSignalButton.layer.shadowRadius = 1.5
-        sendSignalButton.layer.shadowOpacity = 1.0
-        sendSignalButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
-        sendSignalButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
-        sendSignalButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
-        sendSignalButton.titleLabel?.layer.shadowOpacity = 1.0
-        sendSignalButton.titleLabel?.layer.shadowRadius = 0.5
-        sendSignalButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
-        
-    }
-    
-    @objc func sendInviteSignal(_ sender:UIButton) {
-        
-        print("Let's get cooking")
+        sendOnlineSignalButton.layer.cornerRadius = 15
+        sendOnlineSignalButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
+        sendOnlineSignalButton.setTitleColor(.white, for: .normal)
+        sendOnlineSignalButton.layer.shadowRadius = 1.5
+        sendOnlineSignalButton.layer.shadowOpacity = 1.0
+        sendOnlineSignalButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
+        sendOnlineSignalButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
+        sendOnlineSignalButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
+        sendOnlineSignalButton.titleLabel?.layer.shadowOpacity = 1.0
+        sendOnlineSignalButton.titleLabel?.layer.shadowRadius = 0.5
+        sendOnlineSignalButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
         
     }
     
@@ -155,21 +149,23 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
         if title == "Select Friend" {
             
-            sendOnlineSignalBackgroundView.isHidden = false
-            sendOnlineSignalIcon.isHidden = false
-            sendOnlineSignalLabel.isHidden = false
+            sendInviteSignalBackgroundView.isHidden = false
+            sendInviteSignalButton.isHidden = false
+            sendInviteSignalLabel.isHidden = false
+            
+            toUserID = FriendSystem.system.friendsList[indexPath.row].uid
+            
             
             let id = FriendSystem.system.friendsList[indexPath.row].uid
             let username = FriendSystem.system.friendsList[indexPath.row].username
             toUserUsername = username
             friendsTableView.reloadData()
             
-            sendOnlineSignalLabel.text = "Tap to invite \(username)"
-            sendOnlineSignalLabel.font = UIFont(name: "AvenirNext-Heavy", size: 14.5)
+            sendInviteSignalLabel.text = "Tap to invite \(username)"
+            sendInviteSignalLabel.font = UIFont(name: "AvenirNext-Heavy", size: 14.5)
             
             print("Value: \(toUserUsername)")
 
-        FriendSystem.system.userRef.child(Auth.auth().currentUser!.uid).child("signals").child("inviteSignal").updateChildValues(["to":["username":"\(username)", "id":"\(id)"]])
         
         }
         else {            
@@ -191,15 +187,22 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Code that executes when either send button is tapped
+        sendInviteSignalButton.addTarget(self, action: #selector(sendInvite(_:)), for: .touchDown)
+        
         if title == "Select Friend" {
             friendsTableView.allowsMultipleSelectionDuringEditing = false
+            
+
+            
         } else {
             friendsTableView.allowsMultipleSelectionDuringEditing = true
+            
+            // Code that executes when either send button is tapped
+            sendOnlineSignalButton.addTarget(self, action: #selector(sendInvites(_:)), for: .touchDown)
         }
 
         friendsTableView.delegate = self
@@ -210,9 +213,36 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.friendsTableView.reloadData()
         }
         
-        sendSignalButton.addTarget(self, action: #selector(sendInviteSignal(_:)), for: .touchDown)
+    }
+
+}
+
+
+extension SelectController {
+    
+    
+    @objc func sendInvites(_ sender:UIButton) {
+        
+        print("Let's get cooking")
+        
     }
     
-
-
+    
+    @objc func sendInvite(_ sender:UITapGestureRecognizer) {
+        
+        print("Sent invite to: \(toUserID)")
+        let sentVC = UserCreatedController()
+        sentVC.modalPresentationStyle = .fullScreen
+        sentVC.mainLabel.text = "Invite signal has been sent!"
+        
+//    FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["to":toUserID])
+        
+        FriendSystem.system.getUser(toUserID) { (user) in
+            FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["toUID":user.uid, "toUsername": user.username])
+        }
+        
+        self.present(sentVC, animated: true, completion: nil)
+        
+    }
+    
 }

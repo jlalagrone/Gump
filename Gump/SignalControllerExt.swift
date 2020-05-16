@@ -55,6 +55,7 @@ extension SignalController {
         
         let selectController = SelectController()
         
+        
         guard gameField.text != "" else {
             
             let alert = UIAlertController(title: "Please enter a game.", message: "", preferredStyle: .alert)
