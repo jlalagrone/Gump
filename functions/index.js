@@ -34,27 +34,27 @@ exports.sendInviteNotification = functions.database.ref('/Users/{userID}/signals
 
 	var toUserRef = usersRef.child(userID)
 	toUserRef.on('value', function(snapshot) {
-		console.log(currentUsername)
 
 		let fcmToken = snapshot.child('fcmToken').val();
+		console.log(fcmToken)
 
 		var payload = {
-			token: fcmToken,
-			notification: {
-				title: "Invite from ${currentUsername}",
-				body: notificationMessage
+				notification: {
+					title: 'Invite from' + '' + currentUsername,
+					body: notificationMessage,
+					}
 			}
-		}
+			
 
 
-		admin.messaging().send(payload)
+		admin.messaging().sendToDevice(fcmToken, payload)
 			.then((response) => {
 			console.log('Successfully sent notification:', response)
 			})
 			.catch((error) => {
 				console.log('Error sending message:', error)
 			})
-			
+
 	})
 
 

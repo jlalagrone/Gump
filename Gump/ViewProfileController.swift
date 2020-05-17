@@ -220,7 +220,9 @@ class ViewProfileController: UIViewController {
         
         FriendSystem.system.currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
             let value = snapshot.value as! [String:AnyObject]
-            let friends = value["friends"] as! [String:Bool]
+         
+            
+            if let friends = value["friends"] as? [String:Bool] {
             
             let friendIDs = Array(friends.keys)
             
@@ -229,12 +231,20 @@ class ViewProfileController: UIViewController {
                 self.layoutFriendView()
                 self.viewTagsButton.addTarget(self, action: #selector(self.viewTagsButtonAction(_:)), for: .touchDown)
                 self.viewGamesButton.addTarget(self, action: #selector(self.viewGamesButtonAction(_:)), for: .touchDown)
+                
+                print("Friends: \(friends)")
+                
+                return
+                
             } else {
-                self.layoutNonFriendView()
-                self.sendFriendRequestButton.addTarget(self, action: #selector(self.sendFriendRequestAction(_:)), for: .touchDown)
+                
             }
             
-            print("Friends: \(friends)")
+            
+            }
+            
+            self.layoutNonFriendView()
+            self.sendFriendRequestButton.addTarget(self, action: #selector(self.sendFriendRequestAction(_:)), for: .touchDown)
         }
         
     }
