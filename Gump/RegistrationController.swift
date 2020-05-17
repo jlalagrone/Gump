@@ -16,7 +16,6 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var consoleStatus:String?
     var micPickerOptions = ["Yes", "No"]
     var micStatus:String?
-    var vSpinner : UIView?
     
     var ref:DatabaseReference?
     
@@ -75,9 +74,9 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
     }
   
+    // Custom button class object that implements the logic needed to create and sign in the created user
     var continueButton:RegistrationButton = {
         var button = RegistrationButton(backgroundColor: .white, borderColor: UIColor.clear.cgColor, title: "CONTINUE")
-        button.setTitleColor(signalBlueColor, for: .normal)
         
         return button
     }()
@@ -128,31 +127,31 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         usernameField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.825).isActive = true
         usernameField.heightAnchor.constraint(equalToConstant: view.frame.height/14.5).isActive = true
         usernameField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height/16.5).isActive = true
-        usernameField.alpha = 0
+        usernameField.isHidden = true
         
         firstNameField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         firstNameField.widthAnchor.constraint(equalTo: usernameField.widthAnchor).isActive = true
         firstNameField.heightAnchor.constraint(equalTo: usernameField.heightAnchor).isActive = true
         firstNameField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: view.frame.height/20).isActive = true
-        firstNameField.alpha = 0
+        firstNameField.isHidden = true
         
         lastNameField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         lastNameField.widthAnchor.constraint(equalTo: usernameField.widthAnchor).isActive = true
         lastNameField.heightAnchor.constraint(equalTo: usernameField.heightAnchor).isActive = true
         lastNameField.topAnchor.constraint(equalTo: firstNameField.bottomAnchor, constant: view.frame.height/20).isActive = true
-        lastNameField.alpha = 0
+        lastNameField.isHidden = true
         
         consoleField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         consoleField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.825).isActive = true
         consoleField.heightAnchor.constraint(equalToConstant: view.frame.height/14.5).isActive = true
         consoleField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height/16.5).isActive = true
-        consoleField.alpha = 0
+        consoleField.isHidden = true
 
         tagField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         tagField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
         tagField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
         tagField.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height / 20).isActive = true
-        tagField.alpha = 0
+        tagField.isHidden = true
     
         continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         continueButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.825).isActive = true
@@ -169,20 +168,26 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let userInfo = notification.userInfo
         let keyboardFrame = (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        
-        if self.confirmPasswordField.isEditing == true || self.lastNameField.isEditing == true {
-            self.view.frame.origin.y -= (keyboardFrame.height/4)
+        DispatchQueue.main.async {
+            if self.confirmPasswordField.isEditing == true || self.lastNameField.isEditing == true {
+                       self.view.frame.origin.y -= (keyboardFrame.height/4)
+            }
         }
+       
     }
     
     @objc func keyboardWillHide(_ notification:NSNotification) {
         let userInfo = notification.userInfo
         let keyboardFrame = (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y += (keyboardFrame.height/4)
+        DispatchQueue.main.async {
+            if self.view.frame.origin.y != 0 {
+                     self.view.frame.origin.y += (keyboardFrame.height/4)
+            }
+                 
         }
         
+     
     }
     
     override func viewWillAppear(_ animated: Bool) {

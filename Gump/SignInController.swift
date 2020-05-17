@@ -88,13 +88,20 @@ class SignInController: UIViewController, UITextFieldDelegate {
     
     @objc func signIn(_ sender:UIButton) {
         
+        self.showSpinner(onView: view)
+        
         Auth.auth().signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) { (result, error) in
             
             if error != nil {
-                print(error?.localizedDescription)
+                let alert = UIAlertController(title: "Can't Sign In", message: error!.localizedDescription, preferredStyle: .alert)
+                let continueAction = UIAlertAction(title: "Try Again", style: .default)
+                alert.addAction(continueAction)
+                self.present(alert, animated: true, completion: nil)
+                
                 return
             }
         
+            self.removeSpinner()
             let homeController = HomeController()
             let navVC = UINavigationController(rootViewController: homeController)
             navVC.modalPresentationStyle = .fullScreen
@@ -111,7 +118,6 @@ class SignInController: UIViewController, UITextFieldDelegate {
     
     @objc func createAccount() {
         let registrationVC = RegistrationController()
-        
         title = ""
         registrationVC.title = "Create Account"
         self.navigationController?.pushViewController(registrationVC, animated: true)
@@ -158,7 +164,7 @@ class SignInController: UIViewController, UITextFieldDelegate {
         subtitleLabel.centerXAnchor.constraint(equalTo: mainTitle.centerXAnchor).isActive = true
         subtitleLabel.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: view.frame.height / 60).isActive = true
         
-        emailLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: view.frame.height / 37.5).isActive = true
+        emailLabel.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: view.frame.height / 20).isActive = true
         
         emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         emailTextField.widthAnchor.constraint(equalToConstant: view.frame.width/1.2).isActive = true
@@ -180,7 +186,7 @@ class SignInController: UIViewController, UITextFieldDelegate {
         
         signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         signInButton.widthAnchor.constraint(equalTo: emailTextField.widthAnchor).isActive = true
-        signInButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: view.frame.height/12.5).isActive = true
+        signInButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: view.frame.height/10).isActive = true
         signInButton.heightAnchor.constraint(equalToConstant: view.frame.height/15).isActive = true
         
         createAccountButton.centerXAnchor.constraint(equalTo: signInButton.centerXAnchor).isActive = true
