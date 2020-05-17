@@ -153,12 +153,12 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
             sendInviteSignalButton.isHidden = false
             sendInviteSignalLabel.isHidden = false
             
-            toUserID = FriendSystem.system.friendsList[indexPath.row].uid
-            
-            
             let id = FriendSystem.system.friendsList[indexPath.row].uid
             let username = FriendSystem.system.friendsList[indexPath.row].username
+            
             toUserUsername = username
+            toUserID = FriendSystem.system.friendsList[indexPath.row].uid
+
             friendsTableView.reloadData()
             
             sendInviteSignalLabel.text = "Tap to invite \(username)"
@@ -244,8 +244,8 @@ extension SelectController {
         sentVC.modalPresentationStyle = .fullScreen
         sentVC.mainLabel.text = "Invite signal has been sent!"
         
-        FriendSystem.system.getUser(toUserID) { (user) in
-            FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["toUID":user.uid, "toUsername": user.username])
+        FriendSystem.system.getCurrentUser { (user) in
+            FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["toUID":toUserID, "from": user.username])
             
             if let token = user.notificationToken {
                 print("Sending to token: \(token)")

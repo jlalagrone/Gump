@@ -29,6 +29,8 @@ extension SignalController {
     
     @objc func chooseFriends(_ sender:UIButton) {
         
+        selectedUsersID = [String]()
+        
         let selectController = SelectController()
         
         if consoleField.text == "" || gameField.text == "" {
@@ -54,15 +56,13 @@ extension SignalController {
     
     @objc func chooseFriendToInvite(_ sender:UIButton) {
         
+        toUserUsername = String()
+        
         let selectController = SelectController()
         
         guard gameField.text != "" else {
+            self.showAlert(message: "Please enter a game.")
             
-            let alert = UIAlertController(title: "Please enter a game.", message: "", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Continue", style: .default)
-            alert.addAction(action)
-            
-            present(alert, animated: true)
             return
         }
         

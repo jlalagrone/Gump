@@ -31,6 +31,7 @@ class FriendSystem {
         
     }
     
+    
     var currentUserFriendsRef:DatabaseReference {
         return currentUserRef.child("friends")
     }
@@ -43,7 +44,7 @@ class FriendSystem {
         let id = Auth.auth().currentUser!.uid
         return id
     }
-    
+        
     func getCurrentUser(_ completion: @escaping (GumpUser) -> Void) {
         currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
             let id = snapshot.key

@@ -10,7 +10,7 @@ import UIKit
 
 class UserCreatedController: UIViewController {
 
-    var mainLabel = DefaultLabel(title: "Congratulations, your account has been created!")
+    var mainLabel = DefaultLabel(textColor: .white)
     
     var mainImage:UIImageView = {
         var imageView = UIImageView()

@@ -130,7 +130,7 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         let token = Messaging.messaging().fcmToken
         print("FCM token: \(token!)")
         

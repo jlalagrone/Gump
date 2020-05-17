@@ -186,8 +186,10 @@ extension RegistrationController {
                         return
                     }
       
+                    // What happens if username is avialable for use
                     else {
-                        // What happens if username is avialable for use
+                        self.view.frame.origin.y = 0
+                        
                         let alert = UIAlertController(title: "Almost Done!", message: "Your name is how other users will determine who you are. Once you've sumbitted your name you can't change it so make sure it's correct!", preferredStyle: .alert)
                         
                         // Code that executes if user confirms their name and username
@@ -196,10 +198,7 @@ extension RegistrationController {
                             print("Hey \(self.firstNameField.text!) \(self.lastNameField.text!), your username is \(self.usernameField.text!)")
                             
                             usersRef.child(FriendSystem.system.currentUserID).updateChildValues(["username": self.usernameField.text!, "firstName": self.firstNameField.text!, "lastName": self.lastNameField.text!])
-                            
-                            self.view.frame.origin.y = 0
-                            
-
+                                                    
                             DispatchQueue.main.async {
                                 sender.registrationButtonAnimation(text: "Enter your primary gaming console and game tag", label: self.mainLabel, viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.tagField]) {
 
@@ -235,10 +234,7 @@ extension RegistrationController {
  
 
         case 3:
-            
-           
-            print("Y axis: \(self.view.frame.origin.y)")
-            
+                       
             finishedVC.modalPresentationStyle = .fullScreen
             
             guard consoleField.text! != "" || tagField.text! != "" else {
@@ -250,6 +246,7 @@ extension RegistrationController {
             
             // Code executed once registration process has been complete
             FriendSystem.system.currentUserRef.updateChildValues(["gametags": [consoleField.text!: tagField.text!], "promo": "no promo"])
+            finishedVC.mainLabel.text = "Congratulations, your account has been created!"
             present(finishedVC, animated: true) {
                 print("Registration Complete!")
             }
