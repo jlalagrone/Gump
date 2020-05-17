@@ -40,33 +40,33 @@ class RegistrationButton:UIButton {
         UIView.animate(withDuration: 0.05, animations: {
             
                 label.alpha = 0
-            for view in viewsToHide {
-                view.alpha = 0
-                view.removeFromSuperview()
+                for view in viewsToHide {
+                    view.alpha = 0
+                    view.removeFromSuperview()
             
-            }
+                }
             
-        }) { (bool) in
+            }) { (bool) in
             
-            UIView.animate(withDuration: 1, animations: {
+                UIView.animate(withDuration: 1, animations: {
                 
-                label.alpha = 1
-                label.text = text
+                    label.alpha = 1
+                    label.text = text
                 
-                }) { (bool) in
-                for view in viewsToShow {
-                        view.isHidden = false
-                        view.alpha = 0
+                    }) { (bool) in
+                        for view in viewsToShow {
+                            view.isHidden = false
+                            view.alpha = 0
                     
-                    UIView.animate(withDuration: 1.25) {
-                        view.alpha = 1
+                            UIView.animate(withDuration: 1.15) {
+                                view.alpha = 1
+                            }
+                        }
                     }
                 }
+        
             }
         }
-        
-    }
-}
 
 
 extension RegistrationController {
@@ -86,13 +86,7 @@ extension RegistrationController {
         
         switch sender.tag {
         case 1:
-            
-//            self.usernameField.isHidden = true
-//            self.firstNameField.isHidden = true
-//            self.lastNameField.isHidden = true
-//
-//            self.consoleField.isHidden = true
-//            self.tagField.isHidden = true
+
             
             // Code if password fields aren't identical
             guard passwordField.text! == confirmPasswordField.text else {
@@ -133,11 +127,6 @@ extension RegistrationController {
                             // Code thats ran if user is created and succesfully signed in
                             self.removeSpinner()
                             print(Auth.auth().currentUser!.uid)
-                            
-                            // Animates view on button tap
-//                            self.usernameField.isHidden = false
-//                            self.firstNameField.isHidden = false
-//                            self.lastNameField.isHidden = false
                             
                             DispatchQueue.main.async {
                                 
@@ -208,17 +197,12 @@ extension RegistrationController {
                             
                             usersRef.child(FriendSystem.system.currentUserID).updateChildValues(["username": self.usernameField.text!, "firstName": self.firstNameField.text!, "lastName": self.lastNameField.text!])
                             
-                            // Animates view on button tap
-//                            self.consoleField.isHidden = false
-//                            self.tagField.isHidden = false
                             self.view.frame.origin.y = 0
                             
 
                             DispatchQueue.main.async {
                                 sender.registrationButtonAnimation(text: "Enter your primary gaming console and game tag", label: self.mainLabel, viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.tagField]) {
-//                                self.consoleField.isHidden = false
-//                                self.tagField.isHidden = false
-                                
+
                                 }
                             }
                             
@@ -236,7 +220,6 @@ extension RegistrationController {
                     }
                 
                 // Conditional statement "else" clause that executes if the desired username isn't available for use
-
                 else {
         
                     print("That username isn't avaiable, please chooser another!")
@@ -252,18 +235,6 @@ extension RegistrationController {
  
 
         case 3:
-            
-//            self.usernameField.isHidden = true
-//            self.firstNameField.isHidden = true
-//            self.lastNameField.isHidden = true
-            
-            DispatchQueue.main.async {
-//                self.consoleField.isHidden = false
-//                self.tagField.isHidden = false
-            }
-            
-//            self.consoleField.isHidden = false
-//            self.tagField.isHidden = false
             
            
             print("Y axis: \(self.view.frame.origin.y)")
