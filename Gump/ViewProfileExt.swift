@@ -30,6 +30,7 @@ extension ViewProfileController {
                 }
             }
             
+            
             FriendSystem.system.sendRequestToUser(self.profileID)
             let alert = UIAlertController(title: "Friend request sent!", message: nil, preferredStyle: .alert)
             let continueAction = UIAlertAction(title: "Continue", style: .default)
@@ -90,7 +91,7 @@ extension ViewProfileController {
                 return
             }
             
-            alert.title = "The user currently hasn't entered any games."
+            alert.title = "The user's game library is currently empty."
             self.present(alert, animated: true, completion: nil)
 
             
