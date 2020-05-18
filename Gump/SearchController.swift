@@ -144,6 +144,13 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             let viewVC = ViewProfileController()
             viewVC.profileID = id
+            
+            if viewVC.profileID == FriendSystem.system.currentUserID {
+                viewVC.sendFriendRequestButton.isHidden = true
+                
+                
+            }
+            
             self.navigationController?.pushViewController(viewVC, animated: true)
             
 

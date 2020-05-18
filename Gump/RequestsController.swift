@@ -96,7 +96,7 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
         
         FriendSystem.system.currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
             let value = snapshot.value as! [String:AnyObject]
-            let email = value["email"] as! String
+//            let email = value["email"] as! String
             if let requests = value["requests"] as? [String:Bool] {
                 
                 // Code executed if user has pending friend requests

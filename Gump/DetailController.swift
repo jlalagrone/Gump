@@ -154,13 +154,8 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 
             }
         }
+
         
-        else if title == "Account" {
-            
-        }
-        
-        
-    
         view.backgroundColor = lightPinkColor
         layoutView()
         layoutHelpButton()

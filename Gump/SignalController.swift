@@ -8,7 +8,46 @@
 
 import UIKit
 
-class SignalController: UIViewController, UITextViewDelegate {
+var gamePickerOptions = [String]()
+var gamePicker = UIPickerView()
+var chosenGame = String()
+
+class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+        
+       func numberOfComponents(in pickerView: UIPickerView) -> Int {
+            return 1
+       }
+       
+       func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+            return   FriendSystem.system.gameList.count
+           
+       }
+       
+       func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+           
+        if !FriendSystem.system.gameList.isEmpty {
+        
+            chosenGame = FriendSystem.system.gameList[row]
+            gameField.text = chosenGame
+            
+            }
+        
+        else {
+            print("Nothing to show here.")
+        }
+        
+
+       }
+    
+       func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+           
+           var attributedString:NSAttributedString!
+           
+        attributedString = NSAttributedString(string: FriendSystem.system.gameList[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+           return attributedString
+           
+       }
+    
     
     var mainLabel:UILabel = {
         var label = UILabel()
@@ -178,6 +217,10 @@ class SignalController: UIViewController, UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        gamePickerOptions = FriendSystem.system.gameList
+        print("Current games are \(gamePickerOptions)")
+        
+        
     }
 
     override func viewDidLoad() {
@@ -193,6 +236,10 @@ class SignalController: UIViewController, UITextViewDelegate {
         selectFriendsButton.addTarget(self, action: #selector(chooseFriends(_:)), for: .touchDown)
         
         messageField.delegate = self
+        
+        gamePicker.delegate = self
+        gameField.inputView = gamePicker
+        gamePicker.backgroundColor = .white
     }
 
 

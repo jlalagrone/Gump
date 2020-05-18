@@ -145,7 +145,6 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
             sendInviteSignalButton.isHidden = false
             sendInviteSignalLabel.isHidden = false
             
-            let id = FriendSystem.system.friendsList[indexPath.row].uid
             let username = FriendSystem.system.friendsList[indexPath.row].username
             
             toUserUsername = username
@@ -162,7 +161,6 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         else {            
     
-            let username = FriendSystem.system.friendsList[indexPath.row].fullName
             let id = FriendSystem.system.friendsList[indexPath.row].uid
             
             if !selectedUsersID.contains(id) {

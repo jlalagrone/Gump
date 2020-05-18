@@ -51,7 +51,7 @@ extension ViewProfileController {
         
         FriendSystem.system.getUser(profileID) { (user) in
             let gametagDict = user.gametags
-            let gametags = Array(gametagDict.values)
+//            let gametags = Array(gametagDict.values)
             
             print("Gametags -> \(gametagDict)")
             

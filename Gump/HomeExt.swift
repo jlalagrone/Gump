@@ -61,19 +61,27 @@ extension HomeController {
     
     @objc func signOutTapped(_ sender:UIButton) {
         
-        FriendSystem.system.logoutAccount()
-        
-        
-        let signInVC = SignInController()
-        let navVC = UINavigationController(rootViewController: signInVC)
-        
-        navVC.modalPresentationStyle = .fullScreen
-        navVC.navigationBar.isHidden = true
+        let signOutAlert = UIAlertController(title: "Are you sure you want to sign out?", message: "", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+            
+            FriendSystem.system.logoutAccount()
+            
+            let signInVC = SignInController()
+            let navVC = UINavigationController(rootViewController: signInVC)
+            
+            navVC.modalPresentationStyle = .fullScreen
+            navVC.navigationBar.isHidden = true
 
-        
-        present(navVC, animated: true) {
-                        
+            self.present(navVC, animated: true) {
+                            
+            }
         }
+        
+        let noAction = UIAlertAction(title: "No", style: .destructive, handler: nil)
+        
+        signOutAlert.addAction(yesAction)
+        signOutAlert.addAction(noAction)
+        present(signOutAlert, animated: true, completion: nil)
         
     }
     
