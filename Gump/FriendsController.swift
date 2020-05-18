@@ -32,7 +32,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         let id = FriendSystem.system.friendsList[indexPath.row].uid
         
         cell.selectionStyle = .none
-        cell.usernameLabel.text = FriendSystem.system.friendsList[indexPath.row].username
+        cell.usernameLabel.text = FriendSystem.system.friendsList[indexPath.row].fullName
         
         // Logic that determines if online label is shown or not
         FriendSystem.system.userRef.child(id).observeSingleEvent(of: .value) { (snapshot) in

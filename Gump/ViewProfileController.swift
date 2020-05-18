@@ -13,10 +13,10 @@ class ViewProfileController: UIViewController {
     var profileID:String!
     
     var usernameLabel = DefaultLabel(textColor: darkPinkColor)
-    var nameLabel = DefaultLabel(textColor: lightPinkColor)
+    var nameLabel = DefaultLabel(textColor: .black)
     var promoLabel = DefaultLabel(textColor: .white)
     var consoleTitle = DefaultLabel(textColor: darkPinkColor)
-    var consoleLabel = DefaultLabel(textColor: signalBlueColor)
+    var consoleLabel = DefaultLabel(textColor: .black)
     var viewTagsButton = HomeButton(image: UIImage(named: "listIcon")!)
     var viewTagsTitle:DefaultLabel = {
         var label = DefaultLabel(textColor: darkPinkColor)
@@ -85,8 +85,8 @@ class ViewProfileController: UIViewController {
     func getSearchedUser() {
         
         usernameLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height / 27.5)
-        nameLabel.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 34.5)
-        consoleLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height / 28)
+        nameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 34.5)
+        consoleLabel.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height / 28)
         sendFriendRequestButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
         viewTagsTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 42.5)
         viewGamesTitle.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 42.5)
@@ -94,7 +94,7 @@ class ViewProfileController: UIViewController {
         consoleTitle.text = "Primary Console"
         consoleTitle.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 34.5)
         
-        promoLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 40)
+        promoLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 43.5)
         
         FriendSystem.system.getUser(profileID) { (user) in
             self.usernameLabel.text = user.username
@@ -124,15 +124,16 @@ class ViewProfileController: UIViewController {
         sendFriendRequestButton.topAnchor.constraint(equalTo: consoleLabel.bottomAnchor, constant: view.frame.height / 9.5).isActive = true
         sendFriendRequestButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sendFriendRequestButton.widthAnchor.constraint(equalToConstant: view.frame.width / 1.15).isActive = true
+        sendFriendRequestButton.heightAnchor.constraint(equalToConstant: view.frame.height / 14).isActive = true
         
-        sendFriendRequestButton.layer.shadowRadius = 1.5
-        sendFriendRequestButton.layer.shadowOpacity = 1.0
-        sendFriendRequestButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
-        sendFriendRequestButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
-        sendFriendRequestButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
-        sendFriendRequestButton.titleLabel?.layer.shadowOpacity = 1.0
-        sendFriendRequestButton.titleLabel?.layer.shadowRadius = 0.5
-        sendFriendRequestButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
+//        sendFriendRequestButton.layer.shadowRadius = 1.5
+//        sendFriendRequestButton.layer.shadowOpacity = 1.0
+//        sendFriendRequestButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
+//        sendFriendRequestButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
+//        sendFriendRequestButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
+//        sendFriendRequestButton.titleLabel?.layer.shadowOpacity = 1.0
+//        sendFriendRequestButton.titleLabel?.layer.shadowRadius = 0.5
+//        sendFriendRequestButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
         sendFriendRequestButton.layer.cornerRadius = 15
     
     }

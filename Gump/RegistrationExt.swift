@@ -130,7 +130,7 @@ extension RegistrationController {
                             
                             DispatchQueue.main.async {
                                 
-                                sender.registrationButtonAnimation(text:"Please enter your name and desired username",label:self.mainLabel,viewsToHide: [self.emailField,self.passwordField,self.confirmPasswordField], viewsToShow: [self.usernameField,self.firstNameField,self.lastNameField])   {
+                                sender.registrationButtonAnimation(text:"Please enter your name and desired username",label:self.mainLabel,viewsToHide: [self.emailField,self.passwordField,self.confirmPasswordField,self.hideTextButton], viewsToShow: [self.usernameField,self.firstNameField,self.lastNameField])   {
                                     
                                 }
                                 print("Done loading! \nUser succesfully created and signed in!")
@@ -255,6 +255,22 @@ extension RegistrationController {
         default:
             print("Ok")
         }
+        
+    }
+    
+    @objc func hideAndShowText(_ sender:UIButton) {
+        
+        DispatchQueue.main.async {
+            
+            if self.passwordField.isSecureTextEntry == false {
+                self.passwordField.isSecureTextEntry = true
+                self.confirmPasswordField.isSecureTextEntry = true
+            } else {
+                self.passwordField.isSecureTextEntry = false
+                self.confirmPasswordField.isSecureTextEntry = false
+            }
+        }
+        
         
     }
     

@@ -51,8 +51,18 @@ class SignInController: UIViewController, UITextFieldDelegate {
     
     var passwordTextField:DefaultTextField = {
         var textField = DefaultTextField(color: UIColor(red: 61.0/255.0, green: 157.0/255.0, blue: 212.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "", placeholderLength: 0)
+        textField.isSecureTextEntry = true
         
         return textField
+    }()
+    
+    var hideTextButton:UIButton = {
+        var button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "eyeIcon"), for: .normal)
+        button.contentMode = .scaleAspectFill
+        
+        return button
     }()
     
     var forgotPasswordButton:DefaultButton = {
@@ -85,6 +95,46 @@ class SignInController: UIViewController, UITextFieldDelegate {
         return button
     }()
     
+    @objc func passwordResetAction(_ sender:UIButton) {
+        
+        let passwordAlert = UIAlertController(title: "Password Reset Request", message: "Please enter the email associated with the forgoten password.", preferredStyle: .alert)
+        passwordAlert.addTextField()
+        let resetEmail = passwordAlert.textFields![0].text
+        let resetAction = UIAlertAction(title: "Reset Password", style: .default) { (action) in
+            
+            guard resetEmail != "" else {
+                print("No email entered")
+                
+                return
+            }
+            
+            Auth.auth().sendPasswordReset(withEmail: resetEmail!) { (error) in
+                if error == nil {
+                    print("Password Recovery Sent!")
+                    self.showAlert(message: "Password Recovery Sent!")
+                    
+                } else {
+                    self.showAlert(message:error!.localizedDescription)
+                }
+            }
+        }
+        passwordAlert.addAction(resetAction)
+        present(passwordAlert, animated: true, completion: nil)
+    }
+    
+    @objc func hideAndShowText(_ sender:UIButton) {
+        
+        DispatchQueue.main.async {
+            
+            if self.passwordTextField.isSecureTextEntry == false {
+                self.passwordTextField.isSecureTextEntry = true
+            } else {
+                self.passwordTextField.isSecureTextEntry = false
+            }
+        }
+        
+    }
+
     
     @objc func signIn(_ sender:UIButton) {
         
@@ -151,6 +201,7 @@ class SignInController: UIViewController, UITextFieldDelegate {
         view.addSubview(emailTextField)
         view.addSubview(passwordLabel)
         view.addSubview(passwordTextField)
+        view.addSubview(hideTextButton)
         view.addSubview(forgotPasswordButton)
         view.addSubview(signInButton)
         view.addSubview(createAccountButton)
@@ -181,6 +232,11 @@ class SignInController: UIViewController, UITextFieldDelegate {
         passwordTextField.centerXAnchor.constraint(equalTo: emailTextField.centerXAnchor).isActive = true
         passwordTextField.heightAnchor.constraint(equalTo: emailLabel.widthAnchor).isActive = true
         
+        hideTextButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 7.5).isActive = true
+        hideTextButton.widthAnchor.constraint(equalToConstant: view.frame.height / 28.5).isActive = true
+        hideTextButton.heightAnchor.constraint(equalToConstant: view.frame.height / 36).isActive = true
+        hideTextButton.rightAnchor.constraint(equalTo: passwordTextField.rightAnchor, constant: -7.5).isActive = true
+        
         forgotPasswordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         forgotPasswordButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 10).isActive = true
         
@@ -194,8 +250,7 @@ class SignInController: UIViewController, UITextFieldDelegate {
         createAccountButton.widthAnchor.constraint(equalTo: signInButton.widthAnchor).isActive = true
         createAccountButton.heightAnchor.constraint(equalTo: signInButton.heightAnchor).isActive = true
         
-//        aboutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        aboutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25).isActive = true
+
         
 
     }
@@ -227,6 +282,8 @@ class SignInController: UIViewController, UITextFieldDelegate {
         layoutView()
         layoutFonts()
     
+        forgotPasswordButton.addTarget(self, action: #selector(passwordResetAction(_:)), for: .touchDown)
+        hideTextButton.addTarget(self, action: #selector(hideAndShowText(_:)), for: .touchDown)
     }
     
     // Edits passwordTextField's length to 16 characters

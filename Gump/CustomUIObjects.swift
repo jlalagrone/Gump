@@ -119,6 +119,7 @@ class DefaultTextField:UITextField {
     init(color:UIColor,borderColor:CGColor,placeholderText:String,placeholderLength:Int) {
         super.init(frame: .zero)
  
+        autocorrectionType = .no
         textColor = .white
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = color

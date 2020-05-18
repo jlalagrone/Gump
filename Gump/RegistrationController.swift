@@ -36,6 +36,15 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
     var passwordField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "Password",placeholderLength: 8)
     var confirmPasswordField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "Re-enter Password", placeholderLength:17)
     
+    var hideTextButton:UIButton = {
+        var button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "eyeIcon"), for: .normal)
+        button.contentMode = .scaleAspectFill
+        
+        return button
+    }()
+    
     var usernameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "Username",placeholderLength:8)
     var firstNameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "First",placeholderLength: 5)
     var lastNameField = DefaultTextField(color: UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1), borderColor: UIColor.clear.cgColor,placeholderText: "Last",placeholderLength: 4)
@@ -96,6 +105,7 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         view.addSubview(mainLabel)
         view.addSubview(emailField)
         view.addSubview(passwordField)
+        view.addSubview(hideTextButton)
         view.addSubview(confirmPasswordField)
         view.addSubview(usernameField)
         view.addSubview(firstNameField)
@@ -113,10 +123,15 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         emailField.heightAnchor.constraint(equalToConstant: view.frame.height/14.5).isActive = true
         emailField.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height/16.5).isActive = true
   
-        passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        passwordField.widthAnchor.constraint(equalTo: emailField.widthAnchor).isActive = true
+        passwordField.leftAnchor.constraint(equalTo: emailField.leftAnchor).isActive = true
+        passwordField.widthAnchor.constraint(equalTo: emailField.widthAnchor, multiplier: 0.8).isActive = true
         passwordField.heightAnchor.constraint(equalTo: emailField.heightAnchor).isActive = true
         passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: view.frame.height/20).isActive = true
+        
+        hideTextButton.leftAnchor.constraint(equalTo: passwordField.rightAnchor, constant: view.frame.width / 25).isActive = true
+        hideTextButton.centerYAnchor.constraint(equalTo: passwordField.centerYAnchor).isActive = true
+        hideTextButton.widthAnchor.constraint(equalToConstant: view.frame.width / 15).isActive = true
+        hideTextButton.heightAnchor.constraint(equalToConstant: view.frame.width / 17.5).isActive = true
         
         confirmPasswordField.centerXAnchor.constraint(equalTo: passwordField.centerXAnchor).isActive = true
         confirmPasswordField.widthAnchor.constraint(equalTo: passwordField.widthAnchor).isActive = true
@@ -214,19 +229,17 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         layoutView()
    
-        
         consolePicker.delegate = self
         consoleField.inputView = consolePicker
         consolePicker.backgroundColor = .white
         
+        hideTextButton.addTarget(self, action: #selector(hideAndShowText(_:)), for: .touchDown)
         
         // Code that adds observers to the displaying/hidding of the keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(RegistrationController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        
-//        passwordField.isSecureTextEntry = true
-//        confirmPasswordField.isSecureTextEntry = true
+
     }
 
 }

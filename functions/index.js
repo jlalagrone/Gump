@@ -40,7 +40,7 @@ exports.sendInviteNotification = functions.database.ref('/Users/{userID}/signals
 
 		var payload = {
 				notification: {
-					title: 'Invite from' + '' + currentUsername,
+					title: 'Invite from' + ' ' + currentUsername,
 					body: notificationMessage,
 					}
 			}

@@ -12,7 +12,6 @@ import Firebase
 var toUserID = String()
 var toUserUsername = String()
 var selectedUsersID = [String]()
-var selectedUsersUsernames = [String]()
 
 class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -71,14 +70,14 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         sendInviteSignalBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         sendInviteSignalBackgroundView.isHidden = true
         
-        sendInviteSignalLabel.leftAnchor.constraint(equalTo: sendInviteSignalBackgroundView.leftAnchor, constant: 10).isActive = true
-        sendInviteSignalLabel.centerYAnchor.constraint(equalTo: sendInviteSignalBackgroundView.centerYAnchor, constant: -2).isActive = true
+        sendInviteSignalLabel.leftAnchor.constraint(equalTo: sendInviteSignalBackgroundView.leftAnchor, constant: 7.5).isActive = true
+        sendInviteSignalLabel.centerYAnchor.constraint(equalTo: sendInviteSignalBackgroundView.centerYAnchor, constant: -2.5).isActive = true
         sendInviteSignalLabel.isHidden = true
         
         sendInviteSignalButton.rightAnchor.constraint(equalTo: sendInviteSignalBackgroundView.rightAnchor, constant: -15).isActive = true
         sendInviteSignalButton.centerYAnchor.constraint(equalTo: sendInviteSignalBackgroundView.centerYAnchor).isActive = true
-        sendInviteSignalButton.heightAnchor.constraint(equalTo: sendInviteSignalBackgroundView.heightAnchor, multiplier: 0.6).isActive = true
-        sendInviteSignalButton.widthAnchor.constraint(equalTo: sendInviteSignalBackgroundView.heightAnchor, multiplier: 0.6).isActive = true
+        sendInviteSignalButton.heightAnchor.constraint(equalTo: sendInviteSignalBackgroundView.heightAnchor, multiplier: 0.8).isActive = true
+        sendInviteSignalButton.widthAnchor.constraint(equalTo: sendInviteSignalBackgroundView.heightAnchor, multiplier: 0.8).isActive = true
         sendInviteSignalButton.isHidden = true
         
     }
@@ -94,19 +93,12 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         sendOnlineSignalButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: view.frame.height / -10).isActive = true
         sendOnlineSignalButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sendOnlineSignalButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
-        sendOnlineSignalButton.heightAnchor.constraint(equalToConstant: view.frame.height / 13).isActive = true
+        sendOnlineSignalButton.heightAnchor.constraint(equalToConstant: view.frame.height / 14.5).isActive = true
         
         sendOnlineSignalButton.layer.cornerRadius = 15
-        sendOnlineSignalButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
+        sendOnlineSignalButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 18)
         sendOnlineSignalButton.setTitleColor(.white, for: .normal)
-//        sendOnlineSignalButton.layer.shadowRadius = 1.5
-//        sendOnlineSignalButton.layer.shadowOpacity = 1.0
-//        sendOnlineSignalButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
-//        sendOnlineSignalButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
-//        sendOnlineSignalButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
-//        sendOnlineSignalButton.titleLabel?.layer.shadowOpacity = 1.0
-//        sendOnlineSignalButton.titleLabel?.layer.shadowRadius = 0.5
-//        sendOnlineSignalButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
+
         
     }
     
@@ -162,7 +154,7 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
             friendsTableView.reloadData()
             
             sendInviteSignalLabel.text = "Tap to invite \(username)"
-            sendInviteSignalLabel.font = UIFont(name: "AvenirNext-Heavy", size: 14.5)
+            sendInviteSignalLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 35)
             
             print("Value: \(toUserUsername)")
 
@@ -170,7 +162,7 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         else {            
     
-            let username = FriendSystem.system.friendsList[indexPath.row].username
+            let username = FriendSystem.system.friendsList[indexPath.row].fullName
             let id = FriendSystem.system.friendsList[indexPath.row].uid
             
             if !selectedUsersID.contains(id) {
@@ -223,13 +215,20 @@ extension SelectController {
     
     @objc func sendInvites(_ sender:UIButton) {
         
+        guard !selectedUsersID.isEmpty else {
+            
+            self.showAlert(message: "Please select at least one friend to send your signal too.")
+            
+            return
+        }
+        
         let sentVC = UserCreatedController()
         sentVC.modalPresentationStyle = .fullScreen
         sentVC.mainLabel.text = "Online signal(s) have been sent!"
         print("Selected IDs: \(selectedUsersID)")
         
         FriendSystem.system.getCurrentUser { (user) in
-            FriendSystem.system.currentUserRef.child("signals").child("onlineSignal").updateChildValues(["toUIDs":selectedUsersID])
+            FriendSystem.system.currentUserRef.child("signals").child("onlineSignal").updateChildValues(["toUIDs":selectedUsersID, "from": user.username])
         }
         
         self.present(sentVC, animated: true, completion: nil)

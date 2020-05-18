@@ -54,6 +54,8 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
   
+        searchBar.endEditing(true)
+        
         FriendSystem.system.userList = []
 
         let queryRef = FriendSystem.system.userRef.queryOrdered(byChild: "username").queryStarting(atValue: searchBar.text)

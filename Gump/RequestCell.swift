@@ -73,14 +73,13 @@ class RequestCell:UITableViewCell {
         
         usernameLabel.numberOfLines = 1
         usernameLabel.textAlignment = .left
-        usernameLabel.backgroundColor = .green
+        usernameLabel.textColor = signalBlueColor
         usernameLabel.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 2.75)
         usernameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 22.5).isActive = true
         usernameLabel.bottomAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         fullNameLabel.numberOfLines = 1
         fullNameLabel.textAlignment = .left
-        fullNameLabel.backgroundColor = .yellow
         fullNameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: frame.height / 3)
         fullNameLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor).isActive = true
         fullNameLabel.leftAnchor.constraint(equalTo: usernameLabel.leftAnchor).isActive = true

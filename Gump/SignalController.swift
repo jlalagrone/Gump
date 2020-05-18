@@ -72,17 +72,18 @@ class SignalController: UIViewController, UITextViewDelegate {
         consoleLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 35)
         gameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 35)
         messageLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 35)
-        messageField.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
-
         
+        messageField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 47.5)
+        consoleField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 47.5)
         consoleField.textColor = .black
         gameField.textColor = .black
+        gameField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 47.5)
         messageField.textColor = .black
         
-        selectFriendsButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
+        selectFriendsButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 35)
         selectFriendsButton.setTitleColor(.white, for: .normal)
 
-        selectFriendButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: 20)
+        selectFriendButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 35)
         selectFriendButton.setTitleColor(.white, for: .normal)
 
     }
@@ -97,7 +98,7 @@ class SignalController: UIViewController, UITextViewDelegate {
         view.addSubview(gameField)
         view.addSubview(selectFriendsButton)
         
-        mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 17.5).isActive = true
+        mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 12.5).isActive = true
         mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         contentView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -140,7 +141,7 @@ class SignalController: UIViewController, UITextViewDelegate {
         view.addSubview(messageField)
         view.addSubview(selectFriendButton)
         
-        mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 17.5).isActive = true
+        mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 12.5).isActive = true
         mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         contentView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -150,7 +151,7 @@ class SignalController: UIViewController, UITextViewDelegate {
         gameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         gameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
-        gameField.widthAnchor.constraint(equalToConstant: view.frame.height / 18.5).isActive = true
+        gameField.heightAnchor.constraint(equalToConstant: view.frame.height / 18.5).isActive = true
         gameField.topAnchor.constraint(equalTo: gameLabel.bottomAnchor, constant: 5).isActive = true
         gameField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         gameField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
@@ -162,7 +163,7 @@ class SignalController: UIViewController, UITextViewDelegate {
         messageField.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 5).isActive = true
         messageField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         messageField.widthAnchor.constraint(equalTo: gameField.widthAnchor).isActive = true
-        messageField.heightAnchor.constraint(equalToConstant: view.frame.height / 6).isActive = true
+        messageField.heightAnchor.constraint(equalToConstant: view.frame.height / 7.5).isActive = true
         messageField.textAlignment = .left
         
         contentView.bottomAnchor.constraint(equalTo: messageField.bottomAnchor, constant: view.frame.height / 30).isActive = true
