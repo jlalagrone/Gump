@@ -21,9 +21,34 @@ var notificationMessage = String()
 
 exports.sendOnlineNotifications = functions.database.ref('/Users/{userID}/signals/onlineSignal/deviceTokens').onCreate((snapshot, context) => {
 	let deviceTokens = snapshot.val()
-	console.log('Sending to these devices ' + deviceTokens)
+
+	var currentUserRef = usersRef.child(context.params.userID)
+	currentUserRef.on('value', function(snapshot) {
+
+		currentUsername = snapshot.child('username').val()
+		let currentGame = snapshot.child('/signals/onlineSignal/game').val()
+		let currentConsole = snapshot.child('/signals/onlineSignal/console').val()
+
+		notificationMessage = currentUsername + "is about to get online and play " + currentGame + "for " + currentConsole
+
+		var payload = {
+			notification: {
+				title: "Online Singal",
+				body: notificationMessage,
+			}
+		}
+
+		admin.messaging().sendToDevice(deviceTokens, payload)
+			.then((response) => {
+			console.log('Successfully sent notification:', response)
+			})
+			.catch((error) => {
+				console.log('Error sending message:', error)
+			})
 
 
+
+	})
 
 
 
@@ -41,7 +66,7 @@ exports.sendInviteNotification = functions.database.ref('/Users/{userID}/signals
 
 		var payload = {
 				notification: {
-					title: 'Invite from' + ' ' + currentUsername,
+					title: 'Invite Signal from' + ' ' + currentUsername + "!",
 					body: notificationMessage,
 					}
 			}
