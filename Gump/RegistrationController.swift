@@ -130,8 +130,8 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
         
         hideTextButton.leftAnchor.constraint(equalTo: passwordField.rightAnchor, constant: view.frame.width / 25).isActive = true
         hideTextButton.centerYAnchor.constraint(equalTo: passwordField.centerYAnchor).isActive = true
-        hideTextButton.widthAnchor.constraint(equalToConstant: view.frame.width / 15).isActive = true
-        hideTextButton.heightAnchor.constraint(equalToConstant: view.frame.width / 17.5).isActive = true
+        hideTextButton.widthAnchor.constraint(equalToConstant: view.frame.height / 28.5).isActive = true
+        hideTextButton.heightAnchor.constraint(equalToConstant: view.frame.height / 36.5).isActive = true
         
         confirmPasswordField.centerXAnchor.constraint(equalTo: passwordField.centerXAnchor).isActive = true
         confirmPasswordField.widthAnchor.constraint(equalTo: passwordField.widthAnchor).isActive = true

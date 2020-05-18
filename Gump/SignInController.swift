@@ -147,7 +147,7 @@ class SignInController: UIViewController, UITextFieldDelegate {
                 let continueAction = UIAlertAction(title: "Try Again", style: .default)
                 alert.addAction(continueAction)
                 self.present(alert, animated: true, completion: nil)
-                
+                self.removeSpinner()
                 return
             }
         

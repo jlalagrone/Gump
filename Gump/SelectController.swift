@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 var toUserID = String()
+var toUserToken = String()
 var toUserUsername = String()
 var selectedUsersID = [String]()
 
@@ -148,7 +149,7 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let username = FriendSystem.system.friendsList[indexPath.row].username
             
             toUserUsername = username
-            toUserID = FriendSystem.system.friendsList[indexPath.row].uid
+            toUserToken = FriendSystem.system.friendsList[indexPath.row].notificationToken!
 
             friendsTableView.reloadData()
             
@@ -161,14 +162,14 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         else {            
     
-            let id = FriendSystem.system.friendsList[indexPath.row].uid
+            let token = FriendSystem.system.friendsList[indexPath.row].notificationToken
             
-            if !selectedUsersID.contains(id) {
-                selectedUsersID.append(id)
+            if !selectedUsersID.contains(token!) {
+                selectedUsersID.append(token!)
                 cell.chosenView.isHidden = false
             }
             else {
-                selectedUsersID = selectedUsersID.filter { $0 != id }
+                selectedUsersID = selectedUsersID.filter { $0 != token }
                 cell.chosenView.isHidden = true
             }
     
@@ -226,7 +227,7 @@ extension SelectController {
         print("Selected IDs: \(selectedUsersID)")
         
         FriendSystem.system.getCurrentUser { (user) in
-            FriendSystem.system.currentUserRef.child("signals").child("onlineSignal").updateChildValues(["toUIDs":selectedUsersID, "from": user.username])
+            FriendSystem.system.currentUserRef.child("signals").child("onlineSignal").updateChildValues(["deviceTokens":selectedUsersID, "from": user.username])
         }
         
         self.present(sentVC, animated: true, completion: nil)
@@ -236,13 +237,13 @@ extension SelectController {
     
     @objc func sendInvite(_ sender:UITapGestureRecognizer) {
         
-        print("Sent invite to: \(toUserID)")
+        print("Sent invite to: \(toUserToken)")
         let sentVC = UserCreatedController()
         sentVC.modalPresentationStyle = .fullScreen
         sentVC.mainLabel.text = "Invite signal has been sent!"
         
         FriendSystem.system.getCurrentUser { (user) in
-            FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["toUID":toUserID, "from": user.username])
+            FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["deviceToken":toUserToken, "from": user.username])
             
             if let token = user.notificationToken {
                 print("Sending to token: \(token)")

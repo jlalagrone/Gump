@@ -150,9 +150,7 @@ class FriendSystem {
                 let promo = child.childSnapshot(forPath: "promo").value as! String
                 let games = child.childSnapshot(forPath: "games").value as? [String:String]
                 let token = child.childSnapshot(forPath: "fcmToken").value as? String
-                
-//                self.gametags = gametags
-                
+                                
                 self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName,promo: promo,gametags: gametags, requests: requests ,games:games, notificationToken: token))
                 
                 print("Users Count --> \(self.userList.count)")

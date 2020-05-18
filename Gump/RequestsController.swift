@@ -90,6 +90,8 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
         
         layoutView()
         
+        requestTable.reloadData()
+        
         requestTable.delegate = self
         requestTable.dataSource = self
         requestTable.register(RequestCell.self, forCellReuseIdentifier: "cellID")

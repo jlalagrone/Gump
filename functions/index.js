@@ -19,8 +19,19 @@ var usersRef = db.ref('/Users')
 var currentUsername = String()
 var notificationMessage = String()
 
-exports.sendInviteNotification = functions.database.ref('/Users/{userID}/signals/inviteSignal/toUID').onCreate((snapshot, context) => {
-	let userID = snapshot.val()
+exports.sendOnlineNotifications = functions.database.ref('/Users/{userID}/signals/onlineSignal/deviceTokens').onCreate((snapshot, context) => {
+	let deviceTokens = snapshot.val()
+	console.log('Sending to these devices ' + deviceTokens)
+
+
+
+
+
+	return true
+})
+
+exports.sendInviteNotification = functions.database.ref('/Users/{userID}/signals/inviteSignal/deviceToken').onCreate((snapshot, context) => {
+	let deviceToken = snapshot.val()
 
 	var currentUserRef = usersRef.child(context.params.userID)
 	currentUserRef.on('value', function(snapshot) {
@@ -28,26 +39,15 @@ exports.sendInviteNotification = functions.database.ref('/Users/{userID}/signals
 		currentUsername = snapshot.child('username').val();
 		notificationMessage = snapshot.child('/signals/inviteSignal/message').val();
 
-		console.log('notification sent from:', currentUsername, 'notification sent to:', userID, 'message body:', notificationMessage)
-
-	})
-
-	var toUserRef = usersRef.child(userID)
-	toUserRef.on('value', function(snapshot) {
-
-		let fcmToken = snapshot.child('fcmToken').val();
-		console.log(fcmToken)
-
 		var payload = {
 				notification: {
 					title: 'Invite from' + ' ' + currentUsername,
 					body: notificationMessage,
 					}
 			}
-			
 
 
-		admin.messaging().sendToDevice(fcmToken, payload)
+		admin.messaging().sendToDevice(deviceToken, payload)
 			.then((response) => {
 			console.log('Successfully sent notification:', response)
 			})
@@ -55,7 +55,10 @@ exports.sendInviteNotification = functions.database.ref('/Users/{userID}/signals
 				console.log('Error sending message:', error)
 			})
 
+		console.log('notification sent from:', currentUsername, 'notification sent to:', deviceToken, 'message body:', notificationMessage)
+
 	})
+
 
 
 	return true
