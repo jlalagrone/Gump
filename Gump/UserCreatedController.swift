@@ -15,7 +15,7 @@ class UserCreatedController: UIViewController {
     var mainImage:UIImageView = {
         var imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "finishedCheckMark")
+        imageView.image = UIImage(named: "checkIcon")
         imageView.contentMode = .scaleAspectFit
         
         return imageView

@@ -35,6 +35,7 @@ class FriendCell:UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "AvenirNext-Heavy", size: 15)
         label.textColor = .green
+        label.isHidden = true
         
         return label
     }()

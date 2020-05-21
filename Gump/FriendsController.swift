@@ -39,10 +39,6 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             let userDict = snapshot.value as! [String:AnyObject]
             let username = userDict["username"] as! String
             
-            if username == "Thor" {
-                cell.onlineLabel.isHidden = true
-            }
-            
         }
         
         return cell

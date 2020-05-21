@@ -24,9 +24,7 @@ extension ProfileController {
         let detailController = DetailController()
 
         detailController.title = "Games"
-        detailController.promoTextView.isHidden = true
-        detailController.getGames()
-        
+        detailController.promoTextView.isHidden = true        
         title = ""
         
         self.navigationController?.pushViewController(detailController, animated: true)

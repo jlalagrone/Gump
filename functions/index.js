@@ -29,7 +29,7 @@ exports.sendOnlineNotifications = functions.database.ref('/Users/{userID}/signal
 		let currentGame = snapshot.child('/signals/onlineSignal/game').val()
 		let currentConsole = snapshot.child('/signals/onlineSignal/console').val()
 
-		notificationMessage = currentUsername + "is about to get online and play " + currentGame + "for " + currentConsole
+		notificationMessage = currentUsername + " is about to get online and play " + currentGame + " for " + currentConsole
 
 		var payload = {
 			notification: {

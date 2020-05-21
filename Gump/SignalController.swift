@@ -70,7 +70,7 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
     var gameLabel = DefaultLabel(title: "Game")
     var messageLabel = DefaultLabel(title: "Message")
     
-    var consoleField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Select Console", placeholderLength: 14)
+    var consoleField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Example: 'Xbox One' or 'PC'", placeholderLength: 27)
     var gameField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Select Game", placeholderLength: 11)
     
     
@@ -146,6 +146,7 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
         
         consoleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         consoleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        consoleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
         
         consoleField.topAnchor.constraint(equalTo: consoleLabel.bottomAnchor, constant: 5).isActive = true
         consoleField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
@@ -154,6 +155,7 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
         
         gameLabel.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height / 35).isActive = true
         gameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        gameLabel.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
         
         gameField.topAnchor.constraint(equalTo: gameLabel.bottomAnchor, constant: 5).isActive = true
         gameField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
@@ -189,6 +191,7 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
         
         gameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         gameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        gameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
         
         gameField.heightAnchor.constraint(equalToConstant: view.frame.height / 18.5).isActive = true
         gameField.topAnchor.constraint(equalTo: gameLabel.bottomAnchor, constant: 5).isActive = true
@@ -197,7 +200,7 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
         
         messageLabel.topAnchor.constraint(equalTo: gameField.bottomAnchor, constant: view.frame.height / 35).isActive = true
         messageLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        
+        messageLabel.widthAnchor.constraint(equalTo: gameField.widthAnchor).isActive = true
         
         messageField.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 5).isActive = true
         messageField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true

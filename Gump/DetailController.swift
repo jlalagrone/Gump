@@ -113,13 +113,6 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
     
-    // Get current user's game titles and stores them into an array of strings
-    func getGames() {
-        FriendSystem.system.getCurrentUser { (user) in
-            print("Got user \(user.username)")
-            self.detailTableView.reloadData()
-        }
-    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -133,8 +126,17 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         if title == "Games" {
         
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(DetailController.addGame(_:)))
+            FriendSystem.system.getCurrentUser { (user) in
+                print("Got user \(user.username)")
             
+                if let games = user.games {
+                    FriendSystem.system.gameList = Array(games.values)
+                }
+                
+            }
+            
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(DetailController.addGame(_:)))
             
         }
         

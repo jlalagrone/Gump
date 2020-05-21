@@ -101,6 +101,7 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
 //            let email = value["email"] as! String
             if let requests = value["requests"] as? [String:Bool] {
                 
+                
                 // Code executed if user has pending friend requests
                 self.requestTable.isHidden = false
                 self.mainLabel.isHidden = true
@@ -115,7 +116,6 @@ class RequestsController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
         }
-        
         
         FriendSystem.system.addRequestObserver {
             
