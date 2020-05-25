@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Foundation
+import Firebase
 
 class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
      
@@ -46,9 +48,35 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let id = FriendSystem.system.friendsList[indexPath.row].uid
+        print(id)
+        
+        if FriendSystem.system.friendsList[indexPath.row].uid != nil {
+            print("Fetched user: \(FriendSystem.system.friendsList[indexPath.row].uid)")
+        } else {
+            print("Cant get fetched ID")
+        }
         
         let viewProfileVC = ViewProfileController()
         viewProfileVC.profileID = id
+        
+        FriendSystem.system.getUser(id) { (user) in
+            viewProfileVC.usernameLabel.text = user.username
+            viewProfileVC.nameLabel.text = user.fullName
+            
+            let consoles = Array(user.gametags.keys)
+            viewProfileVC.consoleLabel.text = consoles[0]
+            
+            let promoText = user.promo
+            
+            if promoText == "no promo" {
+                viewProfileVC.promoLabel.text = "This user has yet to create their promo message."
+            } else {
+                print(promoText.count)
+                viewProfileVC.promoLabel.text = promoText
+            }
+            
+        }
+        
         
         self.navigationController?.pushViewController(viewProfileVC, animated: true)
         
@@ -72,14 +100,23 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         title = "Friends"
         
         
+        print("NUMBER OF FRIENDS: \(FriendSystem.system.friendsList.count)")
+        
+        
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Friends Count---> \(FriendSystem.system.userList.count)!")
+        FriendSystem.system.addFriendObserver {
+             print("Friends Count: \(FriendSystem.system.friendsList.count)!")
+             self.friendsTableView.reloadData()
+         }
+        
+        
         
         layoutView()
+        
         
         friendsTableView.delegate = self
         friendsTableView.dataSource = self
@@ -87,12 +124,13 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
    
         self.navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         
-        FriendSystem.system.addFriendObserver {
-            print("Friends Count: \(FriendSystem.system.friendsList.count)!")
-            self.friendsTableView.reloadData()
-        }
         
 
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        FriendSystem.system.removeFriendObserver()
+        print("View begone!")
     }
   
 

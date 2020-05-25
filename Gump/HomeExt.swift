@@ -108,7 +108,11 @@ extension HomeController {
         let profileController = ProfileController()
         self.navigationController?.pushViewController(profileController, animated: true)
         self.title = ""
+        
         profileController.title = "Edit Profile"
+        
+        profileController.mainLabel.text = username
+        print("USERNAME IS \(username)")
     }
     
     @objc func showSearchController(_ sender:UIButton) {

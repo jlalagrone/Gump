@@ -26,6 +26,18 @@ extension SignalController {
         return updatedText.count <= 100
     }
     
+    @objc func showEmptyGameLibraryAlert(_ textfield:UITextField) {
+        
+        if FriendSystem.system.gameList.isEmpty {
+            textfield.inputView?.isHidden = true
+            self.showAlert(message: "Your game library is empty! Please go to your profile and add a game.")
+        }
+        else {
+            textfield.inputView?.isHidden = false
+            print("Everything is good to go.")
+        }
+        
+    }
     
     @objc func chooseFriends(_ sender:UIButton) {
         

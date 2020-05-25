@@ -153,8 +153,8 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
 
             friendsTableView.reloadData()
             
-            sendInviteSignalLabel.text = "Tap to invite \(username)"
-            sendInviteSignalLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 35)
+            sendInviteSignalLabel.text = "Send to \(username)"
+            sendInviteSignalLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 44)
             
             print("Value: \(toUserUsername)")
 

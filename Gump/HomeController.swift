@@ -122,9 +122,15 @@ class HomeController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "signOutIcon"), style: .plain, target: self, action: #selector(signOutTapped(_:)))
         
-        FriendSystem.system.getCurrentUser { (user) in
-            print("Welcome \(user.username)!")
+        Auth.auth().addStateDidChangeListener { auth, user in
+          if let user = user {
+            print("Welcome \(user.email)")
+            
+          } else {
+            // No user is signed in.
+          }
         }
+
         
     }
     
@@ -132,9 +138,9 @@ class HomeController: UIViewController {
         super.viewDidLoad()
                 
         let token = Messaging.messaging().fcmToken
-        print("FCM token: \(token!)")
         
-        ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(token!)"])
+        
+        ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(token)"])
 
         self.navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(white:1, alpha: 1), NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: view.frame.height/32.5)!]

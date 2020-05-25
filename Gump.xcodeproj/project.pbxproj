@@ -203,7 +203,6 @@
 				0F031E1B2459111B001A5BB5 /* SearchCell.swift */,
 				0F031E192458FE12001A5BB5 /* SearchController.swift */,
 				0F031E2D246D27A6001A5BB5 /* ViewProfileExt.swift */,
-				0F031E2B246C6BF1001A5BB5 /* ViewProfileController.swift */,
 				0F08FE2F243B8F58001D6478 /* SignInController.swift */,
 				0F9AE35D2441730000BC577B /* RegistrationController.swift */,
 				0F9AE35F2442924000BC577B /* RegistrationExt.swift */,
@@ -225,6 +224,7 @@
 				0F031E23245E9E04001A5BB5 /* AccountExt.swift */,
 				0F031E0C244CE841001A5BB5 /* SelectController.swift */,
 				0F031E0E244CECB7001A5BB5 /* SelectCell.swift */,
+				0F031E2B246C6BF1001A5BB5 /* ViewProfileController.swift */,
 				0FAD01592448F2E800109D92 /* FriendsController.swift */,
 				0FAD015D244912B200109D92 /* FriendCell.swift */,
 				0F08FE31243B8F58001D6478 /* Main.storyboard */,
@@ -725,11 +725,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JordanLaGrone.Gump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -746,11 +746,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = JordanLaGrone.Gump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

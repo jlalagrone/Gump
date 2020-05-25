@@ -237,6 +237,7 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
         
         selectFriendButton.addTarget(self, action: #selector(chooseFriendToInvite(_:)), for: .touchDown)
         selectFriendsButton.addTarget(self, action: #selector(chooseFriends(_:)), for: .touchDown)
+        gameField.addTarget(self, action: #selector(showEmptyGameLibraryAlert(_:)), for: .touchDown)
         
         messageField.delegate = self
         

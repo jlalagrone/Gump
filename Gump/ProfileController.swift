@@ -9,28 +9,14 @@
 import UIKit
 import Firebase
 
+var username = String()
+var friends = [String]()
+
 class ProfileController: UIViewController {
     
     var detailDelegate:DetailControllerDelegate?
     
-    var username = String()
-
     var mainLabel = DefaultLabel(title: "")
-    func getUsername() {
-        
-        // Format profile view with user's information
-        FriendSystem.system.getCurrentUser { (user) in
-            self.username = user.username
-           
-            let attributedText = NSMutableAttributedString(string: self.username, attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue, NSAttributedString.Key.underlineColor : UIColor.white])
-            
-            self.mainLabel.attributedText = attributedText
-            
-            
-        }
-        
-    }
-    
     
     var viewGamesLabel = DefaultLabel(title: "Game Library")
     var viewRequestsLabel = DefaultLabel(title: "Friend\nRequests")
@@ -46,6 +32,8 @@ class ProfileController: UIViewController {
     
     func layoutProfileObjects(buttons: [UIButton],labels:[UILabel]) {
         
+        mainLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height / 28.5)
+
         for button in buttons {
             button.layer.cornerRadius = (view.frame.height / 9.5) * 0.5
         }
@@ -79,11 +67,9 @@ class ProfileController: UIViewController {
         view.addSubview(viewPromoButton)
         view.addSubview(accountInfoButton)
         
-        getUsername()
         
         mainLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.frame.width / 10).isActive = true
         mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 30).isActive = true
-        mainLabel.font = UIFont(name: "AvenirNext-BoldItalic", size: view.frame.height / 20)
         
         viewGamesLabel.leftAnchor.constraint(equalTo: mainLabel.leftAnchor, constant: view.frame.width / 17.5).isActive = true
         viewGamesLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height / 16.5).isActive = true
@@ -127,9 +113,10 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         layoutView()
         
-       
        
         viewGamesButton.addTarget(self, action: #selector(viewGamesButtonAction(_:)), for: .touchDown)
         viewPromoButton.addTarget(self, action: #selector(viewPromoButtonAction(_:)), for: .touchDown)
@@ -137,6 +124,9 @@ class ProfileController: UIViewController {
         viewRequestsButton.addTarget(self, action: #selector(viewFriendRequestsButtonAction(_:)), for: .touchDown)
     }
     
-
+    override func viewDidAppear(_ animated: Bool) {
+//        print("PROFILE OF \(mainLabel.text)")
+    }
+    
 
 }

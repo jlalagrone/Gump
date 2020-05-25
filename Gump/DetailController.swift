@@ -12,6 +12,32 @@ var gameCount = Int()
 
 class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // Code that executes when a user deletes a game from their game library
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+       
+        if editingStyle == .delete {
+            let deletedGame = FriendSystem.system.gameList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            FriendSystem.system.currentUserRef.child("games").observeSingleEvent(of: .value) { (snapshot) in
+                
+                var gamesValue = snapshot.value as! [String:String]
+                for (key,value) in gamesValue {
+                    if value == deletedGame {
+                        gamesValue.removeValue(forKey: key)
+                        
+                    }
+                    FriendSystem.system.currentUserRef.child("games").setValue(gamesValue)
+                }
+                print(gamesValue)
+            }
+            
+
+            
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -22,6 +48,7 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! DetailCell
         
         cell.titleLabel.text = FriendSystem.system.gameList[indexPath.row]
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -34,7 +61,8 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .white
-                
+        
+        
         return tableView
     }()
     
@@ -50,6 +78,7 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         var textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.backgroundColor = .white
+        textView.textColor = .black
         
         let customToolbar:() -> (UIToolbar) = {
             var toolbar = UIToolbar()
@@ -127,10 +156,15 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if title == "Games" {
         
             FriendSystem.system.getCurrentUser { (user) in
-                print("Got user \(user.username)")
+                print("Got user \(username)")
             
                 if let games = user.games {
                     FriendSystem.system.gameList = Array(games.values)
+                    self.detailTableView.reloadData()
+                }
+                else {
+                    FriendSystem.system.gameList = []
+                    self.detailTableView.reloadData()
                 }
                 
             }

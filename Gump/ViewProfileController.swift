@@ -17,29 +17,22 @@ class ViewProfileController: UIViewController {
     var promoLabel = DefaultLabel(textColor: .white)
     var consoleTitle = DefaultLabel(textColor: darkPinkColor)
     var consoleLabel = DefaultLabel(textColor: .black)
+    
     var viewTagsButton = HomeButton(image: UIImage(named: "listIcon")!)
     var viewTagsTitle:DefaultLabel = {
         var label = DefaultLabel(textColor: darkPinkColor)
         label.text = "Gametags"
         label.textAlignment = .center
-//        label.layer.shadowColor = UIColor(white: 0.75, alpha: 0.75).cgColor
-//        label.layer.shadowOpacity = 1.0
-//        label.layer.shadowRadius = 1.0
-//        label.layer.shadowOffset = CGSize(width: 1, height: 1)
         
         return label
     }()
-    
     
     var viewGamesButton = HomeButton(image: UIImage(named: "gameIcon")!)
     var viewGamesTitle:DefaultLabel = {
         var label = DefaultLabel(textColor: darkPinkColor)
         label.text = "Games"
         label.textAlignment = .center
-//        label.layer.shadowColor = UIColor(white: 0.75, alpha: 0.75).cgColor
-//        label.layer.shadowOpacity = 1.0
-//        label.layer.shadowRadius = 1.0
-//        label.layer.shadowOffset = CGSize(width: 1, height: 1)
+
         
         return label
     }()
@@ -95,24 +88,24 @@ class ViewProfileController: UIViewController {
         consoleTitle.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 34.5)
         
         promoLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 43.5)
-        
-        FriendSystem.system.getUser(profileID) { (user) in
-            self.usernameLabel.text = user.username
-            self.nameLabel.text = user.fullName
-            
-            let consoles = Array(user.gametags.keys)
-            self.consoleLabel.text = consoles[0]
-            
-            let promoText = user.promo
-            
-            if promoText == "no promo" {
-                self.promoLabel.text = "This user has yet to create their promo message."
-            } else {
-                print(promoText.count)
-                self.promoLabel.text = promoText
-            }
-            
-        }
+//        
+//        FriendSystem.system.getUser(profileID) { (user) in
+//            self.usernameLabel.text = user.username
+//            self.nameLabel.text = user.fullName
+//            
+//            let consoles = Array(user.gametags.keys)
+//            self.consoleLabel.text = consoles[0]
+//            
+//            let promoText = user.promo
+//            
+//            if promoText == "no promo" {
+//                self.promoLabel.text = "This user has yet to create their promo message."
+//            } else {
+//                print(promoText.count)
+//                self.promoLabel.text = promoText
+//            }
+//            
+//        }
         
     }
     
@@ -125,15 +118,6 @@ class ViewProfileController: UIViewController {
         sendFriendRequestButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sendFriendRequestButton.widthAnchor.constraint(equalToConstant: view.frame.width / 1.15).isActive = true
         sendFriendRequestButton.heightAnchor.constraint(equalToConstant: view.frame.height / 14).isActive = true
-        
-//        sendFriendRequestButton.layer.shadowRadius = 1.5
-//        sendFriendRequestButton.layer.shadowOpacity = 1.0
-//        sendFriendRequestButton.layer.shadowOffset = CGSize(width: 1.5, height: 1.5)
-//        sendFriendRequestButton.layer.shadowColor = UIColor(white: 0, alpha: 0.75).cgColor
-//        sendFriendRequestButton.titleLabel?.layer.shadowColor = UIColor(white: 0, alpha: 0.85).cgColor
-//        sendFriendRequestButton.titleLabel?.layer.shadowOpacity = 1.0
-//        sendFriendRequestButton.titleLabel?.layer.shadowRadius = 0.5
-//        sendFriendRequestButton.titleLabel?.layer.shadowOffset = CGSize(width: 0.5, height: 1)
         sendFriendRequestButton.layer.cornerRadius = 15
     
     }
@@ -210,12 +194,14 @@ class ViewProfileController: UIViewController {
         backgroundImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 12.5).isActive = true
         backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height / -15).isActive = true
         backgroundImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.frame.width / 1.35).isActive = true
+        
+        getSearchedUser()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getSearchedUser()
+        
         
         layoutView()
         
@@ -233,7 +219,6 @@ class ViewProfileController: UIViewController {
                 self.viewTagsButton.addTarget(self, action: #selector(self.viewTagsButtonAction(_:)), for: .touchDown)
                 self.viewGamesButton.addTarget(self, action: #selector(self.viewGamesButtonAction(_:)), for: .touchDown)
                 
-                print("Friends: \(friends)")
                 
                 return
                 
@@ -242,7 +227,7 @@ class ViewProfileController: UIViewController {
             }
             
             
-            }
+        }
             
             self.layoutNonFriendView()
             self.sendFriendRequestButton.addTarget(self, action: #selector(self.sendFriendRequestAction(_:)), for: .touchDown)

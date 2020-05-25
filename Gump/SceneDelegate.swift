@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -19,11 +20,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
         
-        let vc = SignInController()
-        let navVC = UINavigationController(rootViewController: vc)
+        let signInVC = SignInController()
+        let navVC = UINavigationController(rootViewController: signInVC)
         navVC.navigationBar.isHidden = true
+        
+        let homeVC = HomeController()
+        let navVC2 = UINavigationController(rootViewController: homeVC)
+        
+        Auth.auth().addStateDidChangeListener { auth, user in
+          if let user = user {
+            print("Signed with \(user.email)")
+            self.window?.rootViewController = navVC2
+            
+            FriendSystem.system.getCurrentUser { (user) in
+                username = user.username
                 
-        self.window?.rootViewController = navVC
+
+                
+            }
+            
+            
+          } else {
+            // No user is signed in.
+            self.window?.rootViewController = navVC
+          }
+        }
+        
         self.window?.makeKeyAndVisible()
     }
 

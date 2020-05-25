@@ -57,13 +57,21 @@ class FriendSystem {
             let fullName = "\(firstName) \(lastName)"
             let promo = snapshot.childSnapshot(forPath: "promo").value as! String
             let token = snapshot.childSnapshot(forPath: "fcmToken").value as? String
+            let friendDict = snapshot.childSnapshot(forPath: "friends").value as? [String:Bool]
+//            let friendIDs:[String] = Array(friendDict!.keys)
+//            if let friendIDs = Array(friendDict!.keys) {
+//
+//            }
+            
+//            print("Your friends are: \(friendIDs)")
+
             
             self.gametags = gametags
             
             if let games = snapshot.childSnapshot(forPath: "games").value as? [String:String] {
                 let gameTitles = Array(games.values)
             
-                print(games.values)
+//                print(games.values)
                 self.gameList = gameTitles
                 
                 completion(GumpUser(email: email, uid: id, username: username, fullName: fullName,promo: promo, gametags: gametags, requests: requests,games: games, notificationToken: token))
@@ -132,6 +140,10 @@ class FriendSystem {
                 update()
             }
         })
+    }
+    
+    func removeFriendObserver() {
+        currentUserRef.removeAllObservers()
     }
     
     
