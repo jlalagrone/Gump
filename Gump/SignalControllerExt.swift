@@ -14,13 +14,13 @@ extension SignalController {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         DispatchQueue.main.async {
-                self.view.frame.origin.y -= 300
+            self.view.frame.origin.y -= 200
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         DispatchQueue.main.async {
-            self.view.frame.origin.y += 300
+            self.view.frame.origin.y = 0
         }
     }
     
