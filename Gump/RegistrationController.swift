@@ -201,7 +201,6 @@ class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerVi
             }
                  
         }
-        
      
     }
     

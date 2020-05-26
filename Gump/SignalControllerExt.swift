@@ -11,6 +11,20 @@ import Firebase
 
 extension SignalController {
     
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        DispatchQueue.main.async {
+                self.view.frame.origin.y -= 300
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        DispatchQueue.main.async {
+            self.view.frame.origin.y += 300
+        }
+    }
+    
+    
     // Limits messageField to 75 characters maximum
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         // get the current text, or use an empty string if that failed
@@ -25,6 +39,8 @@ extension SignalController {
         // make sure the result is under 16 characters
         return updatedText.count <= 100
     }
+    
+
     
     @objc func showEmptyGameLibraryAlert(_ textfield:UITextField) {
         

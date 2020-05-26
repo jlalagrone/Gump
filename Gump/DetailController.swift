@@ -10,7 +10,7 @@ import UIKit
 
 var gameCount = Int()
 
-class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
     // Code that executes when a user deletes a game from their game library
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -78,7 +78,8 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         var textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.backgroundColor = .white
-        textView.textColor = .black
+//        textView.textColor = .black
+        
         
         let customToolbar:() -> (UIToolbar) = {
             var toolbar = UIToolbar()
@@ -199,6 +200,9 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         detailTableView.delegate = self
         detailTableView.dataSource = self
         detailTableView.register(DetailCell.self, forCellReuseIdentifier: "cellID")
+        
+        promoTextView.delegate = self
+        promoTextView.textColor = UIColor(white: 0.0, alpha: 1)
     }
     
 

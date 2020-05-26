@@ -63,7 +63,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             viewProfileVC.usernameLabel.text = user.username
             viewProfileVC.nameLabel.text = user.fullName
             
-            let consoles = Array(user.gametags.keys)
+            let consoles = Array(user.gametags!.keys)
             viewProfileVC.consoleLabel.text = consoles[0]
             
             let promoText = user.promo
@@ -71,7 +71,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             if promoText == "no promo" {
                 viewProfileVC.promoLabel.text = "This user has yet to create their promo message."
             } else {
-                print(promoText.count)
+
                 viewProfileVC.promoLabel.text = promoText
             }
             

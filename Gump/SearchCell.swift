@@ -21,7 +21,7 @@ class SearchCell:UITableViewCell {
     var fullNameLabel = DefaultLabel(textColor: darkPinkColor)
     var cellID = String()
     
-    @objc func sendFriendRequestTapped(_ sender:UIButton) {
+    @objc func viewProfileTapped(_ sender:UIButton) {
         
         buttonAction()
     }
@@ -48,7 +48,7 @@ class SearchCell:UITableViewCell {
         usernameLabel.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 2.75)
         fullNameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: frame.height / 3)
         
-        viewProfileButton.addTarget(self, action: #selector(sendFriendRequestTapped(_:)), for: .touchDown)
+        viewProfileButton.addTarget(self, action: #selector(viewProfileTapped(_:)), for: .touchDown)
         viewProfileButton.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: frame.height / 3.15)
         
         
