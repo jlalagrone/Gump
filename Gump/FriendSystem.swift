@@ -56,7 +56,7 @@ class FriendSystem {
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
             let fullName = "\(firstName) \(lastName)"
             let promo = snapshot.childSnapshot(forPath: "promo").value as! String
-            let token = snapshot.childSnapshot(forPath: "fcmToken").value as? String
+            let token = snapshot.childSnapshot(forPath: "fcmToken").value as! String
             let friendDict = snapshot.childSnapshot(forPath: "friends").value as? [String:Bool]
 //            let friendIDs:[String] = Array(friendDict!.keys)
 //            if let friendIDs = Array(friendDict!.keys) {
@@ -93,7 +93,7 @@ class FriendSystem {
             let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
             let promo = snapshot.childSnapshot(forPath: "promo").value as! String
-            let token = snapshot.childSnapshot(forPath: "fcmToken").value as? String
+            let token = snapshot.childSnapshot(forPath: "fcmToken").value as! String
             let fullName = "\(firstName) \(lastName)"
             let id = snapshot.key
             
@@ -161,7 +161,7 @@ class FriendSystem {
                 let fullName = "\(firstName) \(lastName)"
                 let promo = child.childSnapshot(forPath: "promo").value as! String
                 let games = child.childSnapshot(forPath: "games").value as? [String:String]
-                let token = child.childSnapshot(forPath: "fcmToken").value as? String
+                let token = child.childSnapshot(forPath: "fcmToken").value as! String
                                 
                 self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName,promo: promo,gametags: gametags, requests: requests ,games:games, notificationToken: token))
                 

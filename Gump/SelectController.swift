@@ -10,11 +10,13 @@ import UIKit
 import Firebase
 
 var toUserID = String()
-var toUserToken = String()
 var toUserUsername = String()
 var selectedUsersID = [String]()
 
 class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var toUserToken = String()
+
     
     var friendsTableView:UITableView = {
         var tableView = UITableView()
@@ -149,14 +151,14 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let username = FriendSystem.system.friendsList[indexPath.row].username
             
             toUserUsername = username
-            toUserToken = FriendSystem.system.friendsList[indexPath.row].notificationToken!
+            toUserToken = FriendSystem.system.friendsList[indexPath.row].notificationToken
 
             friendsTableView.reloadData()
             
             sendInviteSignalLabel.text = "Send to \(username)"
             sendInviteSignalLabel.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 44)
             
-            print("Value: \(toUserUsername)")
+            print("Sending to token: \(toUserToken)")
 
         
         }
@@ -164,8 +166,8 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
             let token = FriendSystem.system.friendsList[indexPath.row].notificationToken
             
-            if !selectedUsersID.contains(token!) {
-                selectedUsersID.append(token!)
+            if !selectedUsersID.contains(token) {
+                selectedUsersID.append(token)
                 cell.chosenView.isHidden = false
             }
             else {
@@ -237,19 +239,19 @@ extension SelectController {
     
     @objc func sendInvite(_ sender:UITapGestureRecognizer) {
         
-        print("Sent invite to: \(toUserToken)")
+        
         let sentVC = UserCreatedController()
         sentVC.modalPresentationStyle = .fullScreen
         sentVC.mainLabel.text = "Invite signal has been sent!"
         
         FriendSystem.system.getCurrentUser { (user) in
-            FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["deviceToken":toUserToken, "from": user.username])
+            FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["deviceToken":self.toUserToken, "from": user.username])
             
-            if let token = user.notificationToken {
-                print("Sending to token: \(token)")
-            } else {
-                print("User hasnt registered for notifications")
-            }
+//            if let token = user.notificationToken {
+//                print("Sending to token: \(token)")
+//            } else {
+//                print("User hasnt registered for notifications")
+//            }
         }
         
         self.present(sentVC, animated: true, completion: nil)

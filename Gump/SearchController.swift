@@ -73,7 +73,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let lastName = userDict["lastName"] as! String
                 let fullName = "\(firstName) \(lastName)"
                 let promo = userDict["promo"] as? String
-                let token = userDict["fcmToken"] as? String
+                let token = userDict["fcmToken"] as! String
                 if let games = userDict["games"] as? [String:String] {
                     
                     FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName,promo: promo,gametags: gametags,requests: requests ,games:games, notificationToken: token))

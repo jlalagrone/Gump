@@ -140,7 +140,7 @@ class HomeController: UIViewController {
         let token = Messaging.messaging().fcmToken
         
         
-        ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(token)"])
+        ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(token!)"])
 
         self.navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(white:1, alpha: 1), NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: view.frame.height/32.5)!]
