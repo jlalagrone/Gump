@@ -50,6 +50,7 @@
 		0FAD015E244912B200109D92 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAD015D244912B200109D92 /* FriendCell.swift */; };
 		0FAD0160244AB69700109D92 /* SignalTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAD015F244AB69600109D92 /* SignalTypeController.swift */; };
 		0FAD0162244AC2A600109D92 /* SignalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAD0161244AC2A600109D92 /* SignalController.swift */; };
+		0FBDB9C324833D9A00B908F5 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBDB9C224833D9A00B908F5 /* FriendsCell.swift */; };
 		E325B5A205F21CAF5E9E1533 /* Pods_Gump_GumpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C06F2923EDBFB59AA3DC650E /* Pods_Gump_GumpUITests.framework */; };
 		F509D15619C9467196BE5C80 /* Pods_Gump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E590D2115D0A13650692303 /* Pods_Gump.framework */; };
 /* End PBXBuildFile section */
@@ -120,6 +121,7 @@
 		0FAD015F244AB69600109D92 /* SignalTypeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalTypeController.swift; sourceTree = "<group>"; };
 		0FAD0161244AC2A600109D92 /* SignalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalController.swift; sourceTree = "<group>"; };
 		0FB2EF96947A637441529107 /* Pods-Gump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gump.debug.xcconfig"; path = "Target Support Files/Pods-Gump/Pods-Gump.debug.xcconfig"; sourceTree = "<group>"; };
+		0FBDB9C224833D9A00B908F5 /* FriendsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		2685BBF97A0B699E5D9BB231 /* Pods-Gump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gump.release.xcconfig"; path = "Target Support Files/Pods-Gump/Pods-Gump.release.xcconfig"; sourceTree = "<group>"; };
 		5E052A1B7953B00CC94549AF /* Pods-Gump-GumpUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gump-GumpUITests.debug.xcconfig"; path = "Target Support Files/Pods-Gump-GumpUITests/Pods-Gump-GumpUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7E0BA8BB1617528E3A3549E3 /* Pods_GumpTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GumpTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +229,7 @@
 				0F031E2B246C6BF1001A5BB5 /* ViewProfileController.swift */,
 				0FAD01592448F2E800109D92 /* FriendsController.swift */,
 				0FAD015D244912B200109D92 /* FriendCell.swift */,
+				0FBDB9C224833D9A00B908F5 /* FriendsCell.swift */,
 				0F08FE31243B8F58001D6478 /* Main.storyboard */,
 				0F08FE37243B8F5F001D6478 /* Assets.xcassets */,
 				0F08FE39243B8F5F001D6478 /* LaunchScreen.storyboard */,
@@ -544,6 +547,7 @@
 				0F031E172450001A001A5BB5 /* ProfileExt.swift in Sources */,
 				0FAD015E244912B200109D92 /* FriendCell.swift in Sources */,
 				0F9AE3602442924100BC577B /* RegistrationExt.swift in Sources */,
+				0FBDB9C324833D9A00B908F5 /* FriendsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
