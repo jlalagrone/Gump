@@ -122,14 +122,14 @@ class HomeController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "signOutIcon"), style: .plain, target: self, action: #selector(signOutTapped(_:)))
         
-        Auth.auth().addStateDidChangeListener { auth, user in
-          if let user = user {
-            print("Welcome \(user.email)")
-            
-          } else {
-            // No user is signed in.
-          }
-        }
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//          if let user = user {
+//            print("Welcome \(user.email)")
+//            
+//          } else {
+//            // No user is signed in.
+//          }
+//        }
 
         
     }

@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
+
 // Custom UIButton subclass object that contains logic that creates a new user and signs in them in
 class RegistrationButton:UIButton {
     
@@ -82,7 +83,7 @@ extension RegistrationController {
         sender.tag += 1
         print("SENDER TAG: \(sender.tag)")
         
-        if sender.tag > 3 { sender.tag = 0 }
+        if sender.tag > 2 { sender.tag = 0 }
         
         switch sender.tag {
         case 1:
@@ -100,81 +101,48 @@ extension RegistrationController {
                 
                  return
              }
-            //Displays loading spinner
-            self.showSpinner(onView: self.view)
             
-            Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (result, error) in
+            signUpEmail = emailField.text!
+            signUpPassword = passwordField.text!
+            
+            print("Email: \(signUpEmail) \nPassword: \(signUpPassword)")
+            
+            sender.registrationButtonAnimation(text:"Please enter your desired Gump username and name",label:self.mainLabel,viewsToHide: [self.emailField,self.passwordField,self.confirmPasswordField,self.hideTextButton], viewsToShow: [self.usernameField,self.firstNameField,self.lastNameField]) {
                 
-                // Displays error if there is trouble creating the account
-                if error != nil {
-                    self.removeSpinner()
-                    self.showAlert(message: error!.localizedDescription)
-                    sender.tag = 0
-                    
-                }
-                else {
-                    // Saves newly created user to FirebaseDatabase
-                    FriendSystem.system.currentUserRef.setValue(["email": self.emailField.text!, "password": self.passwordField.text!, "uid": Auth.auth().currentUser?.uid, "username": "n/a"])
-                    print("Account created!")
-                    
-                    Auth.auth().signIn(withEmail: self.emailField.text!, password: self.passwordField.text!) { (result, error) in
-                        
-                        // Displays error if newly created user can't be signed in
-                        if error != nil {
-                            self.showAlert(message: error!.localizedDescription)
-                        }
-                        else {
-                            // Code thats ran if user is created and succesfully signed in
-                            self.removeSpinner()
-                            print(Auth.auth().currentUser!.uid)
-                            
-                            DispatchQueue.main.async {
-                                
-                                sender.registrationButtonAnimation(text:"Please enter your name and desired username",label:self.mainLabel,viewsToHide: [self.emailField,self.passwordField,self.confirmPasswordField,self.hideTextButton], viewsToShow: [self.usernameField,self.firstNameField,self.lastNameField])   {
-                                    
-                                }
-                                print("Done loading! \nUser succesfully created and signed in!")
-
-                            }
-                            
-                            self.navigationItem.setHidesBackButton(true, animated: false)
-                        }
-                    }
-                }
+                //Completion Handler code thats executed after registrationButtonAnimation is ran
             }
+            
         case 2:
             
             // Checks if firstName & lastName textfields are left blank and runs code inside of else block if they are
-            guard self.firstNameField.text! != "" && self.lastNameField.text != "" else {
+            guard self.firstNameField.text != nil && self.lastNameField.text != nil else {
                 print("Please enter your name")
                 sender.tag = 1
                 
-                self.showAlert(message: "Please enter your first and last name.")
+                self.showAlert(message: "Please enter your name.")
                 
                 return
             }
             
-            guard self.passwordField.text! == self.confirmPasswordField.text! else {
-                
-                let alert = UIAlertController(title: "Uh oh!", message: "Your passwords don't match.", preferredStyle: .alert)
-                let alertAction = UIAlertAction(title: "Continue", style: .default)
-                alert.addAction(alertAction)
-                present(alert, animated: true, completion: nil)
-                
-                return
-                
-            }
             
             // Checks to see if the desired username has been registered already
             FriendSystem.system.userRef.queryOrdered(byChild: "username").queryEqual(toValue: self.usernameField.text!).observeSingleEvent(of: .value , with: { snapshot in
                  
-                
                 // Conditional statement "if" clause that executes if the desired username is available for use
                 if !snapshot.exists() {
                     // Code thats executed if username field is left blank
-                    if self.usernameField.text! == "" {
+                    if self.usernameField.text == nil {
                         sender.tag = 1
                         self.showAlert(message: "Please enter a username.")
+                        return
+                    }
+                    
+                    // Code thats ran if desired username is less than four characters
+                    else if self.usernameField.text!.count < 4 {
+                        sender.tag = 1
+                        
+                        self.showAlert(message: "Username must contain more than four charatcers.")
+                        
                         return
                     }
                         
@@ -193,23 +161,48 @@ extension RegistrationController {
                         let alert = UIAlertController(title: "Almost Done!", message: "Your name is how other users will determine who you are. Once you've sumbitted your name you can't change it so make sure it's correct!", preferredStyle: .alert)
                         
                         // Code that executes if user confirms their name and username
-                        let alertAction = UIAlertAction(title: "Proceed", style: .default) { (action) in
+                        let alertAction = UIAlertAction(title: "Create Account", style: .default) { (action) in
                             
-                            print("Hey \(self.firstNameField.text!) \(self.lastNameField.text!), your username is \(self.usernameField.text!)")
+                            self.showSpinner(onView: self.view)
                             
-                            usersRef.child(FriendSystem.system.currentUserID).updateChildValues(["username": self.usernameField.text!, "firstName": self.firstNameField.text!, "lastName": self.lastNameField.text!])
-                                                    
-                            DispatchQueue.main.async {
-                                sender.registrationButtonAnimation(text: "Enter your primary gaming console and game tag", label: self.mainLabel, viewsToHide: [self.usernameField,self.firstNameField,self.lastNameField], viewsToShow: [self.consoleField,self.tagField]) {
+                            Auth.auth().createUser(withEmail: self.signUpEmail, password: self.signUpPassword) { (result, error) in
+                                
+                                if error != nil {
+                                    self.removeSpinner()
+                                    self.showAlert(message: error!.localizedDescription)
+                                    sender.tag = 1
+                                }
+                                
+                                else {
+                                    // Writes users data to Firebase DB
+                                    FriendSystem.system.currentUserRef.setValue(["email": self.signUpEmail, "password": self.signUpPassword, "uid": Auth.auth().currentUser?.uid, "username": self.usernameField.text!, "firstName": self.firstNameField.text!, "lastName": self.lastNameField.text!])
+                                    
+                                    Auth.auth().signIn(withEmail: self.signUpEmail, password: self.signUpPassword) { (result, error) in
+                                        if error != nil {
+                                            self.showAlert(message: error!.localizedDescription)
 
+                                        }
+                                        
+                                        else {
+                                            // Code execute if user is succesfully signed in
+                                            self.removeSpinner()
+                                            print("User \(Auth.auth().currentUser!.uid) has been successfully created and signed in!")
+                                            
+                                            DispatchQueue.main.async {
+                                                self.navigationController?.popToRootViewController(animated: false)
+                                            }
+                                            
+                                        }
+                                    }
                                 }
                             }
-                            
                         }
+                        
                         let noAction = UIAlertAction(title: "Go Back", style: .destructive) { (action) in
                             sender.tag = 1
                             self.view.frame.origin.y = 0
                         }
+                        
                         alert.addAction(noAction)
                         alert.addAction(alertAction)
                         
@@ -227,30 +220,8 @@ extension RegistrationController {
                     
                     return
                     }
-        
                 })
-            
-            print("Button on second instance")
- 
-
-        case 3:
-                       
-            finishedVC.modalPresentationStyle = .fullScreen
-            
-            guard consoleField.text! != "" || tagField.text! != "" else {
-                print("You left a field blank!")
-                sender.tag = 2
-                self.showAlert(message: "Please enter a gametag for a console you currently use.")
-                return
-            }
-            
-            // Code executed once registration process has been complete
-            FriendSystem.system.currentUserRef.updateChildValues(["gametags": [consoleField.text!: tagField.text!], "promo": "no promo"])
-            finishedVC.mainLabel.text = "Congratulations, your account has been created!"
-            present(finishedVC, animated: true) {
-                print("Registration Complete!")
-            }
-            
+             
 
         default:
             print("Ok")
@@ -270,12 +241,7 @@ extension RegistrationController {
                 self.confirmPasswordField.isSecureTextEntry = false
             }
         }
-        
-        
     }
-    
-    
-    
 }
 
 
