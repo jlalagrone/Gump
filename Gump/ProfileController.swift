@@ -113,10 +113,7 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         layoutView()
-        
        
         viewGamesButton.addTarget(self, action: #selector(viewGamesButtonAction(_:)), for: .touchDown)
         viewPromoButton.addTarget(self, action: #selector(viewPromoButtonAction(_:)), for: .touchDown)
@@ -124,12 +121,16 @@ class ProfileController: UIViewController {
         viewRequestsButton.addTarget(self, action: #selector(viewFriendRequestsButtonAction(_:)), for: .touchDown)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
+    override func viewWillAppear(_ animated: Bool) {
         FriendSystem.system.getCurrentGumpUser { (user) in
             print("User Name: \(user.fullName)")
+            self.title = user.username
             
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
         
     }
     

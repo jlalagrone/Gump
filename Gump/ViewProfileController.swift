@@ -88,24 +88,7 @@ class ViewProfileController: UIViewController {
         consoleTitle.font = UIFont(name: "AvenirNext-Bold", size: view.frame.height / 34.5)
         
         promoLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 43.5)
-//        
-//        FriendSystem.system.getUser(profileID) { (user) in
-//            self.usernameLabel.text = user.username
-//            self.nameLabel.text = user.fullName
-//            
-//            let consoles = Array(user.gametags.keys)
-//            self.consoleLabel.text = consoles[0]
-//            
-//            let promoText = user.promo
-//            
-//            if promoText == "no promo" {
-//                self.promoLabel.text = "This user has yet to create their promo message."
-//            } else {
-//                print(promoText.count)
-//                self.promoLabel.text = promoText
-//            }
-//            
-//        }
+
         
     }
     
@@ -201,14 +184,11 @@ class ViewProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         layoutView()
         
         FriendSystem.system.currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
             let value = snapshot.value as! [String:AnyObject]
          
-            
             if let friends = value["friends"] as? [String:Bool] {
             
             let friendIDs = Array(friends.keys)

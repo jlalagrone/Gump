@@ -109,7 +109,7 @@ extension HomeController {
         self.navigationController?.pushViewController(profileController, animated: true)
         self.title = ""
         
-        profileController.title = "Edit Profile"
+//        profileController.title = "Edit Profile"
         
         profileController.mainLabel.text = username
     }
