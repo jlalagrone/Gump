@@ -80,7 +80,7 @@ extension DetailController {
         
         let promoText = promoTextView.text
         
-        if promoText != "" && promoText!.count <= 100 {
+        if promoText != nil && promoText!.count <= 100 {
             
             FriendSystem.system.currentUserRef.child("promo").setValue(promoText)
         }

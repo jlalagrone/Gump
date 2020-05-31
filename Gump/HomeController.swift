@@ -117,19 +117,15 @@ class HomeController: UIViewController {
     
  
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         title = "Home"
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "signOutIcon"), style: .plain, target: self, action: #selector(signOutTapped(_:)))
-        
-//        Auth.auth().addStateDidChangeListener { auth, user in
-//          if let user = user {
-//            print("Welcome \(user.email)")
-//            
-//          } else {
-//            // No user is signed in.
-//          }
-//        }
 
         
     }
@@ -139,8 +135,12 @@ class HomeController: UIViewController {
                 
         let token = Messaging.messaging().fcmToken
         
+        if let fcmToken = token {
+            ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(fcmToken)"])
+
+        }
         
-        ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(token!)"])
+//        ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(token!)"])
 
         self.navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1)
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor(white:1, alpha: 1), NSAttributedString.Key.font:UIFont(name: "AvenirNext-Medium", size: view.frame.height/32.5)!]

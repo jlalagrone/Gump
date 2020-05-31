@@ -125,7 +125,12 @@ class ProfileController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        print("PROFILE OF \(mainLabel.text)")
+        
+        FriendSystem.system.getCurrentGumpUser { (user) in
+            print("User Name: \(user.fullName)")
+            
+        }
+        
     }
     
 

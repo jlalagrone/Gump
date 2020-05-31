@@ -45,6 +45,25 @@ class FriendSystem {
         return id
     }
         
+    func getCurrentGumpUser(_ completion: @escaping (GumpOnUser) -> Void) {
+        currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
+            let id = snapshot.key
+            let email = snapshot.childSnapshot(forPath: "email").value as! String
+            let username = snapshot.childSnapshot(forPath: "username").value as! String
+            let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
+            let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
+            let promo = snapshot.childSnapshot(forPath: "promo").value as? String
+            
+            var fullName:String {
+                "\(firstName) \(lastName)"
+            }
+            
+            completion(GumpOnUser(email: email, uid: id, username: username, fullName: fullName, promo: promo))
+            
+            
+            }
+        }
+    
     func getCurrentUser(_ completion: @escaping (GumpUser) -> Void) {
         currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
             let id = snapshot.key

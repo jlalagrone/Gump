@@ -112,7 +112,6 @@ extension HomeController {
         profileController.title = "Edit Profile"
         
         profileController.mainLabel.text = username
-        print("USERNAME IS \(username)")
     }
     
     @objc func showSearchController(_ sender:UIButton) {

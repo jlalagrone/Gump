@@ -14,17 +14,36 @@ let lightBlueColor = UIColor(red: 118.0/255.0, green: 165.0/255.0, blue: 255.0/2
 let purpleColor = UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0, alpha: 1)
 let signalBlueColor = UIColor(red: 38.0/255.0, green: 175.0/255.0, blue: 255.0/255.0, alpha: 1)
 
+class GumpOnUser {
+    var email:String
+    var uid:String
+    var username:String
+    var fullName:String
+    var promo:String?
+    var games:[String:String]?
+    
+    init(email:String,uid:String,username:String,fullName:String,promo:String?) {
+        self.email = email
+        self.uid = uid
+        self.username = username
+        self.fullName = fullName
+        self.promo = promo
+        self.games = nil
+    }
+}
+
 class GumpUser {
     
     var email:String
     var uid:String
     var username:String
     var fullName:String
+    var notificationToken:String
     var promo:String?
     var gametags:[String:String]?
     var requests:[String:Bool]?
     var games:[String:String]?
-    var notificationToken:String
+    
     
     
     init(email:String,uid:String,username:String,fullName:String,promo:String?,gametags:[String:String]? ,requests:[String:Bool]?,games:[String:String]?, notificationToken:String) {
