@@ -58,7 +58,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         FriendSystem.system.userList = []
 
-        let queryRef = FriendSystem.system.userRef.queryOrdered(byChild: "username").queryStarting(atValue: searchBar.text)
+        let queryRef = FriendSystem.system.userRef.queryStarting(atValue: searchBar.text).queryOrdered(byChild: "username").queryLimited(toFirst: 10)
                 
         queryRef.observeSingleEvent(of: .value) { (snapshot) in
             for snap in snapshot.children {
@@ -82,7 +82,6 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 print("Search List: \(FriendSystem.system.userList.count)")
                 
                 self.searchTable.reloadData()
-                return
                         
             }
 
