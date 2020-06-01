@@ -97,7 +97,7 @@ extension DetailController {
         
         else if promoText == "" {
             
-            FriendSystem.system.currentUserRef.child("promo").setValue("no promo")
+            FriendSystem.system.currentUserRef.child("promo").setValue("N/A")
         }
         
     }
