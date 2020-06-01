@@ -41,7 +41,7 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
     
        func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
            
-           var attributedString:NSAttributedString!
+        var attributedString:NSAttributedString!
            
         attributedString = NSAttributedString(string: FriendSystem.system.gameList[row], attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
            return attributedString
@@ -228,6 +228,15 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FriendSystem.system.getCurrentGumpUser { (user) in
+
+            if let gamesDict = user.games {
+                let games = Array(gamesDict.values)
+                FriendSystem.system.gameList = games
+            }
+            
+        }
         
         view.backgroundColor = lightPinkColor
 

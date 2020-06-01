@@ -58,7 +58,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         FriendSystem.system.userList = []
 
-        let queryRef = FriendSystem.system.userRef.queryOrdered(byChild: "username").queryStarting(atValue: searchBar.text).queryLimited(toLast: 15)
+        let queryRef = FriendSystem.system.userRef.queryOrdered(byChild: "username").queryStarting(atValue: searchBar.text)
                 
         queryRef.observeSingleEvent(of: .value) { (snapshot) in
             for snap in snapshot.children {
@@ -77,7 +77,10 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let games = userDict["games"] as? [String:String]
                     
                 
-                FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName,promo: promo,games:games, gamertags: gamertags,requests: requests, notificationToken: token!))
+                FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName,promo: promo,games:games, gamertags: gamertags,requests: requests, notificationToken: token))
+                
+                print("Search List: \(FriendSystem.system.userList.count)")
+                
                 self.searchTable.reloadData()
                 return
                         
