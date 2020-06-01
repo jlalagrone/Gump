@@ -29,15 +29,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         Auth.auth().addStateDidChangeListener { auth, user in
           if let user = user {
-            print("Signed with \(user.email)")
+            print("Signed in with \(user.email!)")
             self.window?.rootViewController = navVC2
             
-            FriendSystem.system.getCurrentUser { (user) in
-                username = user.username
-                
-
-                
-            }
             
             
           } else {

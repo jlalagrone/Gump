@@ -151,7 +151,9 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let username = FriendSystem.system.friendsList[indexPath.row].username
             
             toUserUsername = username
-            toUserToken = FriendSystem.system.friendsList[indexPath.row].notificationToken
+            if let token = FriendSystem.system.friendsList[indexPath.row].notificationToken {
+                toUserToken = token
+            }
 
             friendsTableView.reloadData()
             
@@ -164,18 +166,17 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         else {            
     
-            let token = FriendSystem.system.friendsList[indexPath.row].notificationToken
-            
-            if !selectedUsersID.contains(token) {
-                selectedUsersID.append(token)
-                cell.chosenView.isHidden = false
+            if let token = FriendSystem.system.friendsList[indexPath.row].notificationToken {
+                if !selectedUsersID.contains(token) {
+                    selectedUsersID.append(token)
+                    cell.chosenView.isHidden = false
+                }
+                else {
+                    selectedUsersID = selectedUsersID.filter { $0 != token }
+                    cell.chosenView.isHidden = true
+                }
+
             }
-            else {
-                selectedUsersID = selectedUsersID.filter { $0 != token }
-                cell.chosenView.isHidden = true
-            }
-    
-            
         }
         
     }
@@ -228,7 +229,7 @@ extension SelectController {
         sentVC.mainLabel.text = "Online signal(s) have been sent!"
         print("Selected IDs: \(selectedUsersID)")
         
-        FriendSystem.system.getCurrentUser { (user) in
+        FriendSystem.system.getCurrentGumpUser { (user) in
             FriendSystem.system.currentUserRef.child("signals").child("onlineSignal").updateChildValues(["deviceTokens":selectedUsersID, "from": user.username])
         }
         
@@ -244,7 +245,7 @@ extension SelectController {
         sentVC.modalPresentationStyle = .fullScreen
         sentVC.mainLabel.text = "Invite signal has been sent!"
         
-        FriendSystem.system.getCurrentUser { (user) in
+        FriendSystem.system.getCurrentGumpUser { (user) in
             FriendSystem.system.currentUserRef.child("signals").child("inviteSignal").updateChildValues(["deviceToken":self.toUserToken, "from": user.username])
             
 //            if let token = user.notificationToken {

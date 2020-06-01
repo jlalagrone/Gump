@@ -63,7 +63,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             viewProfileVC.usernameLabel.text = user.username
             viewProfileVC.nameLabel.text = user.fullName
             
-            let consoles = Array(user.gametags!.keys)
+            let consoles = Array(user.gamertags!.keys)
             viewProfileVC.consoleLabel.text = consoles[0]
             
             let promoText = user.promo

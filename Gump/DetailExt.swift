@@ -55,13 +55,13 @@ extension DetailController {
         alert.addTextField()
         
         let addGameAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            let text = alert.textFields![0].text!
-            print(text)
+            let game = alert.textFields![0].text!
+            print(game)
             
-            FriendSystem.system.currentUserRef.child("games").childByAutoId().setValue(text)
-            print("The game \(text) has been added to your library.")
+            FriendSystem.system.currentUserRef.child("games").childByAutoId().setValue(game)
+            print("The game \(game) has been added to your library.")
             
-            FriendSystem.system.gameList.append(text)
+            FriendSystem.system.gameList.append(game)
             self.detailTableView.reloadData()
         }
         
@@ -80,7 +80,7 @@ extension DetailController {
         
         let promoText = promoTextView.text
         
-        if promoText != "" && promoText!.count <= 100 {
+        if promoText != nil && promoText!.count <= 100 {
             
             FriendSystem.system.currentUserRef.child("promo").setValue(promoText)
         }
@@ -97,7 +97,7 @@ extension DetailController {
         
         else if promoText == "" {
             
-            FriendSystem.system.currentUserRef.child("promo").setValue("no promo")
+            FriendSystem.system.currentUserRef.child("promo").setValue("N/A")
         }
         
     }

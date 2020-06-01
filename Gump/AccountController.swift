@@ -31,14 +31,21 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
     }()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FriendSystem.system.gametags.keys.count
+        
+        if FriendSystem.system.gamertags.keys.isEmpty {
+            return 0
+        } else {
+            return FriendSystem.system.gamertags.keys.count
+        }
+        
+//        return FriendSystem.system.gamertags.keys.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! DetailCell
         
-        let platforms = Array(FriendSystem.system.gametags.keys)
-        let gamerTags = Array(FriendSystem.system.gametags.values)
+        let platforms = Array(FriendSystem.system.gamertags.keys)
+        let gamerTags = Array(FriendSystem.system.gamertags.values)
         
         cell.titleLabel.text = "\(platforms[indexPath.row]): \(gamerTags[indexPath.row])"
         
@@ -62,7 +69,7 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         nameLabel.textAlignment = .left
         nameLabel.font = UIFont(name: "AvenirNext-DemiBoldItalic", size: view.frame.height / 39.5)
         
-        FriendSystem.system.getCurrentUser { (user) in
+        FriendSystem.system.getCurrentGumpUser { (user) in
             
             self.emailLabel.text = "     \(user.email)"
             self.nameLabel.text = "     \(user.fullName)"
@@ -118,8 +125,9 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func getUserInfo() {
-        FriendSystem.system.getCurrentUser { (user) in
+        FriendSystem.system.getCurrentGumpUser { (user) in
             print("Got em \(user.username)")
+            
             self.tagsTable.reloadData()
         }
     }
@@ -127,6 +135,8 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        print("# of Tags: \(FriendSystem.system.gamertags.keys.count)")
         layoutView()
         
         

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 let darkPinkColor = UIColor(red: 239.0/255.0, green: 91.0/255.0, blue: 164.0/255.0, alpha: 1)
 let lightPinkColor = UIColor(red: 255.0/255.0, green: 125.0/255.0, blue: 206.0/255.0, alpha: 1)
@@ -15,16 +16,41 @@ let purpleColor = UIColor(red: 184.0/255.0, green: 0.0/255.0, blue: 222.0/255.0,
 let signalBlueColor = UIColor(red: 38.0/255.0, green: 175.0/255.0, blue: 255.0/255.0, alpha: 1)
 
 class GumpUser {
+    var email:String
+    var uid:String
+    var username:String
+    var fullName:String
+    var notificationToken:String?
+    var promo:String?
+    var games:[String:String]?
+    var gamertags:[String:String]?
+    var requests:[String:Bool]?
+    
+    init(email:String,uid:String,username:String,fullName:String,promo:String?,games:[String:String]?,gamertags:[String:String]?,requests:[String:Bool]?, notificationToken:String?) {
+        self.email = email
+        self.uid = uid
+        self.username = username
+        self.fullName = fullName
+        self.promo = promo
+        self.games = games
+        self.gamertags = gamertags
+        self.requests = requests
+        self.notificationToken = notificationToken
+    }
+}
+
+class GumpOnUser {
     
     var email:String
     var uid:String
     var username:String
     var fullName:String
+    var notificationToken:String
     var promo:String?
     var gametags:[String:String]?
     var requests:[String:Bool]?
     var games:[String:String]?
-    var notificationToken:String
+    
     
     
     init(email:String,uid:String,username:String,fullName:String,promo:String?,gametags:[String:String]? ,requests:[String:Bool]?,games:[String:String]?, notificationToken:String) {

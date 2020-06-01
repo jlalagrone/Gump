@@ -12,6 +12,9 @@ import Firebase
 
 class RegistrationController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var signUpEmail = String()
+    var signUpPassword = String()
+    
     var consolePickerOptions = ["PS4", "Xbox One", "PC", "Nintendo Switch"]
     var consoleStatus:String?
     var micPickerOptions = ["Yes", "No"]

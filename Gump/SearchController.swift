@@ -58,7 +58,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         FriendSystem.system.userList = []
 
-        let queryRef = FriendSystem.system.userRef.queryOrdered(byChild: "username").queryStarting(atValue: searchBar.text)
+        let queryRef = FriendSystem.system.userRef.queryStarting(atValue: searchBar.text).queryOrdered(byChild: "username").queryLimited(toFirst: 10)
                 
         queryRef.observeSingleEvent(of: .value) { (snapshot) in
             for snap in snapshot.children {
@@ -66,31 +66,26 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 let uid = userSnap.key
                 let userDict = userSnap.value as! [String:AnyObject]
                 let email = userDict["email"] as! String
-                let gametags = userDict["gametags"] as? [String:String]
+                let gamertags = userDict["gametags"] as? [String:String]
                 let requests = userDict["requests"] as? [String:Bool]
                 let username = userDict["username"] as! String
                 let firstName = userDict["firstName"] as! String
                 let lastName = userDict["lastName"] as! String
                 let fullName = "\(firstName) \(lastName)"
                 let promo = userDict["promo"] as? String
-                let token = userDict["fcmToken"] as! String
-                if let games = userDict["games"] as? [String:String] {
+                let token = userDict["fcmToken"] as? String
+                let games = userDict["games"] as? [String:String]
                     
-                    FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName,promo: promo,gametags: gametags,requests: requests ,games:games, notificationToken: token))
-                    self.searchTable.reloadData()
-
-                } else {
-                    
-                    FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName,promo: promo,gametags: gametags, requests: requests,games:nil, notificationToken: token))
-                    self.searchTable.reloadData()
-                }
                 
-                    
+                FriendSystem.system.userList.append(GumpUser(email: email, uid: uid, username: username, fullName: fullName,promo: promo,games:games, gamertags: gamertags,requests: requests, notificationToken: token))
+                
+                print("Search List: \(FriendSystem.system.userList.count)")
+                
+                self.searchTable.reloadData()
+                        
             }
-//            self.searchTable.reloadData()
 
         }
-
   
     }
 
@@ -147,23 +142,23 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
             
             if viewVC.profileID == FriendSystem.system.currentUserID {
                 viewVC.sendFriendRequestButton.isHidden = true
-                
+
             }
             
             FriendSystem.system.getUser(id) { (user) in
                 viewVC.usernameLabel.text = user.username
                 viewVC.nameLabel.text = user.fullName
                 
-                let consoles = Array(user.gametags!.keys)
-                viewVC.consoleLabel.text = consoles[0]
+                if let gamingConsoles = user.gamertags?.keys {
+                    let consoles = Array(gamingConsoles)
+                    viewVC.consoleLabel.text = consoles[0]
+            
+                }
                 
                 let promoText = user.promo
                 
-                if promoText == "no promo" {
-                    viewVC.promoLabel.text = "This user has yet to create their promo message."
-                } else {
-
-                    viewVC.promoLabel.text = promoText
+                if let promo = user.promo {
+                    viewVC.promoLabel.text = promo
                 }
                 
             }

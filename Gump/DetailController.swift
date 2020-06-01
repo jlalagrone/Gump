@@ -156,13 +156,16 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         if title == "Games" {
         
-            FriendSystem.system.getCurrentUser { (user) in
-                print("Got user \(username)")
+            FriendSystem.system.getCurrentGumpUser { (user) in
+                print("Got user \(user.username)")
             
+                // Code executed if current user has games saved to Firebase DB
                 if let games = user.games {
                     FriendSystem.system.gameList = Array(games.values)
                     self.detailTableView.reloadData()
                 }
+                    
+                // Code executed if current user has no games saved to Firebase DB
                 else {
                     FriendSystem.system.gameList = []
                     self.detailTableView.reloadData()
@@ -178,18 +181,17 @@ class DetailController: UIViewController, UITableViewDelegate, UITableViewDataSo
         else if title == "Promo" {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(DetailController.updatePromo(_:)))
             
-            FriendSystem.system.currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
-                let userDict = snapshot.value as! [String:AnyObject]
-                let promo = userDict["promo"] as! String
-                
-                if promo == "no promo" {
-                    self.promoTextView.text = ""
-                } else {
+            FriendSystem.system.getCurrentGumpUser { (user) in
+                if let promo = user.promo {
+    
                     self.promoTextView.text = promo
-
                 }
-                
+                else {
+                    print("User currently has no promo.")
+                    self.promoTextView.text = ""
+                }
             }
+            
         }
 
         

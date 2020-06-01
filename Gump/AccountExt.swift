@@ -32,18 +32,17 @@ extension AccountController {
         alert.addTextField()
         alert.addTextField()
         
-        alert.textFields![0].placeholder = "Example: PS4, WoW, Xbox One"
-        alert.textFields![1].placeholder = "Enter Gametag/Username"
+        alert.textFields![0].placeholder = "Example: PS4, Xbox One"
+        alert.textFields![1].placeholder = "Enter Gamertag"
         
         let addTagAction = UIAlertAction(title: "Confirm", style: .default) { (action) in
             let consoleText = alert.textFields![0]
             let gamertagText = alert.textFields![1]
             
-        FriendSystem.system.currentUserRef.child("gametags").updateChildValues([consoleText.text!:gamertagText.text!])
+        FriendSystem.system.currentUserRef.child("gamertags").updateChildValues([consoleText.text!:gamertagText.text!])
             
-            FriendSystem.system.gametags[consoleText.text!] = gamertagText.text!
+            FriendSystem.system.gamertags[consoleText.text!] = gamertagText.text!
 
-            
             self.presentSuccessAlert(title: "Gametag Added!", message: "")
             
         }
