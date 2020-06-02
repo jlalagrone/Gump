@@ -10,8 +10,48 @@ import UIKit
 import Foundation
 import Firebase
 
-class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: view.frame.width, height: view.frame.height / 4)
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return FriendSystem.system.friendsList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FriendsCell
+        
+        cell.usernameLabel.text = FriendSystem.system.friendsList[indexPath.row].username
+        cell.nameLabel.text = FriendSystem.system.friendsList[indexPath.row].fullName
+        if let gamingDict = FriendSystem.system.friendsList[indexPath.row].gamertags {
+            for (console,tag) in gamingDict {
+                cell.gamertagLabel.text = tag
+                cell.consoleLabel.text = console
+                
+            }
+        }
+        
+        return cell
+    }
+    
      
+    var friendsCollectionView:UICollectionView = {
+        var layout = UICollectionViewFlowLayout()
+        var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        layout.scrollDirection = .vertical
+
+        collectionView.register(FriendsCell.self, forCellWithReuseIdentifier: "cell")
+        return collectionView
+    }()
 
     var friendsTableView:UITableView = {
         var tableView = UITableView()
@@ -84,17 +124,18 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     
     func layoutView() {
-        view.addSubview(friendsTableView)
+        view.addSubview(friendsCollectionView)
         
-        friendsTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 25).isActive = true
-        friendsTableView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
-        friendsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: view.frame.height / -23.5).isActive = true
-        friendsTableView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        friendsTableView.layer.cornerRadius = 15
+        friendsCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 25).isActive = true
+        friendsCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        friendsCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: view.frame.height / -23.5).isActive = true
+        friendsCollectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         
         view.backgroundColor = UIColor(red: 255.0/255.0, green: 125.0/255.0, blue: 206.0/255.0, alpha: 1)
         title = "Friends"
@@ -108,9 +149,13 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        friendsCollectionView.backgroundColor = .white
+        friendsCollectionView.delegate = self
+        friendsCollectionView.dataSource = self
+        
         FriendSystem.system.addFriendObserver {
              print("Friends Count: \(FriendSystem.system.friendsList.count)!")
-             self.friendsTableView.reloadData()
+             self.friendsCollectionView.reloadData()
          }
         
         
