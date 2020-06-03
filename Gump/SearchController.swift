@@ -76,7 +76,7 @@ class SearchController: UIViewController, UISearchBarDelegate, UICollectionViewD
                 if let tagDict = user.gamertags {
                     for (console,tag) in tagDict {
                         viewVC.consoleLabel.text = console
-                        return
+                        break
                     }
                 }
                 else {
@@ -85,6 +85,9 @@ class SearchController: UIViewController, UISearchBarDelegate, UICollectionViewD
                 
                 if let promo = user.promo {
                     viewVC.promoLabel.text = promo
+                }
+                else {
+                    viewVC.promoLabel.text = "N/A"
                 }
                 
             }
