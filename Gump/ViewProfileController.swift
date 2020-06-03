@@ -46,8 +46,6 @@ class ViewProfileController: UIViewController {
         return button
     }()
     
-    
-    
     var consoleIcon:UIImageView = {
         var imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false

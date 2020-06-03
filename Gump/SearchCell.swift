@@ -11,11 +11,6 @@ import UIKit
 
 class SearchCell:UITableViewCell {
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-//        cellID = String()
-    }
     
     var usernameLabel = DefaultLabel(textColor: signalBlueColor)
     var fullNameLabel = DefaultLabel(textColor: darkPinkColor)

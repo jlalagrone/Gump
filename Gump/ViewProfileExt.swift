@@ -30,7 +30,6 @@ extension ViewProfileController {
                 }
             }
             
-            
             FriendSystem.system.sendRequestToUser(self.profileID)
             let alert = UIAlertController(title: "Friend request sent!", message: nil, preferredStyle: .alert)
             let continueAction = UIAlertAction(title: "Continue", style: .default)
