@@ -75,10 +75,10 @@ extension RegistrationController {
     // Method that creates a FirebaseAuth account with user's email & password and other information
     @objc func registerAccount(_ sender:RegistrationButton) {
    
-        let usersRef = Database.database().reference().child("Users")
+//        let usersRef = Database.database().reference().child("Users")
         ref = Database.database().reference()
 
-        let finishedVC = UserCreatedController()
+//        let finishedVC = UserCreatedController()
         
         sender.tag += 1
         print("SENDER TAG: \(sender.tag)")
@@ -88,6 +88,13 @@ extension RegistrationController {
         switch sender.tag {
         case 1:
 
+            // Code executed if email or password fields are left blank
+            guard emailField.text!.contains("@") && !passwordField.text!.isEmpty && !confirmPasswordField.text!.isEmpty else {
+                showAlert(message: "Please enter a valid email and password.")
+                
+                sender.tag = 0
+                return
+            }
             
             // Code if password fields aren't identical
             guard passwordField.text! == confirmPasswordField.text else {

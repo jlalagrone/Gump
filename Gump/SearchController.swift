@@ -74,7 +74,7 @@ class SearchController: UIViewController, UISearchBarDelegate, UICollectionViewD
                 viewVC.nameLabel.text = user.fullName
                 
                 if let tagDict = user.gamertags {
-                    for (console,tag) in tagDict {
+                    for (console,_) in tagDict {
                         viewVC.consoleLabel.text = console
                         break
                     }

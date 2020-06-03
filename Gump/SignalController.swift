@@ -129,6 +129,8 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
     
     func layoutOnlineSignalView() {
                 
+        mainLabel.text = "Online Signal"
+        
         view.addSubview(mainLabel)
         view.addSubview(contentView)
         view.addSubview(consoleLabel)
@@ -173,6 +175,8 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
     }
     
     func layoutInviteSignalView() {
+        
+        mainLabel.text = "Invite Signal"
         
         view.addSubview(mainLabel)
         view.addSubview(contentView)

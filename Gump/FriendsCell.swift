@@ -32,6 +32,7 @@ class FriendsCell:UICollectionViewCell {
         label.textAlignment = .center
         label.layer.cornerRadius = 10
         label.layer.masksToBounds = true
+        label.textColor = .white
         
         return label
     }()
@@ -65,6 +66,7 @@ class FriendsCell:UICollectionViewCell {
     
     var stackView = UIStackView()
     
+    var gamesAction:(() -> Void)!
     var viewGamesButton:UIButton = {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -75,6 +77,16 @@ class FriendsCell:UICollectionViewCell {
         return button
     }()
     
+    @objc func gamesTapped(_ sender:UIButton) {
+        
+        gamesAction()
+    }
+    
+    func setGamesFunction(_ function: @escaping () -> Void) {
+        self.gamesAction = function
+    }
+    
+    var promoAction:(() -> Void)!
     var viewPromoButton:UIButton = {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +98,17 @@ class FriendsCell:UICollectionViewCell {
         return button
     }()
     
+    @objc func promoTapped(_ sender:UIButton) {
+        
+        promoAction()
+    }
     
+    func setPromoFunction(_ function: @escaping () -> Void) {
+        self.promoAction = function
+    }
+    
+    
+    var signalAction:(() -> Void)!
     var signalButton:UIButton = {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -97,6 +119,15 @@ class FriendsCell:UICollectionViewCell {
         
         return button
     }()
+    
+    @objc func signalTapped(_ sender:UIButton) {
+        
+        signalAction()
+    }
+    
+    func setSignalFunction(_ function: @escaping () -> Void) {
+        self.signalAction = function
+    }
     
     func setupCellFonts() {
         
@@ -158,6 +189,10 @@ class FriendsCell:UICollectionViewCell {
         super.init(frame: frame)
         
         setupCellLayout()
+        
+        signalButton.addTarget(self, action: #selector(signalTapped(_:)), for: .touchDown)
+        viewPromoButton.addTarget(self, action: #selector(promoTapped(_:)), for: .touchDown)
+        viewGamesButton.addTarget(self, action: #selector(gamesTapped(_:)), for: .touchDown)
     }
     
     

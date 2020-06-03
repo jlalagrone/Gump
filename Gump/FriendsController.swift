@@ -39,6 +39,36 @@ class FriendsController: UIViewController, UICollectionViewDelegate, UICollectio
             }
         }
         
+        cell.setPromoFunction {
+            if let promo = FriendSystem.system.friendsList[indexPath.row].promo {
+                self.showAlert(message: promo)
+            }
+            else {
+                self.showAlert(message: "This user doesn't have a promo.")
+            }
+        }
+        
+        cell.setGamesFunction {
+            var text = String()
+            if let gamesDict = FriendSystem.system.friendsList[indexPath.row].games {
+                for (_,game) in gamesDict {
+                    text.append("\(game), ")
+                }
+                self.showAlert(message: text)
+            }
+            else {
+                self.showAlert(message: "This user's game library is empty.")
+            }
+        }
+        
+        cell.setSignalFunction {
+            let inviteVC = SignalController()
+            inviteVC.layoutInviteSignalView()
+            
+            self.navigationController?.pushViewController(inviteVC, animated: true)
+        }
+        
+        
         return cell
     }
     
