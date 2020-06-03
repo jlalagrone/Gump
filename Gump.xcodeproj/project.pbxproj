@@ -16,7 +16,6 @@
 		0F031E15244FFBC9001A5BB5 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E14244FFBC9001A5BB5 /* DetailCell.swift */; };
 		0F031E172450001A001A5BB5 /* ProfileExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E162450001A001A5BB5 /* ProfileExt.swift */; };
 		0F031E1A2458FE12001A5BB5 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E192458FE12001A5BB5 /* SearchController.swift */; };
-		0F031E1C2459111B001A5BB5 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E1B2459111B001A5BB5 /* SearchCell.swift */; };
 		0F031E1E245C14B9001A5BB5 /* DetailExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E1D245C14B9001A5BB5 /* DetailExt.swift */; };
 		0F031E20245C1AD9001A5BB5 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E1F245C1AD9001A5BB5 /* Protocols.swift */; };
 		0F031E22245D0CA9001A5BB5 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F031E21245D0CA9001A5BB5 /* AccountController.swift */; };
@@ -82,7 +81,6 @@
 		0F031E162450001A001A5BB5 /* ProfileExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileExt.swift; sourceTree = "<group>"; };
 		0F031E182456589D001A5BB5 /* Gump.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gump.entitlements; sourceTree = "<group>"; };
 		0F031E192458FE12001A5BB5 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
-		0F031E1B2459111B001A5BB5 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		0F031E1D245C14B9001A5BB5 /* DetailExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailExt.swift; sourceTree = "<group>"; };
 		0F031E1F245C1AD9001A5BB5 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		0F031E21245D0CA9001A5BB5 /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 				0F031E1F245C1AD9001A5BB5 /* Protocols.swift */,
 				0F9AE357243F56F700BC577B /* CustomUIObjects.swift */,
 				0FAD015B2448F41700109D92 /* FriendSystem.swift */,
-				0F031E1B2459111B001A5BB5 /* SearchCell.swift */,
 				0FBDB9C42487877200B908F5 /* SearchedCell.swift */,
 				0F031E192458FE12001A5BB5 /* SearchController.swift */,
 				0F08FE2F243B8F58001D6478 /* SignInController.swift */,
@@ -516,7 +513,6 @@
 			files = (
 				0F031E2A24611BC9001A5BB5 /* RequestExt.swift in Sources */,
 				0F08FE30243B8F58001D6478 /* SignInController.swift in Sources */,
-				0F031E1C2459111B001A5BB5 /* SearchCell.swift in Sources */,
 				0F8DB38E2444B0A600175166 /* UserCreatedController.swift in Sources */,
 				0F031E11244D2AE9001A5BB5 /* ProfileController.swift in Sources */,
 				0F031E2624610464001A5BB5 /* RequestsController.swift in Sources */,
