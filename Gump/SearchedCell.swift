@@ -41,7 +41,7 @@ class SearchedCell:UICollectionViewCell {
     var nameLabel:UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.textColor = lightPinkColor
         
         return label
@@ -136,6 +136,7 @@ class SearchedCell:UICollectionViewCell {
         nameLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: frame.height / 20).isActive = true
         nameLabel.centerXAnchor.constraint(equalTo: usernameLabel.centerXAnchor).isActive = true
         nameLabel.heightAnchor.constraint(equalTo: usernameLabel.heightAnchor).isActive = true
+        nameLabel.widthAnchor.constraint(equalTo: cardBackgroundView.widthAnchor, multiplier: 0.85).isActive = true
         
         stackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: frame.height / 7).isActive = true
         stackView.bottomAnchor.constraint(equalTo: cardBackgroundView.bottomAnchor).isActive = true
