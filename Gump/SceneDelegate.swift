@@ -32,8 +32,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print("Signed in with \(user.email!)")
             self.window?.rootViewController = navVC2
             
-            
-            
           } else {
             // No user is signed in.
             self.window?.rootViewController = navVC

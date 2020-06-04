@@ -11,7 +11,7 @@ import Firebase
 
 class AccountController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var tagsLabel = DefaultLabel(title: "Your Gametags")
+    var tagsLabel = DefaultLabel(title: "Your Gamertags")
     
     var addTagButton:UIButton = {
         var button = UIButton()

@@ -142,7 +142,7 @@ class FriendsCell:UICollectionViewCell {
     
     func setupCellLayout() {
         
-        contentView.backgroundColor = UIColor.white
+        
         contentView.addSubview(cardBackgroundView)
         contentView.addSubview(usernameLabel)
         contentView.addSubview(nameLabel)

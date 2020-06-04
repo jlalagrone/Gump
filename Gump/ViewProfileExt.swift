@@ -50,12 +50,11 @@ extension ViewProfileController {
         
         FriendSystem.system.getUser(profileID) { (user) in
             let gamertagDict = user.gamertags
-//            let gametags = Array(gametagDict.values)
             
-            print("Gametags -> \(gamertagDict)")
+            print("Gamertags -> \(gamertagDict)")
             
             
-            alert.title = "\(user.username)'s gametags"
+            alert.title = "\(user.username)'s gamertags"
             alert.message = "\(gamertagDict)"
             
             self.present(alert, animated: true, completion: nil)

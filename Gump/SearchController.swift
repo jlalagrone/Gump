@@ -162,7 +162,7 @@ class SearchController: UIViewController, UISearchBarDelegate, UICollectionViewD
                 let uid = userSnap.key
                 let userDict = userSnap.value as! [String:AnyObject]
                 let email = userDict["email"] as! String
-                let gamertags = userDict["gametags"] as? [String:String]
+                let gamertags = userDict["gamertags"] as? [String:String]
                 let requests = userDict["requests"] as? [String:Bool]
                 let username = userDict["username"] as! String
                 let firstName = userDict["firstName"] as! String

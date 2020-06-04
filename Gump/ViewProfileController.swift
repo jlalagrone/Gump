@@ -21,7 +21,7 @@ class ViewProfileController: UIViewController {
     var viewTagsButton = HomeButton(image: UIImage(named: "listIcon")!)
     var viewTagsTitle:DefaultLabel = {
         var label = DefaultLabel(textColor: darkPinkColor)
-        label.text = "Gametags"
+        label.text = "Gamretags"
         label.textAlignment = .center
         
         return label

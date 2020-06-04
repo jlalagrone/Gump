@@ -97,7 +97,7 @@ class FriendsController: UIViewController, UICollectionViewDelegate, UICollectio
     
     override func viewWillAppear(_ animated: Bool) {
         
-        view.backgroundColor = UIColor(red: 255.0/255.0, green: 125.0/255.0, blue: 206.0/255.0, alpha: 1)
+        view.backgroundColor = backgroundPinkColor
         title = "Friends"
         
         
@@ -108,7 +108,7 @@ class FriendsController: UIViewController, UICollectionViewDelegate, UICollectio
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        friendsCollectionView.backgroundColor = .white
+        friendsCollectionView.backgroundColor = backgroundPinkColor
         friendsCollectionView.delegate = self
         friendsCollectionView.dataSource = self
         
