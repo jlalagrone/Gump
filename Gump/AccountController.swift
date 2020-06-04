@@ -52,6 +52,8 @@ class AccountController: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
+    var firstName = String()
+    
     var emailTitleLabel = DefaultLabel(title: "Email Address")
     var nameTitleLabel = DefaultLabel(title: "Name")
     

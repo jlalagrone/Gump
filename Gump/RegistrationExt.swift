@@ -122,7 +122,7 @@ extension RegistrationController {
         case 2:
             
             // Checks if firstName & lastName textfields are left blank and runs code inside of else block if they are
-            guard self.firstNameField.text != nil && self.lastNameField.text != nil else {
+            guard !self.firstNameField.text!.isEmpty && !self.lastNameField.text!.isEmpty else {
                 print("Please enter your name")
                 sender.tag = 1
                 
