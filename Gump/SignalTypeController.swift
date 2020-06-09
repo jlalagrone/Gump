@@ -104,8 +104,8 @@ class SignalTypeController: UIViewController {
         title = ""
         
         signalController.layoutOnlineSignalView()
-        signalController.mainLabel.text = "Online Signal"
-        signalController.consoleLabel.text = "Please enter the system you plan to play on"
+        signalController.consoleLabel.text = "Console"
+        signalController.title = "Online Signal"
 
         
     }
@@ -118,11 +118,8 @@ class SignalTypeController: UIViewController {
         let signalController = SignalController()
         self.navigationController?.pushViewController(signalController, animated: true)
         
-        title = ""
-        
         signalController.layoutInviteSignalView()
-        signalController.mainLabel.text = "Invite Signal"
-        
+        signalController.title = "Invite Signal"
         
     }
     

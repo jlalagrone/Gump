@@ -104,7 +104,7 @@ extension SignalController {
             return
         }
         
-        if messageField.text == "" {
+        if messageField.text == "Tap To Type" {
             let confirmAlert = UIAlertController(title: "Are you sure you want to send an invite signal with a blank message?", message: "", preferredStyle: .alert)
             
             let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
