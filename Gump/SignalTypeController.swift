@@ -105,7 +105,6 @@ class SignalTypeController: UIViewController {
         
         signalController.layoutOnlineSignalView()
         signalController.mainLabel.text = "Online Signal"
-        signalController.gameLabel.text = "Please enter the game you plan on playing"
         signalController.consoleLabel.text = "Please enter the system you plan to play on"
 
         
@@ -123,10 +122,6 @@ class SignalTypeController: UIViewController {
         
         signalController.layoutInviteSignalView()
         signalController.mainLabel.text = "Invite Signal"
-        signalController.gameLabel.text = "Please enter the game you want to play"
-        signalController.gameLabel.numberOfLines = 0
-        signalController.messageLabel.numberOfLines = 0
-        signalController.messageLabel.text = "Enter a personalized message if desired"
         
         
     }

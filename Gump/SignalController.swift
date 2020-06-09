@@ -57,12 +57,11 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
         return label
     }()
     
-    var contentView:UIView = {
+    var dividerView:UIView = {
         var view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = darkPinkColor
-        view.layer.cornerRadius = 7.5
-        
+        view.backgroundColor = .lightGray
+
         return view
     }()
     
@@ -70,8 +69,8 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
     var gameLabel = DefaultLabel(title: "Game")
     var messageLabel = DefaultLabel(title: "Message")
     
-    var consoleField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Example: 'Xbox One' or 'PC'", placeholderLength: 27)
-    var gameField = DefaultTextField(color: .white, borderColor: darkPinkColor.cgColor, placeholderText: "Select Game", placeholderLength: 11)
+    var consoleField = DefaultTextField(color: .white, borderColor: UIColor.white.cgColor, placeholderText: "Example: 'Xbox One' or 'PC'", placeholderLength: 27)
+    var gameField = DefaultTextField(color: .white, borderColor: UIColor.white.cgColor, placeholderText: "Tap To Enter", placeholderLength: 12)
     
     
     // Code that customizes the messageField when creating an invite signal
@@ -79,6 +78,8 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
         var textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.backgroundColor = .white
+        textView.text = "Tap To Type"
+        textView.textColor = .lightGray
         
         let customToolbar:() -> (UIToolbar) = {
             var toolbar = UIToolbar()
@@ -102,7 +103,7 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
 
         
     var selectFriendsButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "CONTINUE")
-    var selectFriendButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "CONTINUE")
+    var selectFriendButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "Tap To Continue")
     
     
     func layoutFonts() {
@@ -112,12 +113,11 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
         gameLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 35)
         messageLabel.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 35)
         
-        messageField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 47.5)
-        consoleField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 47.5)
+        messageField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 35)
+        consoleField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 35)
         consoleField.textColor = .black
         gameField.textColor = .black
-        gameField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 47.5)
-        messageField.textColor = .black
+        gameField.font = UIFont(name: "AvenirNext-DemiBold", size: view.frame.height / 35)
         
         selectFriendsButton.titleLabel?.font = UIFont(name: "AvenirNext-Heavy", size: view.frame.height / 35)
         selectFriendsButton.setTitleColor(.white, for: .normal)
@@ -129,96 +129,51 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
     
     func layoutOnlineSignalView() {
                 
-        mainLabel.text = "Online Signal"
-        
-        view.addSubview(mainLabel)
-        view.addSubview(contentView)
-        view.addSubview(consoleLabel)
-        view.addSubview(consoleField)
-        view.addSubview(gameLabel)
-        view.addSubview(gameField)
-        view.addSubview(selectFriendsButton)
-        
-        mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 12.5).isActive = true
-        mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        contentView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height / 27.5).isActive = true
-        contentView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
-        
-        consoleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        consoleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        consoleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
-        
-        consoleField.topAnchor.constraint(equalTo: consoleLabel.bottomAnchor, constant: 5).isActive = true
-        consoleField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        consoleField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
-        consoleField.heightAnchor.constraint(equalToConstant: view.frame.height / 18.5).isActive = true
-        
-        gameLabel.topAnchor.constraint(equalTo: consoleField.bottomAnchor, constant: view.frame.height / 35).isActive = true
-        gameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        gameLabel.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
-        
-        gameField.topAnchor.constraint(equalTo: gameLabel.bottomAnchor, constant: 5).isActive = true
-        gameField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        gameField.widthAnchor.constraint(equalTo: consoleField.widthAnchor).isActive = true
-        gameField.heightAnchor.constraint(equalTo: consoleField.heightAnchor).isActive = true
-        
-        contentView.bottomAnchor.constraint(equalTo: gameField.bottomAnchor, constant: view.frame.height / 25).isActive = true
-        
-        selectFriendsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        selectFriendsButton.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        selectFriendsButton.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: view.frame.height / 15).isActive = true
-        selectFriendsButton.heightAnchor.constraint(equalToConstant: view.frame.height / 13.5).isActive = true
-        
+
     
     }
     
     func layoutInviteSignalView() {
         
-        mainLabel.text = "Invite Signal"
-        
-        view.addSubview(mainLabel)
-        view.addSubview(contentView)
+        title = "Invite Signal"
         view.addSubview(gameLabel)
         view.addSubview(gameField)
+        view.addSubview(dividerView)
         view.addSubview(messageLabel)
         view.addSubview(messageField)
         view.addSubview(selectFriendButton)
         
-        mainLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 12.5).isActive = true
-        mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        gameLabel.textColor = lightPinkColor
+        gameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: view.frame.width / 30).isActive = true
+        gameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.frame.height / 35).isActive = true
         
-        contentView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        contentView.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: view.frame.height / 27.5).isActive = true
-        contentView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
+        gameField.topAnchor.constraint(equalTo: gameLabel.bottomAnchor).isActive = true
+        gameField.leftAnchor.constraint(equalTo: gameLabel.leftAnchor).isActive = true
+        gameField.widthAnchor.constraint(equalToConstant: view.frame.width / 1.15).isActive = true
+        gameField.textAlignment = .left
         
-        gameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
-        gameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        gameLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
+        dividerView.heightAnchor.constraint(equalToConstant: 1.5).isActive = true
+        dividerView.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        dividerView.topAnchor.constraint(equalTo: gameField.bottomAnchor, constant: 2.5).isActive = true
+        dividerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        gameField.heightAnchor.constraint(equalToConstant: view.frame.height / 18.5).isActive = true
-        gameField.topAnchor.constraint(equalTo: gameLabel.bottomAnchor, constant: 5).isActive = true
-        gameField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        gameField.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.85).isActive = true
+        messageLabel.textColor = lightPinkColor
+        messageLabel.leftAnchor.constraint(equalTo: gameLabel.leftAnchor).isActive = true
+        messageLabel.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: view.frame.height / 35).isActive = true
         
-        messageLabel.topAnchor.constraint(equalTo: gameField.bottomAnchor, constant: view.frame.height / 35).isActive = true
-        messageLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        messageLabel.widthAnchor.constraint(equalTo: gameField.widthAnchor).isActive = true
+        messageField.topAnchor.constraint(equalTo: messageLabel.bottomAnchor).isActive = true
+        messageField.leftAnchor.constraint(equalTo: gameLabel.leftAnchor).isActive = true
+        messageField.heightAnchor.constraint(equalToConstant: view.frame.height / 4).isActive = true
+        messageField.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
-        messageField.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 5).isActive = true
-        messageField.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        messageField.widthAnchor.constraint(equalTo: gameField.widthAnchor).isActive = true
-        messageField.heightAnchor.constraint(equalToConstant: view.frame.height / 7.5).isActive = true
-        messageField.textAlignment = .left
-        
-        contentView.bottomAnchor.constraint(equalTo: messageField.bottomAnchor, constant: view.frame.height / 30).isActive = true
-        
+        selectFriendButton.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+        selectFriendButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        selectFriendButton.heightAnchor.constraint(equalToConstant: view.frame.height / 7.5).isActive = true
         selectFriendButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        selectFriendButton.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
-        selectFriendButton.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: view.frame.height / 23.5).isActive = true
-        selectFriendButton.heightAnchor.constraint(equalToConstant: view.frame.height / 13.5).isActive = true
-    
+        selectFriendButton.titleLabel?.textAlignment = .center
+        
+        
+        
         
     }
     
@@ -242,11 +197,11 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
             
         }
         
-        view.backgroundColor = lightPinkColor
+        view.backgroundColor = .white
 
         layoutFonts()
         selectFriendsButton.layer.cornerRadius = 15
-        selectFriendButton.layer.cornerRadius = 15
+        selectFriendButton.layer.cornerRadius = 2.5
         
         selectFriendButton.addTarget(self, action: #selector(chooseFriendToInvite(_:)), for: .touchDown)
         selectFriendsButton.addTarget(self, action: #selector(chooseFriends(_:)), for: .touchDown)

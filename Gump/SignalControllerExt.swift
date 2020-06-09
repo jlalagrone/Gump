@@ -13,14 +13,24 @@ extension SignalController {
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        DispatchQueue.main.async {
-            self.view.frame.origin.y -= 200
+//        DispatchQueue.main.async {
+//            self.view.frame.origin.y -= 100
+//        }
+        
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = .black
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        DispatchQueue.main.async {
-            self.view.frame.origin.y = 0
+//        DispatchQueue.main.async {
+//            self.view.frame.origin.y = 0
+//        }
+        
+        if textView.text.isEmpty {
+            textView.text = "Tap To Type"
+            textView.textColor = .lightGray
         }
     }
     

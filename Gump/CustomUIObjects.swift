@@ -109,9 +109,11 @@ class DefaultTextField:UITextField {
     let placeholderText:(String,Int,UITextField) -> NSMutableAttributedString = { (text,length,textField) in
         
         var placeHolder = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.font:UIFont(name: "AvenirNext-Regular", size: 14.5)!])
-        placeHolder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range:NSRange(location:0,length:length))
+        placeHolder.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.lightGray, range:NSRange(location:0,length:length))
+        
         
         textField.attributedPlaceholder = placeHolder
+        
         
         return placeHolder
     }
@@ -129,7 +131,7 @@ class DefaultTextField:UITextField {
         layer.borderColor = borderColor
         layer.borderWidth = 1.25
         font = UIFont(name: "AvenirNext-DemiBold", size: 15)
-        textAlignment = .center
+        textAlignment = .left
         inputAccessoryView = customToolbar()
         attributedPlaceholder = self.placeholderText(placeholderText,placeholderLength,self)
         
@@ -190,17 +192,17 @@ class DefaultLabel:UILabel {
 }
 
 extension UITextField {
-    
-    func setLeftPaddingPoints(_ amount:CGFloat){
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-        self.leftView = paddingView
-        self.leftViewMode = .always
-    }
-    
-    func setRightPaddingPoints(_ amount:CGFloat) {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-        self.rightView = paddingView
-        self.rightViewMode = .always
-    }
+//    
+//    func setLeftPaddingPoints(_ amount:CGFloat){
+//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+//        self.leftView = paddingView
+//        self.leftViewMode = .always
+//    }
+//    
+//    func setRightPaddingPoints(_ amount:CGFloat) {
+//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+//        self.rightView = paddingView
+//        self.rightViewMode = .always
+//    }
 }
 

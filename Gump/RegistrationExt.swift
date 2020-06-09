@@ -161,7 +161,7 @@ extension RegistrationController {
                         return
                     }
       
-                    // What happens if username is avialable for use
+                    // What happens if username is available for use
                     else {
                         self.view.frame.origin.y = 0
                         
