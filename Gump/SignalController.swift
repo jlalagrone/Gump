@@ -102,7 +102,7 @@ class SignalController: UIViewController, UITextViewDelegate, UIPickerViewDelega
     }()
 
         
-    var selectFriendsButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "CONTINUE")
+    var selectFriendsButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "Tap To Continue")
     var selectFriendButton = DefaultButton(backgroundColor: darkPinkColor, borderColor: UIColor.clear.cgColor, title: "Tap To Continue")
     
     
