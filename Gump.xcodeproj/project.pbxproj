@@ -255,12 +255,9 @@
 		0F08FE2A243B8F58001D6478 /* Gump */ = {
 			isa = PBXGroup;
 			children = (
-				0F031E182456589D001A5BB5 /* Gump.entitlements */,
-				0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */,
-				0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */,
+				0F1EFF7A2492698100B21795 /* AppDelegate.swift */,
 				0F1EFF7D2492698500B21795 /* AccountController.swift */,
 				0F1EFF882492699A00B21795 /* AccountExt.swift */,
-				0F1EFF7A2492698100B21795 /* AppDelegate.swift */,
 				0F1EFF7E2492698700B21795 /* CustomUIObjects.swift */,
 				0F1EFF93249269AD00B21795 /* DetailCell.swift */,
 				0F1EFF8D249269A200B21795 /* DetailController.swift */,
@@ -289,11 +286,14 @@
 				0F1EFF90249269A800B21795 /* UserCreatedController.swift */,
 				0F1EFF862492699600B21795 /* ViewProfileController.swift */,
 				0F1EFF8E249269A400B21795 /* ViewProfileExt.swift */,
+				0F08FE2D243B8F58001D6478 /* SceneDelegate.swift */,
 				0F08FE31243B8F58001D6478 /* Main.storyboard */,
-				0F08FE37243B8F5F001D6478 /* Assets.xcassets */,
 				0F08FE39243B8F5F001D6478 /* LaunchScreen.storyboard */,
 				0F08FE3C243B8F5F001D6478 /* Info.plist */,
+				0F08FE5E243B9AF3001D6478 /* GoogleService-Info.plist */,
 				0F08FE34243B8F58001D6478 /* Gump.xcdatamodeld */,
+				0F08FE37243B8F5F001D6478 /* Assets.xcassets */,
+				0F031E182456589D001A5BB5 /* Gump.entitlements */,
 				0F9AE3592441079C00BC577B /* Bubblegum.ttf */,
 			);
 			path = Gump;
