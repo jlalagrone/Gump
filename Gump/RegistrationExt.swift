@@ -174,7 +174,7 @@ extension RegistrationController {
                             
                             Auth.auth().createUser(withEmail: self.signUpEmail, password: self.signUpPassword) { (result, error) in
                                 
-                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                 
                                 if error != nil {
                                     self.removeSpinner()
@@ -210,7 +210,7 @@ extension RegistrationController {
 
                                             }
                                             
-                                            appDelegate.registerForPushNotifications(application: UIApplication.shared)
+//                                            appDelegate.registerForPushNotifications(application: UIApplication.shared)
 
                                             
                                             

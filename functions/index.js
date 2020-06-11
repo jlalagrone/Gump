@@ -25,13 +25,29 @@ exports.sendRequestNotification = functions.database.ref('/Users/{userID}/reques
 	const requestID = context.params.requestID
 	const currentUserID = context.params.userID
 
-	return print(reuestID)
+	usersRef.child(currentUserID).once('value', function(snapshot) {
+		const token = snapshot.child('fcmToken').val()
+		const username = snapshot.child('username').val()
+
+		notificationMessage = "You have a new friend request!"
+		var payload = {
+			notification: {
+				title: "Gump",
+				body: notificationMessage
+			}
+		}
+
+		return admin.messaging().sendToDevice(token, payload).then(ok => {
+			console.log(ok)
+		})
+		.catch(err => {
+			console.error(error)
+		})
+	})
+
+	return true
 
 })
-
-
-
-
 
 
 exports.sendOnlineNotifications = functions.database.ref('/Users/{userID}/signals/onlineSignal/deviceTokens').onCreate((snapshot, context) => {
