@@ -174,6 +174,8 @@ extension RegistrationController {
                             
                             Auth.auth().createUser(withEmail: self.signUpEmail, password: self.signUpPassword) { (result, error) in
                                 
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                
                                 if error != nil {
                                     self.removeSpinner()
                                     self.showAlert(message: error!.localizedDescription)
@@ -198,6 +200,19 @@ extension RegistrationController {
                                             DispatchQueue.main.async {
                                                 self.navigationController?.popToRootViewController(animated: false)
                                             }
+                                            
+                                            let token = Messaging.messaging().fcmToken
+                                            
+                                            if let fcmToken = token {
+                                               
+                                                self.ref = Database.database().reference()
+                                            self.ref?.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(fcmToken)"])
+
+                                            }
+                                            
+                                            appDelegate.registerForPushNotifications(application: UIApplication.shared)
+
+                                            
                                             
                                         }
                                     }

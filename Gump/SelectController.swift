@@ -138,7 +138,7 @@ class SelectController: UIViewController, UITableViewDelegate, UITableViewDataSo
             print("Sending to token: \(toUserToken)")
         
         }
-        else {            
+        else {
     
             if let token = FriendSystem.system.friendsList[indexPath.row].notificationToken {
                 if !selectedUsersID.contains(token) {

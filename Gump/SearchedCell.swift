@@ -1,8 +1,15 @@
 //
+<<<<<<< HEAD
 //  SearchedCell.swift
 //  Gump
 //
 //  Created by Jordan LaGrone on 6/3/20.
+=======
+//  SearchCell.swift
+//  Gump
+//
+//  Created by Jordan LaGrone on 4/28/20.
+>>>>>>> Pop
 //  Copyright © 2020 JordanLaGrone. All rights reserved.
 //
 
