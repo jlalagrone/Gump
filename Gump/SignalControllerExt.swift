@@ -6,6 +6,7 @@
 //  Copyright © 2020 JordanLaGrone. All rights reserved.
 //
 
+
 import UIKit
 import Firebase
 
@@ -13,14 +14,24 @@ extension SignalController {
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        DispatchQueue.main.async {
-            self.view.frame.origin.y -= 200
+//        DispatchQueue.main.async {
+//            self.view.frame.origin.y -= 100
+//        }
+        
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = .black
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        DispatchQueue.main.async {
-            self.view.frame.origin.y = 0
+//        DispatchQueue.main.async {
+//            self.view.frame.origin.y = 0
+//        }
+        
+        if textView.text.isEmpty {
+            textView.text = "Tap To Type"
+            textView.textColor = .lightGray
         }
     }
     
@@ -94,7 +105,7 @@ extension SignalController {
             return
         }
         
-        if messageField.text == "" {
+        if messageField.text == "Tap To Type" {
             let confirmAlert = UIAlertController(title: "Are you sure you want to send an invite signal with a blank message?", message: "", preferredStyle: .alert)
             
             let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in

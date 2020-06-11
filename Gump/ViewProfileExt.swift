@@ -6,6 +6,7 @@
 //  Copyright © 2020 JordanLaGrone. All rights reserved.
 //
 
+
 import UIKit
 import Firebase
 
@@ -30,7 +31,6 @@ extension ViewProfileController {
                 }
             }
             
-            
             FriendSystem.system.sendRequestToUser(self.profileID)
             let alert = UIAlertController(title: "Friend request sent!", message: nil, preferredStyle: .alert)
             let continueAction = UIAlertAction(title: "Continue", style: .default)
@@ -51,12 +51,11 @@ extension ViewProfileController {
         
         FriendSystem.system.getUser(profileID) { (user) in
             let gamertagDict = user.gamertags
-//            let gametags = Array(gametagDict.values)
             
-            print("Gametags -> \(gamertagDict)")
+            print("Gamertags -> \(gamertagDict)")
             
             
-            alert.title = "\(user.username)'s gametags"
+            alert.title = "\(user.username)'s gamertags"
             alert.message = "\(gamertagDict)"
             
             self.present(alert, animated: true, completion: nil)

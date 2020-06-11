@@ -130,17 +130,22 @@ class HomeController: UIViewController {
         
     }
     
+//    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        let token = Messaging.messaging().fcmToken
         
-        if let fcmToken = token {
-            ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(fcmToken)"])
-
-        } else {
-            showAlert(message: "To be able to send and recieve signals from your friends you must have Push Notifications enabled. You can customize your notification preferences on your device in Settings.")
-        }
+//        appDelegate.registerForPushNotifications(application: UIApplication.shared)
+        
+//        let token = Messaging.messaging().fcmToken
+//        
+//        if let fcmToken = token {
+//            ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(fcmToken)"])
+//
+//        } else {
+//            showAlert(message: "To be able to send and recieve signals from your friends you must have Push Notifications enabled. You can customize your notification preferences on your device in Settings.")
+//        }
         
 //        ref.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(token!)"])
 

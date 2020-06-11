@@ -104,9 +104,8 @@ class SignalTypeController: UIViewController {
         title = ""
         
         signalController.layoutOnlineSignalView()
-        signalController.mainLabel.text = "Online Signal"
-        signalController.gameLabel.text = "Please enter the game you plan on playing"
-        signalController.consoleLabel.text = "Please enter the system you plan to play on"
+        signalController.consoleLabel.text = "Console"
+        signalController.title = "Online Signal"
 
         
     }
@@ -119,15 +118,8 @@ class SignalTypeController: UIViewController {
         let signalController = SignalController()
         self.navigationController?.pushViewController(signalController, animated: true)
         
-        title = ""
-        
         signalController.layoutInviteSignalView()
-        signalController.mainLabel.text = "Invite Signal"
-        signalController.gameLabel.text = "Please enter the game you want to play"
-        signalController.gameLabel.numberOfLines = 0
-        signalController.messageLabel.numberOfLines = 0
-        signalController.messageLabel.text = "Enter a personalized message if desired"
-        
+        signalController.title = "Invite Signal"
         
     }
     

@@ -19,6 +19,21 @@ var usersRef = db.ref('/Users')
 var currentUsername = String()
 var notificationMessage = String()
 
+
+exports.sendRequestNotification = functions.database.ref('/Users/{userID}/requests/{requestID}').onCreate((snapshot, context) => {
+
+	const requestID = context.params.requestID
+	const currentUserID = context.params.userID
+
+	return print(reuestID)
+
+})
+
+
+
+
+
+
 exports.sendOnlineNotifications = functions.database.ref('/Users/{userID}/signals/onlineSignal/deviceTokens').onCreate((snapshot, context) => {
 	let deviceTokens = snapshot.val()
 

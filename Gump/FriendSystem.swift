@@ -49,6 +49,7 @@ class FriendSystem {
     func getCurrentGumpUser(_ completion: @escaping (GumpUser) -> Void) {
         currentUserRef.observeSingleEvent(of: .value) { (snapshot) in
             let id = snapshot.key
+
             let email = snapshot.childSnapshot(forPath: "email").value as! String
             let username = snapshot.childSnapshot(forPath: "username").value as! String
             let promo = snapshot.childSnapshot(forPath: "promo").value as? String
@@ -91,7 +92,7 @@ class FriendSystem {
             let requests = snapshot.childSnapshot(forPath: "requests").value as? [String:Bool]
             let firstName = snapshot.childSnapshot(forPath: "firstName").value as! String
             let lastName = snapshot.childSnapshot(forPath: "lastName").value as! String
-            let promo = snapshot.childSnapshot(forPath: "promo").value as! String
+            let promo = snapshot.childSnapshot(forPath: "promo").value as? String
             let token = snapshot.childSnapshot(forPath: "fcmToken").value as? String
             let fullName = "\(firstName) \(lastName)"
             let id = snapshot.key
@@ -150,32 +151,6 @@ class FriendSystem {
         currentUserRef.removeAllObservers()
     }
     
-    
-    // Code executes every time a new user is created
-//    func addUserObserver(_ update: @escaping () -> Void) {
-//        userRef.observe(DataEventType.value, with: { (snapshot) in
-//            self.userList.removeAll()
-//            for child in snapshot.children.allObjects as! [DataSnapshot] {
-//                let email = child.childSnapshot(forPath: "email").value as! String
-//                let username = child.childSnapshot(forPath: "username").value as! String
-//                let gamertags = snapshot.childSnapshot(forPath: "gametags").value as? [String:String]
-//                let requests = snapshot.childSnapshot(forPath: "requests").value as? [String:Bool]
-//                let firstName = child.childSnapshot(forPath: "firstName").value as! String
-//                let lastName = child.childSnapshot(forPath: "lastName").value as! String
-//                let fullName = "\(firstName) \(lastName)"
-//                let promo = child.childSnapshot(forPath: "promo").value as! String
-//                let games = child.childSnapshot(forPath: "games").value as? [String:String]
-//                let token = child.childSnapshot(forPath: "fcmToken").value as! String
-//
-//
-//
-//                self.userList.append(GumpUser(email: email, uid: child.key, username: username, fullName: fullName,promo: promo,games:games, gamertags: gametags, requests: requests, notificationToken: token))
-//
-//                print("Users Count --> \(self.userList.count)")
-//            }
-//            update()
-//        })
-//    }
     
     // Sends friend request to the user with the specified ID
     func sendRequestToUser(_ userID: String) {

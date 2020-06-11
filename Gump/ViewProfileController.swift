@@ -6,6 +6,7 @@
 //  Copyright © 2020 JordanLaGrone. All rights reserved.
 //
 
+
 import UIKit
 
 class ViewProfileController: UIViewController {
@@ -21,7 +22,7 @@ class ViewProfileController: UIViewController {
     var viewTagsButton = HomeButton(image: UIImage(named: "listIcon")!)
     var viewTagsTitle:DefaultLabel = {
         var label = DefaultLabel(textColor: darkPinkColor)
-        label.text = "Gametags"
+        label.text = "Gamretags"
         label.textAlignment = .center
         
         return label
@@ -45,8 +46,6 @@ class ViewProfileController: UIViewController {
         
         return button
     }()
-    
-    
     
     var consoleIcon:UIImageView = {
         var imageView = UIImageView()

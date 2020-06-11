@@ -75,10 +75,10 @@ extension RegistrationController {
     // Method that creates a FirebaseAuth account with user's email & password and other information
     @objc func registerAccount(_ sender:RegistrationButton) {
    
-        let usersRef = Database.database().reference().child("Users")
+//        let usersRef = Database.database().reference().child("Users")
         ref = Database.database().reference()
 
-        let finishedVC = UserCreatedController()
+//        let finishedVC = UserCreatedController()
         
         sender.tag += 1
         print("SENDER TAG: \(sender.tag)")
@@ -88,6 +88,13 @@ extension RegistrationController {
         switch sender.tag {
         case 1:
 
+            // Code executed if email or password fields are left blank
+            guard emailField.text!.contains("@") && !passwordField.text!.isEmpty && !confirmPasswordField.text!.isEmpty else {
+                showAlert(message: "Please enter a valid email and password.")
+                
+                sender.tag = 0
+                return
+            }
             
             // Code if password fields aren't identical
             guard passwordField.text! == confirmPasswordField.text else {
@@ -115,7 +122,7 @@ extension RegistrationController {
         case 2:
             
             // Checks if firstName & lastName textfields are left blank and runs code inside of else block if they are
-            guard self.firstNameField.text != nil && self.lastNameField.text != nil else {
+            guard !self.firstNameField.text!.isEmpty && !self.lastNameField.text!.isEmpty else {
                 print("Please enter your name")
                 sender.tag = 1
                 
@@ -154,7 +161,7 @@ extension RegistrationController {
                         return
                     }
       
-                    // What happens if username is avialable for use
+                    // What happens if username is available for use
                     else {
                         self.view.frame.origin.y = 0
                         
@@ -166,6 +173,8 @@ extension RegistrationController {
                             self.showSpinner(onView: self.view)
                             
                             Auth.auth().createUser(withEmail: self.signUpEmail, password: self.signUpPassword) { (result, error) in
+                                
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                 
                                 if error != nil {
                                     self.removeSpinner()
@@ -191,6 +200,19 @@ extension RegistrationController {
                                             DispatchQueue.main.async {
                                                 self.navigationController?.popToRootViewController(animated: false)
                                             }
+                                            
+                                            let token = Messaging.messaging().fcmToken
+                                            
+                                            if let fcmToken = token {
+                                               
+                                                self.ref = Database.database().reference()
+                                            self.ref?.child("Users").child(Auth.auth().currentUser!.uid).updateChildValues(["fcmToken": "\(fcmToken)"])
+
+                                            }
+                                            
+                                            appDelegate.registerForPushNotifications(application: UIApplication.shared)
+
+                                            
                                             
                                         }
                                     }

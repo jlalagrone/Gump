@@ -6,11 +6,12 @@
 //  Copyright © 2020 JordanLaGrone. All rights reserved.
 //
 
+
 import UIKit
 import Foundation
 import Firebase
 
-class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class FriendsController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -39,6 +40,36 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         }
         
+        cell.setPromoFunction {
+            if let promo = FriendSystem.system.friendsList[indexPath.row].promo {
+                self.showAlert(message: promo)
+            }
+            else {
+                self.showAlert(message: "This user doesn't have a promo.")
+            }
+        }
+        
+        cell.setGamesFunction {
+            var text = String()
+            if let gamesDict = FriendSystem.system.friendsList[indexPath.row].games {
+                for (_,game) in gamesDict {
+                    text.append("\(game), ")
+                }
+                self.showAlert(message: text)
+            }
+            else {
+                self.showAlert(message: "This user's game library is empty.")
+            }
+        }
+        
+        cell.setSignalFunction {
+            let inviteVC = SignalController()
+            inviteVC.layoutInviteSignalView()
+            
+            self.navigationController?.pushViewController(inviteVC, animated: true)
+        }
+        
+        
         return cell
     }
     
@@ -52,75 +83,6 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         collectionView.register(FriendsCell.self, forCellWithReuseIdentifier: "cell")
         return collectionView
     }()
-
-    var friendsTableView:UITableView = {
-        var tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .white
-        
-        return tableView
-    }()
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.height / 10
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return FriendSystem.system.friendsList.count
-     }
-     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath) as! FriendCell
-        let id = FriendSystem.system.friendsList[indexPath.row].uid
-        
-        cell.selectionStyle = .none
-        cell.usernameLabel.text = FriendSystem.system.friendsList[indexPath.row].fullName
-        
-        // Logic that determines if online label is shown or not
-        FriendSystem.system.userRef.child(id).observeSingleEvent(of: .value) { (snapshot) in
-            let userDict = snapshot.value as! [String:AnyObject]
-            let username = userDict["username"] as! String
-            
-        }
-        
-        return cell
-     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let id = FriendSystem.system.friendsList[indexPath.row].uid
-        print(id)
-        
-        if FriendSystem.system.friendsList[indexPath.row].uid != nil {
-            print("Fetched user: \(FriendSystem.system.friendsList[indexPath.row].uid)")
-        } else {
-            print("Cant get fetched ID")
-        }
-        
-        let viewProfileVC = ViewProfileController()
-        viewProfileVC.profileID = id
-        
-        FriendSystem.system.getUser(id) { (user) in
-            viewProfileVC.usernameLabel.text = user.username
-            viewProfileVC.nameLabel.text = user.fullName
-            
-            let consoles = Array(user.gamertags!.keys)
-            viewProfileVC.consoleLabel.text = consoles[0]
-            
-            let promoText = user.promo
-            
-            if promoText == "no promo" {
-                viewProfileVC.promoLabel.text = "This user has yet to create their promo message."
-            } else {
-
-                viewProfileVC.promoLabel.text = promoText
-            }
-            
-        }
-        
-        
-        self.navigationController?.pushViewController(viewProfileVC, animated: true)
-        
-    }
     
     
     func layoutView() {
@@ -136,20 +98,18 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewWillAppear(_ animated: Bool) {
         
-        
-        view.backgroundColor = UIColor(red: 255.0/255.0, green: 125.0/255.0, blue: 206.0/255.0, alpha: 1)
+        view.backgroundColor = backgroundPinkColor
         title = "Friends"
         
         
         print("NUMBER OF FRIENDS: \(FriendSystem.system.friendsList.count)")
-        
         
     }
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        friendsCollectionView.backgroundColor = .white
+        friendsCollectionView.backgroundColor = backgroundPinkColor
         friendsCollectionView.delegate = self
         friendsCollectionView.dataSource = self
         
@@ -158,19 +118,11 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
              self.friendsCollectionView.reloadData()
          }
         
-        
-        
         layoutView()
-        
-        
-        friendsTableView.delegate = self
-        friendsTableView.dataSource = self
-        friendsTableView.register(FriendCell.self, forCellReuseIdentifier: "cellID")
    
         self.navigationController?.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         
         
-
     }
     
     override func viewDidDisappear(_ animated: Bool) {
